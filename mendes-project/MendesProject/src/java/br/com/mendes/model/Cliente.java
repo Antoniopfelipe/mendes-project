@@ -1,11 +1,11 @@
 package br.com.mendes.model;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,6 +19,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codCliente;
+    
     private String nome;
     private String sobrenome;
     private Long codEndereco;
@@ -27,8 +28,10 @@ public class Cliente {
     private String rg;
     private String cpf;
     private String cnpj;
+    
     @Temporal(TemporalType.DATE)
     private Date data_nascimento;
+    
     @Temporal(TemporalType.DATE)
     private Date data_Cadastro;
 
@@ -47,6 +50,14 @@ public class Cliente {
         this.cnpj = cnpj;
         this.data_nascimento = data_nascimento;
         this.data_Cadastro = data_Cadastro;
+    }
+    
+    public Cliente(Long codCliente, String nome, String sobrenome) {
+       
+    	this.codCliente = codCliente;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+      
     }
 
     public Long getCodCliente() {

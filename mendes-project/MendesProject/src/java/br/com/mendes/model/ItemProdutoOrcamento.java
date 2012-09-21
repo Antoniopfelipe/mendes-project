@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
@@ -12,23 +12,25 @@ import javax.persistence.OneToOne;
  * @author Pedro
  */
 @Entity
-public class Item_Produto_Orcamento {
+public class ItemProdutoOrcamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codItemProdutoOrcamento;
     //@OneToOne
     private Long codProduto;
-    //@ManyToOne
-    private Long codOrcamento;
+    
+    @OneToOne
+	@JoinColumn(name="ORCAMENTO_COD")
+    private Orcamento orcamento;
     private int quantidade;
 
-    public Item_Produto_Orcamento() {
+    public ItemProdutoOrcamento() {
     }
 
-    public Item_Produto_Orcamento(Long codItemProdutoOrcamento, Long codProduto, Long codOrcamento, int quantidade) {
+    public ItemProdutoOrcamento(Long codItemProdutoOrcamento, Long codProduto, Orcamento orcamento, int quantidade) {
         this.codItemProdutoOrcamento = codItemProdutoOrcamento;
         this.codProduto = codProduto;
-        this.codOrcamento = codOrcamento;
+        this.orcamento = orcamento;
         this.quantidade = quantidade;
     }
 
@@ -48,14 +50,6 @@ public class Item_Produto_Orcamento {
         this.codProduto = codProduto;
     }
 
-    public Long getCodOrcamento() {
-        return codOrcamento;
-    }
-
-    public void setCodOrcamento(Long codOrcamento) {
-        this.codOrcamento = codOrcamento;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
@@ -63,6 +57,14 @@ public class Item_Produto_Orcamento {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
+	public Orcamento getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(Orcamento orcamento) {
+		this.orcamento = orcamento;
+	}
     
     
 }

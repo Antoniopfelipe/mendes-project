@@ -4,15 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author Pedro
  */
 @Entity
-public class Item_Servico_Orcamento {
+public class ItemServicoOrcamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codItemServicoOrcamento;
@@ -21,10 +19,10 @@ public class Item_Servico_Orcamento {
     //@ManyToOne
     private Long codOrcamento;
 
-    public Item_Servico_Orcamento() {
+    public ItemServicoOrcamento() {
     }
 
-    public Item_Servico_Orcamento(Long codItemServicoOrcamento, Long codServico, Long codOrcamento) {
+    public ItemServicoOrcamento(Long codItemServicoOrcamento, Long codServico, Long codOrcamento) {
         this.codItemServicoOrcamento = codItemServicoOrcamento;
         this.codServico = codServico;
         this.codOrcamento = codOrcamento;
