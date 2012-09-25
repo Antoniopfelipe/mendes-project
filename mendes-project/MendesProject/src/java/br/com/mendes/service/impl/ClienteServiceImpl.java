@@ -15,7 +15,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	private ClienteDAO clienteDAO;
-	
+
 	@Override
 	@Transactional
 	public Cliente obterClientePorCod(Long codCliente) {

@@ -16,7 +16,7 @@ import br.com.mendes.service.ClienteService;
 
 @Scope(value="request")
 @Controller("clienteMB")
-public class clienteMB implements Serializable{
+public class ClienteMB implements Serializable{
 
 	private static final long serialVersionUID = -4165603506554303884L;
 	
@@ -32,7 +32,7 @@ public class clienteMB implements Serializable{
 		clientes = clienteService.obterTodosCliente();
 	}
 	
-    public clienteMB() {  
+    public ClienteMB() {  
     	
     	cliente = new Cliente();    	
     }

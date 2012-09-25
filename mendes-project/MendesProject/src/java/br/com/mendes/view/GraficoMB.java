@@ -7,6 +7,7 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("graficoMB")
@@ -20,6 +21,7 @@ public class GraficoMB implements Serializable{
     private CartesianChartModel categoryModel;  
   
     private CartesianChartModel linearModel;  
+    
   
     public GraficoMB() {  
         createCategoryModel();  

@@ -1,74 +1,87 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-	</h:head>
-	
-    <body>
-	
-		<h:form id="form1" style="text-align: center;">
-		
-        	<p:spacer height="10px"/>	
-        	
-       		<p:messages id="mensagem" autoUpdate="true">
-       		     <!-- Faz a msg sumir depois de 3 segundos -->
-       			 <p:effect type="clip" event="load" delay="3000" speed="1000" />       			
-       		</p:messages>
-       		
-       			<table align="center">
-       			<tr><td>
-	       		
-	       		<h:panelGrid align="center" columns="2" width="350"  >
-	        		
-	        		<p:outputLabel for="_nome" value="Nome: " />
-					<p:inputText id="_nome" value="#{clienteMB.cliente.nome}" required="true" widgetVar="gui" />
-					
-					<p:outputLabel for="_sobrenome" value="Sobrenome " required="true" />
-					<p:inputText id="_sobrenome" value="#{clienteMB.cliente.sobrenome}" required="true" requiredMessage="Sobrenome não preenchido."/>
-													
-	       		</h:panelGrid>
-	       		
-	       		</td></tr>
-	       		</table>
-	       		
-	       		<p:spacer height="40" />       		
-	       		
-       			<p:commandButton value="Salvar Cliente" action="#{clienteMB.salvarCliente}" update="mensagem, :form2" />
-       	       	       	       	
-       	</h:form>   
-       	
-       	<p:spacer height="40" />       
-       	
-       	<h:form id="form2" >
-       		       	
-       		<table align="center">
-       		<tr><td>
-       		       		
-       		<p:dataTable id="tabela" width="600" scrollWidth="680"  var="cliente" value="#{clienteMB.clientes}" emptyMessage="Não há dados."
-                             scrollable="true"  scrollHeight="300" >  
-                        
-                   <p:column headerText="Cod" width="200" style="text-align: center">  
-                       <h:outputText value="#{cliente.codCliente}">
-                           <f:convertNumber  maxFractionDigits="2"/>
-                       </h:outputText>
-                   </p:column>  
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-              		<p:column width="200" headerText="Nome" style="text-align: center; ">  
-		 				<h:outputText value="#{cliente.nome}" />  
-                   </p:column>  
-               
-                    <p:column headerText="Sobrenome" width="200" style="text-align: center">  
-                       <h:outputText value="#{cliente.sobrenome}" />  
-                   </p:column>  
-                   
-               </p:dataTable>  
-       		
-       		</td></tr>
-	       	</table>
-       		
-       	</h:form>
-    </body>
+<h:head>
+</h:head>
+
+<body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="conteudo">
+
+			<h:form id="form1" style="text-align: center;">
+
+				<p:spacer height="10px" />
+
+				<p:messages id="mensagem" autoUpdate="true">
+					<!-- Faz a msg sumir depois de 3 segundos -->
+					<p:effect type="clip" event="load" delay="3000" speed="1000" />
+				</p:messages>
+
+				<table align="center">
+					<tr>
+						<td><h:panelGrid align="left" columns="2" width="150">
+
+								<p:outputLabel for="_nome" value="Nome: " />
+								<p:inputText id="_nome" value="#{clienteMB.cliente.nome}"
+									required="true" widgetVar="gui" size="15" />
+
+								<p:outputLabel for="_sobrenome" value="Sobrenome "
+									required="true" />
+								<p:inputText id="_sobrenome"
+									value="#{clienteMB.cliente.sobrenome}" required="true"
+									requiredMessage="Sobrenome não preenchido." 
+									size="15" />
+
+							</h:panelGrid></td>
+					</tr>
+				</table>
+
+				<p:spacer height="40" />
+
+				<p:commandButton value="Salvar Cliente"
+					action="#{clienteMB.salvarCliente}" update="mensagem, :form2" />
+
+			</h:form>
+
+			<p:spacer height="40" />
+
+			<h:form id="form2">
+
+				<table align="center">
+					<tr>
+						<td><p:dataTable id="tabela" width="600" scrollWidth="680"
+								var="cliente" value="#{clienteMB.clientes}"
+								emptyMessage="Não há dados." scrollable="true"
+								scrollHeight="300">
+
+								<p:column headerText="Cod" width="200"
+									style="text-align: center">
+									<h:outputText value="#{cliente.codCliente}">
+										<f:convertNumber maxFractionDigits="2" />
+									</h:outputText>
+								</p:column>
+
+								<p:column width="200" headerText="Nome"
+									style="text-align: center; ">
+									<h:outputText value="#{cliente.nome}" />
+								</p:column>
+
+								<p:column headerText="Sobrenome" width="200"
+									style="text-align: center">
+									<h:outputText value="#{cliente.sobrenome}" />
+								</p:column>
+
+							</p:dataTable></td>
+					</tr>
+				</table>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
 </html>

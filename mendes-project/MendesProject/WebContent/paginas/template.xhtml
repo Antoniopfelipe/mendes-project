@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Tracking Mendes</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</h:head>
+
+<h:body>
+	<div id="topo"></div>
+
+	<!-- Cabeçalho do Menu -->
+	<div id="wrap">
+		<div id="header-menu">
+			<img id="img" src="img/logo-site.png" height="80" width="170" />
+		</div>
+
+		<!-- Término do Cabeçalho com os menus -->
+
+
+		<h:form id="superMenu">
+			<p:megaMenu>
+				<p:submenu label="Cadastrar">
+					<p:column>
+						<p:submenu>
+							<p:menuitem value="Cliente" action="/paginas/cadastroCliente" />
+							<p:menuitem value="TV.1.2" url="#" />
+						</p:submenu>
+					</p:column>
+				</p:submenu>
+
+				<p:submenu label="Consulta">
+					<p:column>
+						<p:submenu label="Graficos">
+							<p:menuitem value="Clientes" action="/paginas/grafico" />
+							<p:menuitem value="Sports.1.2" url="#" />
+						</p:submenu>
+					</p:column>
+				</p:submenu>
+			
+			</p:megaMenu>
+		
+		</h:form>
+		<!-- Conteúdo Aqui! -->
+
+		<ui:insert name="conteudo">
+	Espaço destinado ao conteúdo
+	</ui:insert>
+
+		<!-- Término do Conteúdo -->
+	</div>
+
+	<!-- Rodápé da Página -->
+	<div id="rodape"></div>
+
+</h:body>
+</html>
