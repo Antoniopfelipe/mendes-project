@@ -36,6 +36,10 @@ body{
 	margin-top:15px;
 }
 
+.inputSize{
+	width: 150px !important;
+	height: 18px !important;
+	}
 
 
 
