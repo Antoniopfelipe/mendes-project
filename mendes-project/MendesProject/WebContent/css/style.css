@@ -9,7 +9,7 @@ body{
 }
 
 #topo{
-	margin: 35px 0 0 30px;
+	margin: 15px 0 0 30px;
 	width: auto;
 	height: 100px;
 
@@ -23,12 +23,17 @@ body{
 	font-size: 14px;
 }
 
-#content{
+#margin-content{
 	width: auto;
 	height: 99%;
 	margin-top: 20px;
 	border-top: thin solid rgba(0,0,0, 0.3);
 	
+}
+#content{
+	width: auto;
+	height: 99%;
+	margin-top:15px;
 }
 
 
