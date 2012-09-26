@@ -6,14 +6,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-</h:head>
-
-<body>
-	<ui:composition template="template.xhtml">
+	<ui:decorate template="template.xhtml">
 		<ui:define name="conteudo">
-
-			<h:form id="form1" style="text-align: center;">
+		<h:form id="form1" style="text-align: center;">
 
 				<p:spacer height="10px" />
 
@@ -81,7 +76,8 @@
 				</table>
 
 			</h:form>
+			
 		</ui:define>
-	</ui:composition>
-</body>
+	</ui:decorate>
+
 </html>
