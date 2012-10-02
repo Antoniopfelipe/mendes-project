@@ -1,0 +1,24 @@
+/* Css referente a modificação dos componentes do primefaces
+qualquer alteração de componente deve ser feita nessa folha de estilo*/
+
+.ui-inputtext{
+	width: 200px !important;
+	height: 20px !important;
+
+}
+
+.ui-panelgrid{
+	width: 300px !important;
+	height: 50px !important;
+	font-size: 14px;
+}
+
+.ui-button{
+	font-size: 14px;
+}
+
+.ui-outputlabel{
+	font-size: 14px;
+	font-style: italic;
+	font-family: fantasy;
+}
