@@ -1,83 +1,82 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://primefaces.org/ui"
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<ui:decorate template="template.xhtml">
-		<ui:define name="conteudo">
-		<h:form id="form1" style="text-align: center;">
+	<ui:define name="conteudo">
 
-				<p:spacer height="10px" />
 
-				<p:messages id="mensagem" autoUpdate="true">
-					<!-- Faz a msg sumir depois de 3 segundos -->
-					<p:effect type="clip" event="load" delay="3000" speed="1000" />
-				</p:messages>
+		<h:form id="form1" style="text-align: left ">
 
-				<table align="center">
-					<tr>
-						<td><h:panelGrid align="left" columns="2" width="150">
 
-								<p:outputLabel for="_nome" value="Nome: " />
-								<p:inputText id="_nome" value="#{clienteMB.cliente.nome}"
-									required="true" widgetVar="gui" size="15" />
 
-								<p:outputLabel for="_sobrenome" value="Sobrenome "
-									required="true" />
-								<p:inputText id="_sobrenome"
-									value="#{clienteMB.cliente.sobrenome}" required="true"
-									requiredMessage="Sobrenome não preenchido." 
-									size="15" />
+			<p:messages id="mensagem" autoUpdate="true">
+				<!-- Faz a msg sumir depois de 3 segundos -->
+				<p:effect type="clip" event="load" delay="2000" speed="1000" />
+			</p:messages>
 
-							</h:panelGrid></td>
-					</tr>
-				</table>
+			<p:panel header="Clientes"
+				style="font-size: 14px; border: 0; font-style: italic; font-family: fantasy;">
 
-				<p:spacer height="40" />
+				<p:spacer height="14px"></p:spacer>
 
-				<p:commandButton value="Salvar Cliente"
-					action="#{clienteMB.salvarCliente}" update="mensagem, :form2" />
+				<h:panelGrid align="right" columns="4" width="650"
+					style="text-align: center">
 
-			</h:form>
+					<p:outputLabel for="_nome" value="Nome: " />
+					<p:inputText id="_nome" value="#{clienteMB.cliente.nome}"
+						required="true" size="15" />
 
-			<p:spacer height="40" />
+					<p:outputLabel for="_sobrenome" value="Sobrenome: " required="true" />
+					<p:inputText id="_sobrenome" value="#{clienteMB.cliente.sobrenome}"
+						required="true" requiredMessage="Sobrenome não preenchido."
+						size="15" />
 
-			<h:form id="form2">
+					<p:outputLabel for="_telefone" value="Tel: " required="true" />
+					<p:inputText id="_telefone" value="#{clienteMB.cliente.telefone}"
+						required="true" requiredMessage="Telefone não preenchido."
+						size="15" />
 
-				<table align="center">
-					<tr>
-						<td><p:dataTable id="tabela" width="600" scrollWidth="680"
-								var="cliente" value="#{clienteMB.clientes}"
-								emptyMessage="Não há dados." scrollable="true"
-								scrollHeight="300">
+					<p:outputLabel for="_celular" value="Cel: " required="true" />
+					<p:inputText id="_celular" value="#{clienteMB.cliente.celular}"
+						required="true" requiredMessage="Celular não preenchido."
+						size="15" />
 
-								<p:column headerText="Cod" width="200"
-									style="text-align: center">
-									<h:outputText value="#{cliente.codCliente}">
-										<f:convertNumber maxFractionDigits="2" />
-									</h:outputText>
-								</p:column>
+					<p:outputLabel for="_rg" value="RG: " required="true" />
+					<p:inputText id="_rg" value="#{clienteMB.cliente.rg}"
+						required="true" requiredMessage="RG não preenchido." size="15" />
 
-								<p:column width="200" headerText="Nome"
-									style="text-align: center; ">
-									<h:outputText value="#{cliente.nome}" />
-								</p:column>
+					<p:outputLabel for="_cpf" value="CPF: " required="true" />
+					<p:inputText id="_cpf" value="#{clienteMB.cliente.cpf}"
+						required="true" requiredMessage="CPF não preenchido." size="15" />
 
-								<p:column headerText="Sobrenome" width="200"
-									style="text-align: center">
-									<h:outputText value="#{cliente.sobrenome}" />
-								</p:column>
+					<p:outputLabel for="_cnpj" value="CNPJ: " required="true" />
+					<p:inputText id="_cnpj" value="#{clienteMB.cliente.cnpj}"
+						required="true" requiredMessage="CNPJ não preenchido." size="15" />
 
-							</p:dataTable></td>
-					</tr>
-				</table>
-
-			</h:form>
+				</h:panelGrid>
+			</p:panel>
+			<p:panel style="float: right;">
 			
-		</ui:define>
-	</ui:decorate>
+				<p:spacer width="10px" />
 
-</html>
+				<p:commandButton value="Salvar" action="#{clienteMB.salvarCliente}"
+					style="margin: 0" />
+
+				<p:spacer width="10px" />
+				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Listar" action="#" style="margin: 0" />
+
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

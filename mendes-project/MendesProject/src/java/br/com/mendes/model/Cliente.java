@@ -22,7 +22,10 @@ public class Cliente {
     
     private String nome;
     private String sobrenome;
+    
     private Long codEndereco;
+    
+    
     private String telefone;
     private String celular;
     private String rg;
