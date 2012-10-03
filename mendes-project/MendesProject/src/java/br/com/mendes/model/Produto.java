@@ -19,7 +19,6 @@ public class Produto {
     private Long codProduto;
    
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "CATEGORIA_ID")
     private Categoria categoria;
 	
     private String nome;
@@ -29,7 +28,6 @@ public class Produto {
     private Double precoVenda;
    	
     @ManyToOne(optional = false)
-	@JoinColumn(name = "META_ID")
     private Meta meta;
 
     public Produto() {
@@ -44,37 +42,13 @@ public class Produto {
         this.meta = meta;
     }
 
-    public Long getCodProduto() {
-        return codProduto;
-    }
+	public Long getCodProduto() {
+		return codProduto;
+	}
 
-    public void setCodProduto(Long codProduto) {
-        this.codProduto = codProduto;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getPrecoCusto() {
-        return precoCusto;
-    }
-
-    public void setPrecoCusto(double precoCusto) {
-        this.precoCusto = precoCusto;
-    }
-
-    public double getPrecoVenda() {
-        return precoVenda;
-    }
-
-    public void setPrecoVenda(double precoVenda) {
-        this.precoVenda = precoVenda;
-    }
+	public void setCodProduto(Long codProduto) {
+		this.codProduto = codProduto;
+	}
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -84,6 +58,30 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Double getPrecoCusto() {
+		return precoCusto;
+	}
+
+	public void setPrecoCusto(Double precoCusto) {
+		this.precoCusto = precoCusto;
+	}
+
+	public Double getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public void setPrecoVenda(Double precoVenda) {
+		this.precoVenda = precoVenda;
+	}
+
 	public Meta getMeta() {
 		return meta;
 	}
@@ -91,6 +89,7 @@ public class Produto {
 	public void setMeta(Meta meta) {
 		this.meta = meta;
 	}
+
 }
 
 

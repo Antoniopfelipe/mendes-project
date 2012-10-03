@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -85,4 +86,92 @@
 
 
 </h:body>
+=======
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<link rel="stylesheet" href="css/style.css" />
+	
+	<title>Tracking Mendes</title>
+</h:head>
+
+<h:body>
+	<div id="wrap">
+
+		<div id="topo">
+			<img src="img/logo-site.png" width="170" height="80" />
+
+			<h:form id="superMenu">
+				<p:megaMenu id="megaMenu">
+					<p:submenu label="Cadastrar">
+						<p:column>
+							<p:submenu>
+								<p:menuitem value="Cliente" action="/paginas/cadastroCliente" />
+								<p:menuitem value="Produto" action="/paginas/cadastroProduto" />
+								<p:menuitem value="Categoria" action="/paginas/cadastroCategoria" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+
+					<p:submenu label="Consulta">
+						<p:column>
+							<p:submenu>
+								<p:menuitem value="Clientes" action="/paginas/grafico" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+
+					<p:submenu label="Estatisticas">
+						<p:column>
+							<p:submenu>
+								<p:menuitem value="Cliente" action="#" />
+								<p:menuitem value="Produto" action="#" />
+								<p:menuitem value="Serviço" action="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+
+					<p:submenu label="Metas">
+						<p:column>
+							<p:submenu>
+								<p:menuitem value="Cliente" action="#" />
+								<p:menuitem value="Produto" action="#" />
+								<p:menuitem value="Serviço" action="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+
+					<p:submenu label="Sair">
+						<p:column>
+							<p:submenu>
+								<p:menuitem value="Cliente" action="#" />
+								<p:menuitem value="Produto" action="#" />
+								<p:menuitem value="Serviço" action="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+				</p:megaMenu>
+			</h:form>
+		</div>
+
+
+		<div id="margin-content">
+			<div id="content">
+				<ui:insert name="conteudo">
+				Espaço destinado ao conteúdo
+			</ui:insert>
+			</div>
+		</div>
+
+
+	</div>
+
+
+</h:body>
+>>>>>>> f1f838733d956e89e2f38d7594bb97b15808f57c
 </html>
