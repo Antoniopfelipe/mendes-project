@@ -8,7 +8,7 @@
 
 	<ui:decorate template="template.xhtml">
 		<ui:define name="conteudo">
-		<h:form id="form1" style="text-align: center;">
+		<h:form id="form1" style="text-align: left;">
 
 				<p:spacer height="10px" />
 
@@ -17,31 +17,37 @@
 					<p:effect type="clip" event="load" delay="3000" speed="1000" />
 				</p:messages>
 
-				<table align="center">
-					<tr>
-						<td><h:panelGrid align="left" columns="2" width="150">
+				<p:panel header="Cadastro de Produtos"
+					style="font-size: 14px; border: 0; font-style: italic; font-family: fantasy;">
+					
+					<p:spacer height="14px"></p:spacer>
 
+					<h:panelGrid align="left" columns="4" width="650"
+						style="text-align: left" border="1" >
+					
 								<p:outputLabel for="_nome" value="Nome: " />
 								<p:inputText id="_nome" value="#{produtoMB.produto.nome}"
-									required="true" widgetVar="gui" size="15" styleClass="inputSize" />
+									required="true" widgetVar="gui" 
+									requiredMessage="Nome não preenchido."
+									size="15" styleClass="inputSize" />
 
-								<p:outputLabel for="_precocusto" value="Preco de Custo "
+								<p:outputLabel for="_precocusto" value="Preco de Custo: "
 									required="true" />
 								<p:inputText id="_precocusto"
 									value="#{produtoMB.produto.precoCusto}" required="true"
 									requiredMessage="Preco de custo não preenchido." 
 									size="15" styleClass="inputSize" />
 									
-								<p:outputLabel for="_categoria" value="Categoria"
+								<p:outputLabel for="_categoria" value="Categoria: "
 									required="true" />
-								<p:selectOneMenu id="_categoria" value="#{categoriaMB.categoria}" >  
+								<p:selectOneMenu id="_categoria" effect="clip" value="#{categoriaMB.categoria}" style="width:165px" converter="categoriaConverter" >
+									<f:selectItem itemLabel="Categorias" itemValue="" />  
             						<f:selectItems value="#{categoriaMB.categorias}" var="categoria" itemLabel="#{categoria.descricao}" itemValue="#{categorias}" />  
         						</p:selectOneMenu>
-
-							</h:panelGrid></td>
-					</tr>
-				</table>
-
+        						
+					</h:panelGrid>
+				</p:panel>
+					
 				<p:spacer height="40" />
 
 				<p:commandButton value="Salvar Produto"
