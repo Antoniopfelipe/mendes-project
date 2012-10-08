@@ -17,11 +17,13 @@
 					<p:effect type="clip" event="load" delay="3000" speed="1000" />
 				</p:messages>
 
-				<p:panel header="Cadastro de Produtos"
+				<p:panel id="panel" header="Cadastro de Produtos"
 					style="font-size: 14px; border: 0; font-style: italic; font-family: fantasy;">
 					
 					<p:spacer height="14px"></p:spacer>
-
+					
+					<p:focus context="panel" />
+					
 					<h:panelGrid align="left" columns="4" width="650"
 						style="text-align: left" border="1" >
 					
