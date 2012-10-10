@@ -19,6 +19,7 @@ public class Produto {
     private Long codProduto;
    
 	@ManyToOne(optional = false)
+	@JoinColumn(name="ID_CATEGORIA")
     private Categoria categoria;
 	
     private String nome;
