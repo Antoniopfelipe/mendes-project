@@ -1,97 +1,81 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<ui:decorate template="template.xhtml">
-		<ui:define name="conteudo">
-		<h:form id="form1" style="text-align: left;">
+	<ui:define name="conteudo">
 
-				<p:spacer height="10px" />
 
+		<h:form id="form1" style="text-align: left ">
+				
 				<p:messages id="mensagem" autoUpdate="true">
 					<!-- Faz a msg sumir depois de 3 segundos -->
-					<p:effect type="clip" event="load" delay="3000" speed="1000" />
+					<p:effect type="clip" event="load" delay="2000" speed="1000" />
 				</p:messages>
-
+				
 				<p:panel id="panel" header="Cadastro de Produtos"
 					style="font-size: 14px; border: 0; font-style: italic; font-family: fantasy;">
 					
 					<p:spacer height="14px"></p:spacer>
-					
-					<p:focus context="panel" />
-					
-					<h:panelGrid align="left" columns="4" width="650"
-						style="text-align: left" border="1" >
+				
+				<p:focus context="panel" />
+				
+				<h:panelGrid align="left" columns="4" width="650"
+					style="text-align: left" border="1" >
 					
 								<p:outputLabel for="_nome" value="Nome: " />
 								<p:inputText id="_nome" value="#{produtoMB.produto.nome}"
 									required="true" widgetVar="gui" 
 									requiredMessage="Nome não preenchido."
-									size="15" styleClass="inputSize" />
-
-								<p:outputLabel for="_precocusto" value="Preco de Custo: "
-									required="true" />
-								<p:inputText id="_precocusto"
-									value="#{produtoMB.produto.precoCusto}" required="true"
-									requiredMessage="Preco de custo não preenchido." 
-									size="15" styleClass="inputSize" />
+									size="22" styleClass="inputSize" />
 									
-								<p:outputLabel for="_categoria" value="Categoria: "
+								<p:outputLabel for="_categoria" value="Categorias: "
 									required="true" />
 								<p:selectOneMenu  id="_categoria" effect="clip" value="#{produtoMB.produto.categoria.codCategoria}" style="width:165px"  >
 									<f:selectItem itemLabel="Categorias" itemValue="" />  
             						<f:selectItems value="#{produtoMB.categorias}" var="categoria" itemLabel="#{categoria.descricao}" itemValue="#{categoria.codCategoria}"/>  
         						</p:selectOneMenu>
         						
+        						<p:outputLabel for="_precocusto" value="Preco de Custo: "
+									required="true" />
+								<p:inputText id="_precocusto"
+									value="#{produtoMB.produto.precoCusto}" required="true"
+									requiredMessage="Preco de custo não preenchido." 
+									size="22" styleClass="inputSize" />
+									
+								<p:outputLabel for="_precovenda" value="Preco de Venda: "
+									required="true" />
+								<p:inputText id="_precovenda"
+									value="#{produtoMB.produto.precoVenda}" required="true"
+									requiredMessage="Preco de venda não preenchido." 
+									size="22" styleClass="inputSize" />
+									
+									
+        						
 					</h:panelGrid>
 				</p:panel>
-					
-				<p:spacer height="40" />
-
-				<p:commandButton value="Salvar Produto"
-					action="#{produtoMB.salvarProduto}" update="mensagem, :form2" />
-
-			</h:form>
-
-			<p:spacer height="40" />
-
-			<h:form id="form2">
-
-				<table align="center">
-					<tr>
-						<td><p:dataTable id="tabela" width="600" scrollWidth="680"
-								var="produto" value="#{produtoMB.produtos}"
-								emptyMessage="Não há dados." scrollable="true"
-								scrollHeight="300">
-
-								<p:column headerText="Cod" width="200"
-									style="text-align: center">
-									<h:outputText value="#{produto.codProduto}">
-										<f:convertNumber maxFractionDigits="2" />
-									</h:outputText>
-								</p:column>
-
-								<p:column width="200" headerText="Nome"
-									style="text-align: center; ">
-									<h:outputText value="#{produto.nome}" />
-								</p:column>
-
-								<p:column headerText="Preco de Custo" width="200"
-									style="text-align: center">
-									<h:outputText value="#{produto.precoCusto}" />
-								</p:column>
-
-							</p:dataTable></td>
-					</tr>
-				</table>
-
-			</h:form>
+				<p:panel style="float: right;">
 			
-		</ui:define>
-	</ui:decorate>
+				<p:spacer width="10px" />
 
-</html>
+				<p:commandButton value="Salvar" action="#{produtoMB.salvarProduto}"
+					style="margin: 0" />
+
+				<p:spacer width="10px" />
+				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Listar" action="#" style="margin: 0" />
+
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

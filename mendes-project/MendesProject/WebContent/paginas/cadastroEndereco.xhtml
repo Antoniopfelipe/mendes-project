@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="conteudo">
+
+
+		<h:form id="form1" style="text-align: left ">
+
+
+
+			<p:messages id="mensagem" autoUpdate="true">
+				<!-- Faz a msg sumir depois de 3 segundos -->
+				<p:effect type="clip" event="load" delay="2000" speed="1000" />
+			</p:messages>
+
+			<p:panel id="panel" header="Cadastro de Endereços"
+				style="font-size: 14px; border: 0; font-style: italic; font-family: fantasy;">
+
+				<p:spacer height="14px"></p:spacer>
+				
+				<p:focus context="panel" />
+				
+				<h:panelGrid align="left" columns="4" width="650"
+					style="text-align: left" border="1" >
+
+					<p:outputLabel for="_logradouro" value="Logradouro: " />
+					<p:inputText id="_logradouro" value="#{enderecoMB.endereco.logradouro}"
+						required="true" requiredMessage="Número não preenchido." size="20" />
+
+					<p:outputLabel for="_numero" value="Número: " required="true" />
+					<p:inputText id="_numero" value="#{enderecoMB.endereco.numero}"
+						required="true" requiredMessage="Número não preenchido." size="20" />
+
+					<p:outputLabel for="_bairro" value="Bairro: " required="true" />					
+					<p:inputMask id="_bairro" value="#{enderecoMB.endereco.bairro}" 
+						required="true" requiredMessage="Bairro não preenchido" size="20" />
+
+					<p:outputLabel for="_cidade" value="Cidade: " required="true" />
+					<p:inputMask id="_cidade" value="#{enderecoMB.endereco.cidade}"
+						required="true" requiredMessage="Cidade não preenchido." size="20" />
+
+					<p:outputLabel for="_cep" value="CEP: " required="true" />
+					<p:inputMask id="_cep" value="#{enderecoMB.endereco.cep}"
+						required="true" requiredMessage="CEP não preenchido." size="20" mask="99.999-999" />
+					
+					<p:outputLabel for="_estado" value="Estado: "  required="true" />
+					<p:selectOneMenu id="_estado" effect="clip" value="#{enderecoMB.endereco.estado}" style="width:180px">  
+            			<f:selectItem itemLabel="Acre" itemValue="AC" />  
+            			<f:selectItem itemLabel="Alagoas" itemValue="AL" />  
+            			<f:selectItem itemLabel="Amapá" itemValue="AP" />
+            			<f:selectItem itemLabel="Amazonas" itemValue="AM" />
+            			<f:selectItem itemLabel="Bahia" itemValue="BA" />
+            			<f:selectItem itemLabel="Ceará" itemValue="CE" />
+            			<f:selectItem itemLabel="Distrito Federal" itemValue="DF" />
+            			<f:selectItem itemLabel="Espírito Santo" itemValue="ES" />
+            			<f:selectItem itemLabel="Goiás" itemValue="GO" />
+            			<f:selectItem itemLabel="Maranhão" itemValue="MA" />
+            			<f:selectItem itemLabel="Mato Grosso" itemValue="MT" />
+            			<f:selectItem itemLabel="Mato Grosso do Sul" itemValue="MS" />
+            			<f:selectItem itemLabel="Minas Gerais" itemValue="MG" />
+            			<f:selectItem itemLabel="Pará" itemValue="PA" />
+            			<f:selectItem itemLabel="Paraíba" itemValue="PB" />
+            			<f:selectItem itemLabel="Paraná" itemValue="PR" />
+            			<f:selectItem itemLabel="Pernambuco" itemValue="PE" />
+            			<f:selectItem itemLabel="Piauí" itemValue="PI" />
+            			<f:selectItem itemLabel="Rio de Janeiro" itemValue="RJ" />
+            			<f:selectItem itemLabel="Rio Grande do Noite" itemValue="RN" />
+            			<f:selectItem itemLabel="Rio Grande do Sul" itemValue="RS" />
+            			<f:selectItem itemLabel="Rondônia" itemValue="RO" />
+            			<f:selectItem itemLabel="Roraima" itemValue="RR" />
+            			<f:selectItem itemLabel="Santa Catarina" itemValue="SC" />
+            			<f:selectItem itemLabel="São Paulo" itemValue="SP" />
+            			<f:selectItem itemLabel="Sergipe" itemValue="SE" />
+            			<f:selectItem itemLabel="Tocantins" itemValue="TO" />  
+        			</p:selectOneMenu>
+
+					<p:outputLabel for="_pais" value="País: " required="true" />
+					<p:inputText id="_pais" value="#{enderecoMB.endereco.pais}"
+						required="true" requiredMessage="País não preenchido." size="20" />
+
+				</h:panelGrid>
+			</p:panel>
+			<p:panel style="float: right;">
+			
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Salvar" action="#{enderecoMB.salvarEndereco}"
+					style="margin: 0" />
+
+				<p:spacer width="10px" />
+				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Listar" action="#" style="margin: 0" />
+
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

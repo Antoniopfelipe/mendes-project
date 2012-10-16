@@ -1,10 +1,10 @@
 /* Css referente a modificação dos componentes do primefaces
 qualquer alteração de componente deve ser feita nessa folha de estilo*/
 
-.ui-inputtext{
+.ui.inputText{
 	width: 200px !important;
 	height: 20px !important;
-
+	
 }
 
 .ui-panelgrid{

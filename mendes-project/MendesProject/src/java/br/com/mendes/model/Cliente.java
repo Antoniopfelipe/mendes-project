@@ -21,15 +21,19 @@ public class Cliente {
     private Long codCliente;
     
     private String nome;
+    
     private String sobrenome;
     
     private Long codEndereco;
-    
-    
+      
     private String telefone;
+    
     private String celular;
+    
     private String rg;
+    
     private String cpf;
+    
     private String cnpj;
     
     @Temporal(TemporalType.DATE)

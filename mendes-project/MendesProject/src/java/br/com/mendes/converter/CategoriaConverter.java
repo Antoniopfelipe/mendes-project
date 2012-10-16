@@ -11,7 +11,7 @@ import br.com.mendes.service.CategoriaService;
 @FacesConverter(value="categoriaConverter")
 public class CategoriaConverter implements Converter {
 
-	private static final long serialVersionUID = 1L;
+
 
 	private CategoriaService categoriaService;
 	

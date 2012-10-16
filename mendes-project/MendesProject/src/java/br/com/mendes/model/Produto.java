@@ -28,7 +28,7 @@ public class Produto {
     
     private Double precoVenda;
    	
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Meta meta;
 
     public Produto() {
