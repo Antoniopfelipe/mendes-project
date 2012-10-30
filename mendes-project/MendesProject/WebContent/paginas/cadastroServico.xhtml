@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="conteudo">
+
+		<h:form id="form1" style="text-align: left ">
+
+			<p:messages id="mensagem" autoUpdate="true">
+				<!-- Faz a msg sumir depois de 3 segundos -->
+				<p:effect type="clip" event="load" delay="2000" speed="1000" />
+			</p:messages>
+
+			<p:panel id="panel" header="Cadastro de Servicos"
+				style="font-size: 16px; border: 0;  ">
+
+				<p:spacer height="14px"></p:spacer>
+				
+				<p:focus context="panel" />
+				
+				<h:panelGrid align="left" columns="4" width="650"
+					style="text-align: left" border="0" >
+
+					<p:outputLabel for="_descricao" value="Descrição: " />
+					<p:inputText id="_descricao" value="#{servicoMB.servico.descricao}"
+						required="true" size="20"/>
+
+					<p:outputLabel for="_precoCusto" value="Preco de Custo: " required="true" />
+					<p:inputText id="_precoCusto" value="#{servicoMB.servico.precoCusto}"
+						required="true" requiredMessage="Preço de custo não preenchido."
+						size="20" />
+					
+					<p:outputLabel for="_precoVenda" value="Preço de Venda: " required="true" />					
+					<p:inputText id="_precoVenda" value="#{servicoMB.servico.precoVenda}" 
+						required="true" requiredMessage="Preço de venda não preenchido" 
+						size="20" />
+
+				</h:panelGrid>
+			</p:panel>
+			<p:panel style="float: center; border: 0;">
+			
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Salvar" action="#{servicoMB.salvarServico}"
+					style="margin: 0" />
+
+				<p:spacer width="10px" />
+				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Listar" action="#" style="margin: 0" />
+
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

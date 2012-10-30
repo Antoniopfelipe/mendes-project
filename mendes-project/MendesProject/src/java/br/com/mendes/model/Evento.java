@@ -1,13 +1,11 @@
 package br.com.mendes.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,14 +24,12 @@ public class Evento {
     //@OneToOne
     private Long codProduto;
     
-    //@Temporal(TemporalType.DATE)
-    //private Date data_evento;
-    private String data_evento;
+    private Calendar data_evento;
     
     public Evento() {
     }
 
-    public Evento(Long codEvento, String nome, String descricao, Long codEndereco, Long codProduto, String data_evento) {
+    public Evento(Long codEvento, String nome, String descricao, Long codEndereco, Long codProduto, Calendar data_evento) {
         this.codEvento = codEvento;
         this.nome = nome;
         this.descricao = descricao;
@@ -82,11 +78,11 @@ public class Evento {
         this.codProduto = codProduto;
     }
 
-    public String getData_evento() {
+    public Calendar getData_evento() {
         return data_evento;
     }
 
-    public void setData_evento(String data_evento) {
+    public void setData_evento(Calendar data_evento) {
         this.data_evento = data_evento;
     }
 }

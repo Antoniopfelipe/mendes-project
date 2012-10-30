@@ -1,13 +1,11 @@
 package br.com.mendes.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -36,20 +34,14 @@ public class Cliente {
     
     private String cnpj;
     
-    //@Temporal(TemporalType.DATE)
-    //private Date data_nascimento;
+    private Calendar data_nascimento;
     
-    //@Temporal(TemporalType.DATE)
-    //private Date data_cadastro;
-    
-    private String data_nascimento;
-    
-    private String data_cadastro;
+    private Calendar data_cadastro;
 
     public Cliente() {
     }
 
-    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, String data_nascimento, String data_cadastro) {
+    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, Calendar data_nascimento, Calendar data_cadastro) {
         this.codCliente = codCliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -143,19 +135,19 @@ public class Cliente {
         this.cnpj = cnpj;
     }
 
-    public String getData_nascimento() {
+    public Calendar getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(String data_nascimento) {
+    public void setData_nascimento(Calendar data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
-    public String getData_cadastro() {
+    public Calendar getData_cadastro() {
         return data_cadastro;
     }
 
-    public void setData_cadastro(String data_cadastro) {
+    public void setData_cadastro(Calendar data_cadastro) {
         this.data_cadastro = data_cadastro;
     }
 }
