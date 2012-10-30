@@ -25,13 +25,15 @@ public class Evento {
     private Long codEndereco;
     //@OneToOne
     private Long codProduto;
-    @Temporal(TemporalType.DATE)
-    private Date data_evento;
-
+    
+    //@Temporal(TemporalType.DATE)
+    //private Date data_evento;
+    private String data_evento;
+    
     public Evento() {
     }
 
-    public Evento(Long codEvento, String nome, String descricao, Long codEndereco, Long codProduto, Date data_evento) {
+    public Evento(Long codEvento, String nome, String descricao, Long codEndereco, Long codProduto, String data_evento) {
         this.codEvento = codEvento;
         this.nome = nome;
         this.descricao = descricao;
@@ -80,11 +82,11 @@ public class Evento {
         this.codProduto = codProduto;
     }
 
-    public Date getData_evento() {
+    public String getData_evento() {
         return data_evento;
     }
 
-    public void setData_evento(Date data_evento) {
+    public void setData_evento(String data_evento) {
         this.data_evento = data_evento;
     }
 }

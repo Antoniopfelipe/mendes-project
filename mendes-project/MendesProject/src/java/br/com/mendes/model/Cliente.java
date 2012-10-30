@@ -36,16 +36,20 @@ public class Cliente {
     
     private String cnpj;
     
-    @Temporal(TemporalType.DATE)
-    private Date data_nascimento;
+    //@Temporal(TemporalType.DATE)
+    //private Date data_nascimento;
     
-    @Temporal(TemporalType.DATE)
-    private Date data_Cadastro;
+    //@Temporal(TemporalType.DATE)
+    //private Date data_cadastro;
+    
+    private String data_nascimento;
+    
+    private String data_cadastro;
 
     public Cliente() {
     }
 
-    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, Date data_nascimento, Date data_Cadastro) {
+    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, String data_nascimento, String data_cadastro) {
         this.codCliente = codCliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -56,7 +60,7 @@ public class Cliente {
         this.cpf = cpf;
         this.cnpj = cnpj;
         this.data_nascimento = data_nascimento;
-        this.data_Cadastro = data_Cadastro;
+        this.data_cadastro = data_cadastro;
     }
     
     public Cliente(Long codCliente, String nome, String sobrenome) {
@@ -139,20 +143,20 @@ public class Cliente {
         this.cnpj = cnpj;
     }
 
-    public Date getData_nascimento() {
+    public String getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(Date data_nascimento) {
+    public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
-    public Date getData_Cadastro() {
-        return data_Cadastro;
+    public String getData_cadastro() {
+        return data_cadastro;
     }
 
-    public void setData_Cadastro(Date data_Cadastro) {
-        this.data_Cadastro = data_Cadastro;
+    public void setData_cadastro(String data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
 }
 

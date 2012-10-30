@@ -35,7 +35,17 @@
 					<p:inputText id="_sobrenome" value="#{clienteMB.cliente.sobrenome}"
 						required="true" requiredMessage="Sobrenome não preenchido."
 						size="20" />
-
+					
+					<p:outputLabel for="_data_nascimento" value="Data de Nascimento: " required="true" />					
+					<p:inputMask id="_data_nascimento" value="#{clienteMB.cliente.data_nascimento}" 
+						required="true" requiredMessage="Data de nascimento não preenchido" 
+						size="20" mask="99/99/9999" />
+						
+					<p:outputLabel for="_data_cadastro" value="Data de Cadastro: " required="true" />
+					<p:inputMask id="_data_cadastro" value="#{clienteMB.cliente.data_cadastro}"
+						required="true" requiredMessage="Data de cadastro não preenchido"
+						size="20" mask="99/99/9999" />
+					
 					<p:outputLabel for="_telefone" value="Tel: " required="true" />					
 					<p:inputMask id="_telefone" value="#{clienteMB.cliente.telefone}" 
 						required="true" requiredMessage="Telefone não preenchido" 
