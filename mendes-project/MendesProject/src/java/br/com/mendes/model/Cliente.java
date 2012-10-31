@@ -1,11 +1,13 @@
 package br.com.mendes.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -34,14 +36,16 @@ public class Cliente {
     
     private String cnpj;
     
-    private Calendar data_nascimento;
+    @Temporal(TemporalType.DATE)
+    private Date data_nascimento;
     
-    private Calendar data_cadastro;
+    @Temporal(TemporalType.DATE)
+    private Date data_cadastro;
 
     public Cliente() {
     }
 
-    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, Calendar data_nascimento, Calendar data_cadastro) {
+    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, Date data_nascimento, Date data_cadastro) {
         this.codCliente = codCliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -60,7 +64,6 @@ public class Cliente {
     	this.codCliente = codCliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
-      
     }
 
     public Long getCodCliente() {
@@ -135,19 +138,19 @@ public class Cliente {
         this.cnpj = cnpj;
     }
 
-    public Calendar getData_nascimento() {
+    public Date getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(Calendar data_nascimento) {
+    public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
-    public Calendar getData_cadastro() {
+    public Date getData_cadastro() {
         return data_cadastro;
     }
 
-    public void setData_cadastro(Calendar data_cadastro) {
+    public void setData_cadastro(Date data_cadastro) {
         this.data_cadastro = data_cadastro;
     }
 }
