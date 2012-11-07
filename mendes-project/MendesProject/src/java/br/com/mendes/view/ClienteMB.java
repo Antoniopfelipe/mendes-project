@@ -29,14 +29,11 @@ public class ClienteMB implements Serializable{
 	
 	@PostConstruct
 	public void iniciar() {
+		
+		cliente = new Cliente();
+		
 		clientes = clienteService.obterTodosCliente();
-	}
-	
-    public ClienteMB() {  
-    	
-    	cliente = new Cliente();    	
-    }
-    
+	}    
         
     public void salvarCliente() {
     	

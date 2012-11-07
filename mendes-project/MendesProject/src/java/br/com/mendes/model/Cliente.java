@@ -37,15 +37,15 @@ public class Cliente {
     private String cnpj;
     
     @Temporal(TemporalType.DATE)
-    private Date data_nascimento;
+    private Date dataNascimento;
     
     @Temporal(TemporalType.DATE)
-    private Date data_cadastro;
+    private Date dataCadastro;
 
     public Cliente() {
     }
 
-    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, Date data_nascimento, Date data_cadastro) {
+    public Cliente(Long codCliente, String nome, String sobrenome, Long codEndereco, String telefone, String celular, String rg, String cpf, String cnpj, Date dataNascimento, Date dataCadastro) {
         this.codCliente = codCliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -55,8 +55,8 @@ public class Cliente {
         this.rg = rg;
         this.cpf = cpf;
         this.cnpj = cnpj;
-        this.data_nascimento = data_nascimento;
-        this.data_cadastro = data_cadastro;
+        this.dataNascimento = dataNascimento;
+        this.dataCadastro = dataCadastro;
     }
     
     public Cliente(Long codCliente, String nome, String sobrenome) {
@@ -138,20 +138,20 @@ public class Cliente {
         this.cnpj = cnpj;
     }
 
-    public Date getData_nascimento() {
-        return data_nascimento;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
-    public Date getData_cadastro() {
-        return data_cadastro;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setData_cadastro(Date data_cadastro) {
-        this.data_cadastro = data_cadastro;
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }
 

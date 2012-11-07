@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition template="template.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:p="http://primefaces.org/ui"
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -21,24 +20,24 @@
 				style="font-size: 16px; border: 0;  ">
 
 				<p:spacer height="14px"></p:spacer>
-				
+
 				<p:focus context="panel" />
-				
+
 				<h:panelGrid align="left" columns="4" width="650"
-					style="text-align: left" border="0" >
+					style="text-align: left" border="0">
 
 					<p:outputLabel for="_nome" value="Nome: " />
 					<p:inputText id="_nome" value="#{clienteMB.cliente.nome}"
-						required="true" size="20"/>
+						required="true" size="20" />
 
 					<p:outputLabel for="_sobrenome" value="Sobrenome: " required="true" />
 					<p:inputText id="_sobrenome" value="#{clienteMB.cliente.sobrenome}"
 						required="true" requiredMessage="Sobrenome não preenchido."
 						size="20" />
-					
-					<p:outputLabel for="_telefone" value="Tel: " required="true" />					
-					<p:inputMask id="_telefone" value="#{clienteMB.cliente.telefone}" 
-						required="true" requiredMessage="Telefone não preenchido" 
+
+					<p:outputLabel for="_telefone" value="Tel: " required="true" />
+					<p:inputMask id="_telefone" value="#{clienteMB.cliente.telefone}"
+						required="true" requiredMessage="Telefone não preenchido"
 						size="20" mask="(99) 9999-9999" />
 
 					<p:outputLabel for="_celular" value="Cel: " required="true" />
@@ -48,30 +47,29 @@
 
 					<p:outputLabel for="_rg" value="RG: " required="true" />
 					<p:inputMask id="_rg" value="#{clienteMB.cliente.rg}"
-						required="true" requiredMessage="RG não preenchido." size="20" mask="99.999.999-9" />
+						required="true" requiredMessage="RG não preenchido." size="20"
+						mask="99.999.999-9" />
 
 					<p:outputLabel for="_cpf" value="CPF: " required="true" />
 					<p:inputMask id="_cpf" value="#{clienteMB.cliente.cpf}"
-						required="true" requiredMessage="CPF não preenchido." size="20" mask="999.999.999-99"/>
+						required="true" requiredMessage="CPF não preenchido." size="20"
+						mask="999.999.999-99" />
 
 					<p:outputLabel for="_cnpj" value="CNPJ: " required="true" />
 					<p:inputText id="_cnpj" value="#{clienteMB.cliente.cnpj}"
 						required="true" requiredMessage="CNPJ não preenchido." size="20" />
-						
-					<!-- <p:outputLabel for="_data_nascimento" value="Data de Nascimento: " required="true" />					
-					<p:inputMask id="_data_nascimento" value="#{clienteMB.cliente.data_nascimento}" 
-						required="true" requiredMessage="Data de nascimento não preenchido" 
-						size="20" mask="99/99/9999" />
-						
-					<p:outputLabel for="_data_cadastro" value="Data de Cadastro: " required="true" />
-					<p:inputMask id="_data_cadastro" value="#{clienteMB.cliente.data_cadastro}"
-						required="true" requiredMessage="Data de cadastro não preenchido"
-						size="20" mask="99/99/9999" />  -->
+
+
+					<p:outputLabel for="dataNascimento" value="Data Nascimento:  " />
+					<p:calendar value="#{clienteMB.cliente.dataNascimento}" id="dataNascimento" pattern="dd/MM/yyyy" locale="pt"/>
+					
+					<p:outputLabel for="dataCadastro" value="Data Cadastro:  " />
+					<p:calendar value="#{clienteMB.cliente.dataCadastro}" id="dataCadastro" pattern="dd/MM/yyyy" locale="pt" />
 
 				</h:panelGrid>
 			</p:panel>
 			<p:panel style="float: center; border: 0;">
-			
+
 				<p:spacer width="10px" />
 
 				<p:commandButton value="Salvar" action="#{clienteMB.salvarCliente}"
