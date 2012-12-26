@@ -1,9 +1,10 @@
 /* Css referente a modifica��o dos componentes do primefaces
 qualquer altera��o de componente deve ser feita nessa folha de estilo*/
 
-.ui.inputText{
+.ui-inputText{
 	width: 200px !important;
 	height: 20px !important;
+	size: 300 !important;
 	
 }
 

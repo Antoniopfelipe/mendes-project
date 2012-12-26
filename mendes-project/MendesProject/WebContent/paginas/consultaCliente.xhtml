@@ -9,10 +9,10 @@
 
 	<ui:define name="conteudo">
 		
-		<h:form>
+		<h:form style="margin: 0 0 0 15px;">
 
 				<p:dataTable id="tabelaCliente" var="cliente" value="#{clienteMB.clientes}" widgetVar="tabelaCliente" 
-					emptyMessage="Não há clientes com essa especificação" scrollable="true" resizableColumns="true">
+					emptyMessage="Não há clientes com essa especificação"  resizableColumns="true" >
 
 					<f:facet name="header">
 						<p:outputPanel>
@@ -21,7 +21,7 @@
 					</f:facet>
 					
 					<p:column id="codCliente" filterBy="#{cliente.codCliente}" 
-						filterStyle="max-width: 50px; min-width: 50px;" headerText="Código" width="100">
+						filterStyle="max-width: 50px; min-width: 50px; "  headerText="Código" width="100">
 						<h:outputText value="#{cliente.codCliente}"/>
 					</p:column>
 					
@@ -44,21 +44,13 @@
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="Celular" width="150">
 						<h:outputText value="#{cliente.celular}" />
 					</p:column>
-					
-					<p:column id="rg" filterBy="#{cliente.rg}" filterMatchMode="contains"
-						filterStyle="max-width: 130px; min-width: 130px;"  headerText="RG" width="150">
-						<h:outputText value="#{cliente.rg}" />
-					</p:column>
-					
+									
 					<p:column id="cpf" filterBy="#{cliente.cpf}" filterMatchMode="contains"
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="CPF" width="150">
 						<h:outputText value="#{cliente.cpf}" />
 					</p:column>
 					
-					<p:column id="cnpj" filterBy="#{cliente.cnpj}" filterMatchMode="contains"
-						filterStyle="max-width: 130px; min-width: 130px;"  headerText="CNPJ" width="150">
-						<h:outputText value="#{cliente.cnpj}" />
-					</p:column>
+					
 					
 				</p:dataTable>
 
