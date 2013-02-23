@@ -6,106 +6,117 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
+ * 
  * @author Pedro
  */
 @Entity
 public class Feedback {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codFeedback;
-    //@ManyToOne
-    private Long codCliente;
-    //@OneToOne
-    private Long codProduto;
-    //@OneToOne
-    private Long codServico;
-    private double nota;
-    private String tipoAtendimento;
-    private String observacao;
-    @Temporal(TemporalType.DATE)
-    private Date dataFeedback;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long codFeedback;
 
-    public Feedback() {
-    }
+	@ManyToOne(optional = false)
+	private Cliente cliente;
 
-    public Feedback(Long codFeedback, Long codCliente, Long codProduto, Long codServico, double nota, String tipoAtendimento, String observacao, Date dataFeedback) {
-        this.codFeedback = codFeedback;
-        this.codCliente = codCliente;
-        this.codProduto = codProduto;
-        this.codServico = codServico;
-        this.nota = nota;
-        this.tipoAtendimento = tipoAtendimento;
-        this.observacao = observacao;
-        this.dataFeedback = dataFeedback;
-    }
+	@ManyToOne(optional = false)
+	private Produto produto;
 
-    public Long getCodFeedback() {
-        return codFeedback;
-    }
+	@ManyToOne(optional = false)
+	private Servico servico;
 
-    public void setCodFeedback(Long codFeedback) {
-        this.codFeedback = codFeedback;
-    }
+	@ManyToOne(optional = false)
+	private TipoAtendimento tipoAtendimento;
 
-    public Long getCodCliente() {
-        return codCliente;
-    }
+	private double nota;
 
-    public void setCodCliente(Long codCliente) {
-        this.codCliente = codCliente;
-    }
+	private String observacao;
 
-    public Long getCodProduto() {
-        return codProduto;
-    }
+	@Temporal(TemporalType.DATE)
+	private Date dataFeedback;
 
-    public void setCodProduto(Long codProduto) {
-        this.codProduto = codProduto;
-    }
+	public Feedback() {
+	}
 
-    public Long getCodServico() {
-        return codServico;
-    }
+	public Feedback(Long codFeedback, Cliente cliente, Produto produto,
+			Servico servico, double nota, TipoAtendimento tipoAtendimento,
+			String observacao, Date dataFeedback) {
+		this.codFeedback = codFeedback;
+		this.cliente = cliente;
+		this.produto = produto;
+		this.servico = servico;
+		this.nota = nota;
+		this.tipoAtendimento = tipoAtendimento;
+		this.observacao = observacao;
+		this.dataFeedback = dataFeedback;
+	}
 
-    public void setCodServico(Long codServico) {
-        this.codServico = codServico;
-    }
+	public Long getCodFeedback() {
+		return codFeedback;
+	}
 
-    public double getNota() {
-        return nota;
-    }
+	public void setCodFeedback(Long codFeedback) {
+		this.codFeedback = codFeedback;
+	}
 
-    public void setNota(double nota) {
-        this.nota = nota;
-    }
+	public Cliente getcliente() {
+		return cliente;
+	}
 
-    public String getTipoAtendimento() {
-        return tipoAtendimento;
-    }
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
-    public void setTipoAtendimento(String tipoAtendimento) {
-        this.tipoAtendimento = tipoAtendimento;
-    }
+	public Produto getProduto() {
+		return produto;
+	}
 
-    public String getObservacao() {
-        return observacao;
-    }
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
+	public Servico getServico() {
+		return servico;
+	}
 
-    public Date getDataFeedback() {
-        return dataFeedback;
-    }
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
 
-    public void setDataFeedback(Date dataFeedback) {
-        this.dataFeedback = dataFeedback;
-    }
+	public double getNota() {
+		return nota;
+	}
+
+	public void setNota(double nota) {
+		this.nota = nota;
+	}
+
+	public TipoAtendimento getTipoAtendimento() {
+		return tipoAtendimento;
+	}
+
+	public void setTipoAtendimento(TipoAtendimento tipoAtendimento) {
+		this.tipoAtendimento = tipoAtendimento;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public Date getDataFeedback() {
+		return dataFeedback;
+	}
+
+	public void setDataFeedback(Date dataFeedback) {
+		this.dataFeedback = dataFeedback;
+	}
 }

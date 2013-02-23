@@ -1,14 +1,17 @@
 package br.com.mendes.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
- *
+ * 
  * @author Pedro
  */
 @Entity
@@ -16,32 +19,36 @@ public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codProduto;
-   
+	private Long codProduto;
+
 	@ManyToOne(optional = false)
-	@JoinColumn(name="ID_CATEGORIA")
-    private Categoria categoria;
-	
-    private String nome;
-    
-    private Double precoCusto;
-    
-    private Double precoVenda;
-   	
-    @ManyToOne
-    private Meta meta;
+	@JoinColumn(name = "ID_CATEGORIA")
+	private Categoria categoria;
 
-    public Produto() {
-    }
+	@OneToMany(mappedBy = "produto")
+	private List<Feedback> feedbacks;
 
-    public Produto(Long codProduto, Categoria categoria, String nome, double precoCusto, double precoVenda, Meta meta) {
-        this.codProduto = codProduto;
-        this.categoria = categoria;
-        this.nome = nome;
-        this.precoCusto = precoCusto;
-        this.precoVenda = precoVenda;
-        this.meta = meta;
-    }
+	private String nome;
+
+	private Double precoCusto;
+
+	private Double precoVenda;
+
+	@ManyToOne
+	private Meta meta;
+
+	public Produto() {
+	}
+
+	public Produto(Long codProduto, Categoria categoria, String nome,
+			double precoCusto, double precoVenda, Meta meta) {
+		this.codProduto = codProduto;
+		this.categoria = categoria;
+		this.nome = nome;
+		this.precoCusto = precoCusto;
+		this.precoVenda = precoVenda;
+		this.meta = meta;
+	}
 
 	public Long getCodProduto() {
 		return codProduto;
@@ -91,6 +98,12 @@ public class Produto {
 		this.meta = meta;
 	}
 
+	public List<Feedback> getFeedbacks() {
+		return feedbacks;
+	}
+
+	public void setFeedbacks(List<Feedback> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
 }
-
-

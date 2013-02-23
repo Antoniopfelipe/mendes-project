@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="conteudo">
+
+		<h:form id="form1" style="text-align: left ">
+
+			<p:messages id="mensagem" autoUpdate="true">
+				<!-- Faz a msg sumir depois de 3 segundos -->
+				<p:effect type="clip" event="load" delay="2000" speed="1000" />
+			</p:messages>
+
+			<p:panel id="panel" header="Cadastro de Feedback"
+				style="font-size: 16px; border: 0;  ">
+
+				<p:spacer height="14px"></p:spacer>
+
+				<p:focus context="panel" />
+
+				<h:panelGrid align="center" columns="4" width="650"
+					style="text-align: left" border="0">
+
+					<p:outputLabel for="_tipoAtendimento" value="Tipo de Atendimento: " required="true" />
+					<p:selectOneMenu  id="_tipoAtendimento" effect="clip" value="#{feedbackMB.feedback.tipoAtendimento.codTipoAtendimento}" style="width:165px"  >
+						<f:selectItem itemLabel="Tipo de Atendimento" itemValue="" />  
+            			<f:selectItems value="#{tipoAtendimentoMB.tiposAtendimento}" var="tipoAtendimento" itemLabel="#{tipoAtendimento.descricao}" 
+            				itemValue="#{tipoAtendimento.codTipoAtendimento}"/>  
+        			</p:selectOneMenu>
+        			
+        			<p:outputLabel for="_cliente" value="Cliente: " required="true" />
+					<p:selectOneMenu  id="_cliente" effect="clip" value="#{feedbackMB.feedback.cliente.codCliente}" style="width:165px"  >
+						<f:selectItem itemLabel="Cliente" itemValue="" />  
+            			<f:selectItems value="#{clienteMB.clientes}" var="cliente" itemLabel="#{cliente.nome}" 
+            				itemValue="#{cliente.codCliente}"/>  
+        			</p:selectOneMenu>
+        			
+        			<p:outputLabel for="_produto" value="Produto: "  />
+					<p:selectOneMenu  id="_produto" effect="clip" value="#{feedbackMB.feedback.produto.codProduto}" style="width:165px"  >
+						<f:selectItem itemLabel="Produto" itemValue="" />  
+            			<f:selectItems value="#{produtoMB.produtos}" var="produto" itemLabel="#{produto.nome}" 
+            				itemValue="#{produto.codProduto}"/>  
+        			</p:selectOneMenu>
+        			
+        			<p:outputLabel for="_servico" value="Servico: "  />
+					<p:selectOneMenu  id="_servico" effect="clip" value="#{feedbackMB.feedback.servico.codServico}" style="width:165px"  >
+						<f:selectItem itemLabel="Servico" itemValue="" />  
+            			<f:selectItems value="#{servicoMB.servicos}" var="servico" itemLabel="#{servico.descricao}" 
+            				itemValue="#{servico.codServico}"/>  
+        			</p:selectOneMenu>
+
+			 		<p:outputLabel for="_nota" value="Nota: " required="true" />
+					<p:inputText id="_nota" value="#{feedbackMB.feedback.nota}"
+						required="true" requiredMessage="Nota não preenchida."
+						size="20" />
+
+					<p:outputLabel for="_observacao" value="Observação: " required="true" />
+					<p:inputTextarea id="_observacao" value="#{feedbackMB.feedback.observacao}" 
+						rows="5"  cols="20"/>
+					
+					<p:outputLabel for="dataFeedback" value="Data do Feedback: " />
+					<p:calendar value="#{FeedbackMB.feedback.dataFeedback}" id="dataFeedback" pattern="dd/MM/yyyy" locale="pt" />
+
+				</h:panelGrid>
+			</p:panel>
+			<p:panel style="float: center; border: 0;">
+
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Salvar" action="#{feedbackMB.salvarFeedback}"
+					style="margin: 0" />
+
+				<p:spacer width="10px" />
+				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+
+				<p:spacer width="10px" />
+
+				<p:commandButton value="Listar" action="#" style="margin: 0" />
+
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
