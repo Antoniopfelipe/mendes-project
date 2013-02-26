@@ -4,78 +4,60 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets">	
 
 <h:head>
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/stylefaces.css" />
+	<link rel="stylesheet" href="../css/style.css" />
 	<title>Tracking Mendes</title>
 </h:head>
 
-<h:body style="background: url(img/shattered.png) !important;">
+<h:body style="background: url(../img/shattered.png) !important;">
 	<div id="wrap">
 		<div id="topo">
-			<img src="img/logo-site.png" width="170" height="80" />
+			<h1 class="logo"><img src="../img/logo-site.png" width="200" /></h1>
 			
-			<h:form id="superMenu">
-				<p:megaMenu id="megaMenu">
-					<p:submenu label="Cadastrar">
-						<p:column>
-							<p:submenu>
-								<p:menuitem value="Categoria"
-									action="/paginas/cadastroCategoria" />
-								<p:menuitem value="Cliente" action="/paginas/cadastroCliente" />
-								<p:menuitem value="Endereço" action="/paginas/cadastroEndereco" />
-								<p:menuitem value="Evento" action="/paginas/cadastroEvento" />
-								<p:menuitem value="Feedback" action="/paginas/cadastroFeedback" />
-								<p:menuitem value="Meta" action="/paginas/cadastroMeta" />
-								<p:menuitem value="Produto" action="/paginas/cadastroProduto" />
-								<p:menuitem value="Servico" action="/paginas/cadastroServico" />
-								<p:menuitem value="Tipode de Atendimento" action="/paginas/cadastroTipoAtendimento" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
+			<div class="main-menu">
+				<ul class="nav">
+					<li class="list-item">
+					<a href="#">Cadastrar</a>
+						<ul class="sub-nav">
+							<li class="sub-list-item"><a href="cadastroCategoria.xhtml">Categoria</a></li>
+							<li class="sub-list-item"><a href="cadastroCliente.xhtml">Cliente</a></li>
+							<li class="sub-list-item"><a href="cadastroEndereco.xhtml">Endereço</a></li>
+							<li class="sub-list-item"><a href="cadastroEvento.xhtml">Evento</a></li>
+							<li class="sub-list-item"><a href="cadastroFeedback.xhtml">Feedback</a></li>
+							<li class="sub-list-item"><a href="cadastroMeta.xhtml">Meta</a></li>
+							<li class="sub-list-item"><a href="cadastroProduto.xhtml">Produto</a></li>
+							<li class="sub-list-item"><a href="cadastroServico.xhtml">Serviço</a></li>
+							<li class="sub-list-item"><a href="cadastroTipoAtendimento.xhtml">Tipo de Atendimento</a></li>
+						</ul>
+					</li>
+					<li class="list-item">
+					<a href="#">Consulta</a>
+						<ul class="sub-nav">
+							<li class="sub-list-item"><a href="consultaCliente.xhtml">Clientes</a></li>
+							<li class="sub-list-item"><a href="consultaProduto.xhtml">Produtos</a></li>
+						</ul>
+					</li>
+					<li class="list-item">
+					<a href="#">Estatisticas</a>
+						<ul class="sub-nav">
+							<li class="sub-list-item"><a href="grafico.xhtml">Clientes</a></li>
+							<li class="sub-list-item"><a href="#">Produtos</a></li>
+							<li class="sub-list-item"><a href="#">Serviço</a></li>
+						</ul>
+					</li>
+					<li class="list-item">
+					<a href="#chatiado">Metas</a>
+					<ul class="sub-nav">
+						<li class="sub-list-item"><a href="#">Clientes</a></li>
+						<li class="sub-list-item"><a href="#">Produtos</a></li>
+						<li class="sub-list-item"><a href="#">Serviço</a></li>
+					</ul>
+					</li>
+				</ul>
+			</div>
 
-					<p:submenu label="Consulta">
-						<p:column>
-							<p:submenu>
-								<p:menuitem value="Clientes" action="/paginas/consultaCliente" />
-								<p:menuitem value="Produtos" action="/paginas/consultaProduto" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-
-					<p:submenu label="Estatisticas">
-						<p:column>
-							<p:submenu>
-								<p:menuitem value="Clientes" action="/paginas/grafico" />
-								<p:menuitem value="Produto" action="#" />
-								<p:menuitem value="Serviço" action="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-
-					<p:submenu label="Metas">
-						<p:column>
-							<p:submenu>
-								<p:menuitem value="Cliente" action="#" />
-								<p:menuitem value="Produto" action="#" />
-								<p:menuitem value="Serviço" action="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-
-					<p:submenu label="Sair">
-						<p:column>
-							<p:submenu>
-								<p:menuitem value="Cliente" action="#" />
-								<p:menuitem value="Produto" action="#" />
-								<p:menuitem value="Serviço" action="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-				</p:megaMenu>
-			</h:form>
 		</div>
 
 
