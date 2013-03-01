@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * 
@@ -37,17 +38,23 @@ public class Produto {
 	@ManyToOne
 	private Meta meta;
 
+	@OneToOne(mappedBy = "produto")
+	private Orcamento orcamento;
+
 	public Produto() {
 	}
 
-	public Produto(Long codProduto, Categoria categoria, String nome,
-			double precoCusto, double precoVenda, Meta meta) {
+	public Produto(Long codProduto, Categoria categoria,
+			List<Feedback> feedbacks, String nome, Double precoCusto,
+			Double precoVenda, Meta meta, Orcamento orcamento) {
 		this.codProduto = codProduto;
 		this.categoria = categoria;
+		this.feedbacks = feedbacks;
 		this.nome = nome;
 		this.precoCusto = precoCusto;
 		this.precoVenda = precoVenda;
 		this.meta = meta;
+		this.orcamento = orcamento;
 	}
 
 	public Long getCodProduto() {
@@ -104,6 +111,14 @@ public class Produto {
 
 	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
+	}
+
+	public Orcamento getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(Orcamento orcamento) {
+		this.orcamento = orcamento;
 	}
 
 }

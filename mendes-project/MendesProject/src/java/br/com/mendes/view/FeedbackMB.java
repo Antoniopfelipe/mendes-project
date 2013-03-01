@@ -72,7 +72,6 @@ public class FeedbackMB implements Serializable {
 	}
 
 	public void salvarFeedback() {
-
 		feedbackService.criarFeedback(feedback);
 		FacesContext.getCurrentInstance().addMessage(
 				null,

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="conteudo">
+
+
+		<h:form id="form1" style="text-align: left ">
+				
+				<p:messages id="mensagem" autoUpdate="true">
+					<!-- Faz a msg sumir depois de 3 segundos -->
+					<p:effect type="clip" event="load" delay="2000" speed="1000" />
+				</p:messages>
+				
+				<p:panel id="panel" header="Cadastro de Orcamento"
+					style="font-size: 16px; border: 0;  ">
+					
+					<p:spacer height="14px"></p:spacer>
+				
+				<p:focus context="panel" />
+				
+				<h:panelGrid align="left" columns="4" width="650"
+					style="text-align: left" border="0" >
+									
+								<p:outputLabel for="_cliente" value="Clientes: "
+									required="true" />
+								<p:selectOneMenu  id="_cliente" effect="clip" value="#{orcamentoMB.orcamento.cliente.codCliente}" style="width:165px"  >
+									<f:selectItem itemLabel="Clientes" itemValue="" />  
+            						<f:selectItems value="#{orcamentoMB.clientes}" var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente.codCliente}"/>  
+        						</p:selectOneMenu>
+        						
+        						<p:outputLabel for="_produto" value="Produtos: "
+									required="true" />
+								<p:selectOneMenu  id="_produto" effect="clip" value="#{orcamentoMB.orcamento.produto.codProduto}" style="width:165px"  >
+									<f:selectItem itemLabel="Produtos" itemValue="" />  
+            						<f:selectItems value="#{orcamentoMB.produtos}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto.codProduto}"/>  
+        						</p:selectOneMenu>
+        						
+        						<p:outputLabel for="_servico" value="Serviços: "
+									required="true" />
+								<p:selectOneMenu  id="_servico" effect="clip" value="#{orcamentoMB.orcamento.servico.codServico}" style="width:165px"  >
+									<f:selectItem itemLabel="Servicos" itemValue="" />  
+            						<f:selectItems value="#{orcamentoMB.servicos}" var="servico" itemLabel="#{servico.descricao}" itemValue="#{servico.codServico}"/>  
+        						</p:selectOneMenu>
+        						
+        						<!-- VALOR SERVICO 
+        						<p:outputLabel for="_precovenda" value="Preco de Venda: "
+									required="true" />
+								<p:inputText id="_precovenda"
+									value="#{produtoMB.produto.precoVenda}" required="true"
+									requiredMessage="Preco de venda não preenchido." 
+									size="22" styleClass="inputSize" />
+        						-->
+        						
+       							<!-- VALOR PRODUTO -->
+        					
+        						<!-- VALOR TOTAL -->	
+        
+        						<p:outputLabel for="dataEmissao" value="Data Emissão:  " />
+								<p:calendar value="#{orcamentoMB.orcamento.dataEmissao}" id="dataEmissao" pattern="dd/MM/yyyy" locale="pt" />
+					
+								<p:outputLabel for="previsaoEntrega" value="Previsão de Entrega:  " />
+								<p:calendar value="#{orcamentoMB.orcamento.previsaoEntrega}" id="previsaoEntrega" pattern="dd/MM/yyyy" locale="pt" />
+		
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:panel style="float: right;">
+			
+					<p:spacer width="10px" />
+
+					<p:commandButton value="Salvar" action="#{orcamentoMB.salvarOrcamento}"
+						style="margin: 0" />
+
+					<p:spacer width="10px" />
+					<p:commandButton value="Limpar" action="#" style="margin: 0" />
+
+					<p:spacer width="10px" />
+
+					<p:commandButton value="Listar" action="#" style="margin: 0" />
+
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

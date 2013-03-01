@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -46,6 +47,9 @@ public class Cliente {
 
 	@Temporal(TemporalType.DATE)
 	private Date dataCadastro;
+
+	@OneToOne(mappedBy = "cliente")
+	private Orcamento orcamento;
 
 	public Cliente() {
 	}
@@ -168,4 +172,13 @@ public class Cliente {
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
+
+	public Orcamento getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(Orcamento orcamento) {
+		this.orcamento = orcamento;
+	}
+
 }

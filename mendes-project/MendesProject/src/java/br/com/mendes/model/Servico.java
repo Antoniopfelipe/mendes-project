@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * 
@@ -18,24 +19,33 @@ public class Servico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codServico;
+
 	private String descricao;
+
 	private double precoCusto;
+
 	private double precoVenda;
+
 	@OneToMany(mappedBy = "servico")
 	private List<Feedback> feedbacks;
+
 	// @OneToMany
 	private Long codMeta;
+
+	@OneToOne(mappedBy = "servico")
+	private Orcamento orcamento;
 
 	public Servico() {
 	}
 
 	public Servico(Long codServico, String descricao, double precoCusto,
-			double precoVenda, Long codMeta) {
+			double precoVenda, Long codMeta, Orcamento orcamento) {
 		this.codServico = codServico;
 		this.descricao = descricao;
 		this.precoCusto = precoCusto;
 		this.precoVenda = precoVenda;
 		this.codMeta = codMeta;
+		this.orcamento = orcamento;
 	}
 
 	public Long getCodServico() {
@@ -84,6 +94,14 @@ public class Servico {
 
 	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
+	}
+
+	public Orcamento getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(Orcamento orcamento) {
+		this.orcamento = orcamento;
 	}
 
 }

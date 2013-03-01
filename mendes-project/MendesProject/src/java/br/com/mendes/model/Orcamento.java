@@ -1,115 +1,122 @@
 package br.com.mendes.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 /**
- *
+ * 
  * @author Pedro
  */
 @Entity
 public class Orcamento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codOrcamento;
-    //@OneToOne
-    private Long codCliente;
-    @Temporal(TemporalType.DATE)
-    private Date dataEmissao;
-    @Temporal(TemporalType.DATE)
-    private Date previsaoEntrega;
-    @Transient
-    private List<Produto> listaProdutos;
-    @Transient
-    private List<Servico> listaServicos;
-    private double valorTotal;
-    private boolean status;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long codOrcamento;
 
-    public Orcamento() {
-    }
+	@OneToOne
+	private Cliente cliente;
 
-    public Orcamento(Long codOrcamento, Long codCliente, Date dataEmissao, Date previsaoEntrega, List<Produto> listaProdutos, List<Servico> listaServicos, double valorTotal, boolean status) {
-        this.codOrcamento = codOrcamento;
-        this.codCliente = codCliente;
-        this.dataEmissao = dataEmissao;
-        this.previsaoEntrega = previsaoEntrega;
-        this.listaProdutos = listaProdutos;
-        this.listaServicos = listaServicos;
-        this.valorTotal = valorTotal;
-        this.status = status;
-    }
+	@Temporal(TemporalType.DATE)
+	private Date dataEmissao;
 
-    public Long getCodOrcamento() {
-        return codOrcamento;
-    }
+	@Temporal(TemporalType.DATE)
+	private Date previsaoEntrega;
 
-    public void setCodOrcamento(Long codOrcamento) {
-        this.codOrcamento = codOrcamento;
-    }
+	@OneToOne
+	private Produto produto;
 
-    public Long getCodCliente() {
-        return codCliente;
-    }
+	@OneToOne
+	private Servico servico;
 
-    public void setCodCliente(Long codCliente) {
-        this.codCliente = codCliente;
-    }
+	private double valorTotal;
 
-    public Date getDataEmissao() {
-        return dataEmissao;
-    }
+	private boolean status;
 
-    public void setDataEmissao(Date dataEmissao) {
-        this.dataEmissao = dataEmissao;
-    }
+	public Orcamento() {
+	}
 
-    public Date getPrevisaoEntrega() {
-        return previsaoEntrega;
-    }
+	public Orcamento(Long codOrcamento, Cliente cliente, Date dataEmissao,
+			Date previsaoEntrega, Produto produto, Servico servico,
+			double valorTotal, boolean status) {
+		this.codOrcamento = codOrcamento;
+		this.cliente = cliente;
+		this.dataEmissao = dataEmissao;
+		this.previsaoEntrega = previsaoEntrega;
+		this.produto = produto;
+		this.servico = servico;
+		this.valorTotal = valorTotal;
+		this.status = status;
+	}
 
-    public void setPrevisaoEntrega(Date previsaoEntrega) {
-        this.previsaoEntrega = previsaoEntrega;
-    }
+	public Long getCodOrcamento() {
+		return codOrcamento;
+	}
 
-    public List<Produto> getListaProdutos() {
-        return listaProdutos;
-    }
+	public void setCodOrcamento(Long codOrcamento) {
+		this.codOrcamento = codOrcamento;
+	}
 
-    public void setListaProdutos(List<Produto> listaProdutos) {
-        this.listaProdutos = listaProdutos;
-    }
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-    public List<Servico> getListaServicos() {
-        return listaServicos;
-    }
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
-    public void setListaServicos(List<Servico> listaServicos) {
-        this.listaServicos = listaServicos;
-    }
+	public Date getDataEmissao() {
+		return dataEmissao;
+	}
 
-    public double getValorTotal() {
-        return valorTotal;
-    }
+	public void setDataEmissao(Date dataEmissao) {
+		this.dataEmissao = dataEmissao;
+	}
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
-    }
+	public Date getPrevisaoEntrega() {
+		return previsaoEntrega;
+	}
 
-    public boolean isStatus() {
-        return status;
-    }
+	public void setPrevisaoEntrega(Date previsaoEntrega) {
+		this.previsaoEntrega = previsaoEntrega;
+	}
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-    
-    
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Servico getServico() {
+		return servico;
+	}
+
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
+
+	public double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 }
