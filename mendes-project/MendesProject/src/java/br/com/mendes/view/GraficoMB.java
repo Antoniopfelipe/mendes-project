@@ -1,22 +1,17 @@
 package br.com.mendes.view;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.LineChartSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.mendes.dto.ClientesPeriodoDTO;
-import br.com.mendes.model.Categoria;
-import br.com.mendes.service.CategoriaService;
 import br.com.mendes.service.ClienteService;
 
 
@@ -30,6 +25,8 @@ public class GraficoMB implements Serializable {
 		
 	@Autowired
 	private ClienteService clienteService;
+	
+	private Integer maxY;
 	
 	@PostConstruct
 	public void iniciar() {
@@ -45,34 +42,55 @@ public class GraficoMB implements Serializable {
 	}
 
 	private void createLinearModel() {
-		
-		//Cria obj Gráfico
-		linearModel = new CartesianChartModel();
-		
+				
 		List<ClientesPeriodoDTO> clientesPorPeriodo = clienteService.obterQtdeClientesPorPeriodo();
-				 
+		
+		if(clientesPorPeriodo.isEmpty())
+			return;
+				
+		//Cria obj Gráfico
+				linearModel = new CartesianChartModel();
+						
 		criarLinhaHomens(linearModel, clientesPorPeriodo);
 		
 	}
 	
 	private void criarLinhaHomens(CartesianChartModel linearModel, List<ClientesPeriodoDTO> clientesPorPeriodo) {
-		//Cria obj que representa uma linha
 		
+		//Cria obj que representa uma linha		
 		ChartSeries linhaHomens = new ChartSeries();
 				
 		//Add descrição para a linha
 		linhaHomens.setLabel("Homens");
 		
+		maxY = 0;
+		
 		//Adiciona pontos na linha
 		for(ClientesPeriodoDTO dto : clientesPorPeriodo) {			
+			
+			if(maxY < dto.getQtde().intValue()) {
+				maxY = dto.getQtde().intValue();
+			}
+			
 			String periodo = dto.getMes() + "/" + dto.getAno();
 			linhaHomens.set(periodo , dto.getQtde().intValue());		
 		}
 		
+		//MaxY divisivel por 6 para indice não ficar com decimal quebrado
+		maxY = (maxY+6) - ( maxY % 6);
+		
 		//Adiciona linha ao Gráfico
 		linearModel.addSeries(linhaHomens);
 	}
+
+	public Integer getMaxY() {
+		return maxY;
+	}
+
+	public void setMaxY(Integer maxY) {
+		this.maxY = maxY;
+	}
 	
 
-
+	
 }
