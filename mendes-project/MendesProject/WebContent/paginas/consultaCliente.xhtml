@@ -9,10 +9,10 @@
 
 	<ui:define name="conteudo">
 		
-		<h:form style="margin: 0 0 0 15px;">
+		<h:form >
 
 				<p:dataTable id="tabelaCliente" var="cliente" value="#{clienteMB.clientes}" widgetVar="tabelaCliente" 
-					emptyMessage="Não há clientes com essa especificação"  resizableColumns="true" >
+					emptyMessage="Não há clientes com essa especificação"  resizableColumns="true" style="width: 950px; margin-left:10%;">
 
 					<f:facet name="header">
 						<p:outputPanel>

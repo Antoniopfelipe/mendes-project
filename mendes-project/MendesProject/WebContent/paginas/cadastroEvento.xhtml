@@ -17,14 +17,15 @@
 				<p:effect type="clip" event="load" delay="2000" speed="1000" />
 			</p:messages>
 
-			<p:panel id="panel" header="Cadastro de Eventos"
-				style="font-size: 16px; border: 0;  ">
+			<p:panel id="panel" style="font-size: 14px; border: 0;  ">
 
-				<p:spacer height="14px"></p:spacer>
+				<h2>Cadastro de Evento</h2>
+				
+				<p:spacer height="10px"></p:spacer>
 				
 				<p:focus context="panel" />
 				
-				<h:panelGrid align="left" columns="4" width="650"
+				<h:panelGrid align="left" columns="6" width="850"
 					style="text-align: left" border="0" >
 
 					<p:outputLabel for="_nome" value="Nome: " />
@@ -36,10 +37,10 @@
 						required="true" requiredMessage="Descrição não preenchido."
 						size="20" />
 
-				    <!--  <p:outputLabel for="_dataevento" value="Data do Evento: " required="true" />					
-					<p:inputMask id="_dataevento" value="#{eventoMB.evento.data_evento}" 
-						required="true" requiredMessage="Data do evento não preenchido" 
-						size="20" mask="99/99/9999" />  -->
+				  <p:outputLabel for="_dataevento" value="Data do Evento: " required="true" />	
+					<p:calendar value="#{eventoMB.evento.data_evento}" id="_dataevento" 
+					pattern="dd/MM/yyyy" locale="pt" 
+					requiredMessage="Data do evento não preenchido" />
 
 				</h:panelGrid>
 			</p:panel>
