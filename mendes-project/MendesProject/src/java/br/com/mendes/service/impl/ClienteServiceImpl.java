@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.mendes.dto.ClientesPeriodoDTO;
 import br.com.mendes.model.Cliente;
 import br.com.mendes.model.dao.ClienteDAO;
 import br.com.mendes.service.ClienteService;
@@ -32,5 +33,11 @@ public class ClienteServiceImpl implements ClienteService {
 	@Transactional
 	public Cliente criarCliente(Cliente cliente) {
 		return clienteDAO.saveUpdateGetEntity(cliente);
+	}
+	
+	@Override
+	@Transactional
+	public List<ClientesPeriodoDTO> obterQtdeClientesPorPeriodo() {
+		return clienteDAO.obterQtdeClientesPorPeriodo();
 	}
 }
