@@ -61,7 +61,7 @@ public class GraficoMB implements Serializable {
 		ChartSeries linhaHomens = new ChartSeries();
 				
 		//Add descrição para a linha
-		linhaHomens.setLabel("Homens");
+		linhaHomens.setLabel("Clientes");
 		
 		//Adiciona pontos na linha
 		for(ClientesPeriodoDTO dto : clientesPorPeriodo) {			
