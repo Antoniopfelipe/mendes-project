@@ -12,11 +12,8 @@
 
 		<h:form id="form1" style="text-align: left ">
 
-
-
 			<p:messages id="mensagem" autoUpdate="true">
-				<!-- Faz a msg sumir depois de 3 segundos -->
-				<p:effect type="clip" event="load" delay="2000" speed="1000" />
+				<p:effect type="drop" event="load" delay="2000" speed="1000" />
 			</p:messages>
 
 			<p:panel id="panel" style="font-size: 14px; border: 0;  ">
@@ -42,7 +39,13 @@
 					<p:inputMask id="_valor" value="#{metaMB.meta.valor}" 
 						required="true" requiredMessage="Valor não preenchido" size="20"/>
 						
-				</h:panelGrid>
+<!-- 					<p:outputLabel for="_produto" value="Produtos: " required="true" /> -->
+<!-- 					<p:selectOneMenu  id="_produto" effect="clip" value="#{metaMB.meta.produto.codProduto}" style="width:165px"  > -->
+<!-- 						<f:selectItem itemLabel="Produtos" itemValue="" />   -->
+<!--       						<f:selectItems value="#{metaMB.produtos}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto.codProduto}"/>   -->
+<!-- 					</p:selectOneMenu> -->
+						
+				</h:panelGrid>\
 				
 			</p:panel>
 			<p:panel style="float: center; border: 0">
