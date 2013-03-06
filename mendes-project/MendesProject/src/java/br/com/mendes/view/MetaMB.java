@@ -1,7 +1,6 @@
 package br.com.mendes.view;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import br.com.mendes.model.Meta;
+import br.com.mendes.model.MetaGeral;
 import br.com.mendes.service.MetaService;
 
 @Scope(value="request")
@@ -20,49 +19,42 @@ public class MetaMB implements Serializable{
 
 	private static final long serialVersionUID = -4165603506554303884L;
 	
-	private Meta meta;
-	
-	private List<Meta> metas;
-	
+	private MetaGeral metaCliente;
+	private MetaGeral metaProduto;
+	private MetaGeral metaFeedBackEmail;
+	private MetaGeral metaFeedBackTelefone;
+		
 	@Autowired 
 	private MetaService metaService;
 	
 	@PostConstruct
 	public void iniciar() {
-		metas = metaService.obterTodasMeta();
+		
+		//TODO
+		//metaCliente = metaService.obterMetaAtual(TipoMetaGeral.CLIENTE);
+    	//metaProduto = metaService.obterMetaAtual(TipoMetaGeral.PRODUTO);
+    	//metaFeedBackTelefone = metaService.obterMetaAtual(TipoMetaGeral.FEEDBACK_TELEFONE);
+    	//metaFeedBackEmail = metaService.obterMetaAtual(TipoMetaGeral.FEEDBACK_EMAIL);
 	}
 	
     public MetaMB() {  
     	
-    	meta = new Meta();    	
+    	
+    	
     }
     
         
     public void salvarMeta() {
     	
-    	metaService.criarMeta(meta);
+    	metaService.criarMetaGeral(metaCliente);
+    	metaService.criarMetaGeral(metaProduto);
+    	metaService.criarMetaGeral(metaFeedBackTelefone);
+    	metaService.criarMetaGeral(metaFeedBackEmail);
+    	
     	FacesContext.getCurrentInstance().addMessage(null, 
 	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  
-    	
-    	metas = metaService.obterTodasMeta();
     }
 
-	public Meta getMeta() {
-		return meta;
-	}
 
-	public void setMeta(Meta meta) {
-		this.meta = meta;
-	}
-
-
-	public List<Meta> getMetas() {
-		return metas;
-	}
-
-
-	public void setMetas(List<Meta> metas) {
-		this.metas = metas;
-	}  
   
 }

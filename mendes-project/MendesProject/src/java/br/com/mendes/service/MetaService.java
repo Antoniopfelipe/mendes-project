@@ -1,14 +1,18 @@
 package br.com.mendes.service;
 
-import java.util.List;
-
+import br.com.mendes.model.Item;
 import br.com.mendes.model.Meta;
+import br.com.mendes.model.MetaEspecifica;
+import br.com.mendes.model.MetaGeral;
+import br.com.mendes.model.TipoMetaGeral;
 
 public interface MetaService {
 
-    Meta obterMetaPorCod(Long codMeta);
-    
-    List<Meta> obterTodasMeta();
-    
-    Meta criarMeta(Meta meta);
+	MetaGeral criarMetaGeral(MetaGeral meta);
+
+	MetaEspecifica criarMetaEspecifica(MetaEspecifica meta);
+
+	Meta criarMetaGeral(Double valor , TipoMetaGeral tipo);
+
+	MetaEspecifica criarMetaEspecifica(Double valor , Item item);
 }

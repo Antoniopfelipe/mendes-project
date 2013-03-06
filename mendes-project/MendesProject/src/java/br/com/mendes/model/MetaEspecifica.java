@@ -18,10 +18,7 @@ public class MetaEspecifica extends Meta implements Serializable {
 	
 	@OneToOne
 	private Item item;
-   
-    public MetaEspecifica() {
-    }
-    
+       
 	public Item getItem() {
 		return item;
 	}
