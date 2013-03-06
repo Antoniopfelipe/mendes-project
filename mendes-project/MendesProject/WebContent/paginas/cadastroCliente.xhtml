@@ -55,11 +55,6 @@
 						required="true" requiredMessage="CPF não preenchido." size="20"
 						mask="999.999.999-99" />
 
-					<p:outputLabel for="_cnpj" value="CNPJ: " required="true" />
-					<p:inputText id="_cnpj" value="#{clienteMB.cliente.cnpj}"
-						required="true" requiredMessage="CNPJ não preenchido." size="20" />
-
-
 					<p:outputLabel for="dataNascimento" value="Data Nascimento:  " />
 					<p:calendar value="#{clienteMB.cliente.dataNascimento}" id="dataNascimento" pattern="dd/MM/yyyy" locale="pt"/>
 					
