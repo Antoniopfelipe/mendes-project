@@ -36,8 +36,8 @@
 								<p:outputLabel for="_categoria" value="Categorias: "
 									required="true" />
 								<p:selectOneMenu  id="_categoria" effect="clip" value="#{produtoMB.produto.categoria}" style="width:165px"  >
-									<f:selectItem itemLabel="Instrumento" itemValue="Instrumento" />  
-			            			<f:selectItem itemLabel="Eletronico" itemValue="Eletronico" />  
+									<f:selectItems value="#{produtoMB.categoriasProduto}"
+			            			 	var="categoria" itemLabel="#{categoria.descricao}" itemValue="#{categoria}"/>
 			            		</p:selectOneMenu>
         						
         						<p:outputLabel for="_precocusto" value="Preco de Custo: "

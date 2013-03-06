@@ -1,6 +1,7 @@
 package br.com.mendes.view;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.mendes.model.CategoriaProduto;
 import br.com.mendes.model.Produto;
 import br.com.mendes.service.ProdutoService;
+
 
 @Scope(value="request")
 @Controller("produtoMB")
@@ -24,6 +27,8 @@ public class ProdutoMB implements Serializable{
 	
 	private List<Produto> produtos;
 	
+	private List<CategoriaProduto> categoriasProduto;
+	
 	@Autowired 
 	private ProdutoService produtoService;
 	
@@ -31,14 +36,10 @@ public class ProdutoMB implements Serializable{
 	public void iniciar() {
 		produtos = produtoService.obterTodosProduto();
 		
+		produto = new Produto(); 
+    	categoriasProduto = Arrays.asList(CategoriaProduto.values());
 	}
 	
-    public ProdutoMB() {  
-    	
-    	produto = new Produto(); 
-    	
-    }
-    
         
     public void salvarProduto() {
 
@@ -66,5 +67,12 @@ public class ProdutoMB implements Serializable{
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-  
+
+	public List<CategoriaProduto> getCategoriasProduto() {
+		return categoriasProduto;
+	}
+
+	public void setCategoriasProduto(List<CategoriaProduto> categoriasProduto) {
+		this.categoriasProduto = categoriasProduto;
+	}
 }
