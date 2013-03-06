@@ -18,7 +18,7 @@ public class Endereco {
     
     private String logradouro;
     
-    private int numero;
+    private Integer numero;
     
     private String bairro;
     
@@ -33,7 +33,7 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(Long codEndereco, String logradouro, int numero, String bairro, String cidade, String cep, String estado, String pais) {
+    public Endereco(Long codEndereco, String logradouro, Integer numero, String bairro, String cidade, String cep, String estado, String pais) {
         this.codEndereco = codEndereco;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -60,11 +60,11 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 

@@ -27,7 +27,8 @@ public class Cliente {
 
 	private String sobrenome;
 
-	private Long codEndereco;
+	@OneToOne
+	private Endereco endereco;
 
 	private String telefone;
 
@@ -46,20 +47,20 @@ public class Cliente {
 	@Temporal(TemporalType.DATE)
 	private Date dataCadastro;
 
-	@OneToOne(mappedBy = "cliente")
-	private Pedido orcamento;
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos;
 
 	public Cliente() {
 	}
 
 	public Cliente(Long codCliente, String nome, String sobrenome,
-			Long codEndereco, String telefone, String celular, String rg,
+			Endereco endereco, String telefone, String celular, String rg,
 			String cpf,  Date dataNascimento, Date dataCadastro) {
 		this.codCliente = codCliente;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		this.codEndereco = codEndereco;
 		this.telefone = telefone;
+		this.endereco = endereco;
 		this.celular = celular;
 		this.rg = rg;
 		this.cpf = cpf;
@@ -96,14 +97,6 @@ public class Cliente {
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
-	}
-
-	public Long getCodEndereco() {
-		return codEndereco;
-	}
-
-	public void setCodEndereco(Long codEndereco) {
-		this.codEndereco = codEndereco;
 	}
 
 	public String getTelefone() {
@@ -162,12 +155,20 @@ public class Cliente {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public Pedido getOrcamento() {
-		return orcamento;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setOrcamento(Pedido orcamento) {
-		this.orcamento = orcamento;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 }
