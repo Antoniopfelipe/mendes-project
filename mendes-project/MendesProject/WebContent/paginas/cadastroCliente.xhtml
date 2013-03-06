@@ -23,7 +23,7 @@
 
 				<p:focus context="panel" />
 
-				<h:panelGrid align="center" columns="6" width="950"
+				<h:panelGrid align="center" columns="6" width="900"
 					style="text-align: left" border="0">
 
 					<p:outputLabel for="_nome" value="Nome: " />
@@ -55,11 +55,6 @@
 						required="true" requiredMessage="CPF não preenchido." size="20"
 						mask="999.999.999-99" />
 
-					<p:outputLabel for="_cnpj" value="CNPJ: " required="true" />
-					<p:inputText id="_cnpj" value="#{clienteMB.cliente.cnpj}"
-						required="true" requiredMessage="CNPJ não preenchido." size="20" />
-
-
 					<p:outputLabel for="dataNascimento" value="Data Nascimento:  " />
 					<p:calendar value="#{clienteMB.cliente.dataNascimento}" id="dataNascimento" pattern="dd/MM/yyyy" locale="pt"/>
 					
@@ -76,7 +71,7 @@
 				
 				<p:focus context="panelEndereco" />
 				
-				<h:panelGrid align="left" columns="6" width="900"
+				<h:panelGrid align="left" columns="6" width="1000"
 					style="text-align: left" border="0" >
 
 					<p:outputLabel for="_logradouro" value="Logradouro: " />
