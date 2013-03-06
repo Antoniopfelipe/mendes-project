@@ -36,9 +36,7 @@ public class Cliente {
 	private String rg;
 
 	private String cpf;
-
-	private String cnpj;
-
+	
 	@OneToMany(mappedBy = "cliente")
 	private List<Feedback> feedbacks;
 
@@ -49,14 +47,14 @@ public class Cliente {
 	private Date dataCadastro;
 
 	@OneToOne(mappedBy = "cliente")
-	private Orcamento orcamento;
+	private Pedido orcamento;
 
 	public Cliente() {
 	}
 
 	public Cliente(Long codCliente, String nome, String sobrenome,
 			Long codEndereco, String telefone, String celular, String rg,
-			String cpf, String cnpj, Date dataNascimento, Date dataCadastro) {
+			String cpf,  Date dataNascimento, Date dataCadastro) {
 		this.codCliente = codCliente;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -65,7 +63,6 @@ public class Cliente {
 		this.celular = celular;
 		this.rg = rg;
 		this.cpf = cpf;
-		this.cnpj = cnpj;
 		this.dataNascimento = dataNascimento;
 		this.dataCadastro = dataCadastro;
 	}
@@ -141,14 +138,6 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
 	public List<Feedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -173,11 +162,11 @@ public class Cliente {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public Orcamento getOrcamento() {
+	public Pedido getOrcamento() {
 		return orcamento;
 	}
 
-	public void setOrcamento(Orcamento orcamento) {
+	public void setOrcamento(Pedido orcamento) {
 		this.orcamento = orcamento;
 	}
 

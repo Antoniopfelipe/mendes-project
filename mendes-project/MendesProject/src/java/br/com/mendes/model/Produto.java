@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,9 +21,7 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codProduto;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "ID_CATEGORIA")
-	private Categoria categoria;
+	private String categoria;
 
 	@OneToMany(mappedBy = "produto")
 	private List<Feedback> feedbacks;
@@ -34,19 +31,19 @@ public class Produto {
 	private Double precoCusto;
 
 	private Double precoVenda;
-
+	
 	@ManyToOne
 	private Meta meta;
 
 	@OneToOne(mappedBy = "produto")
-	private Orcamento orcamento;
+	private Pedido orcamento;
 
 	public Produto() {
 	}
 
-	public Produto(Long codProduto, Categoria categoria,
+	public Produto(Long codProduto, String categoria,
 			List<Feedback> feedbacks, String nome, Double precoCusto,
-			Double precoVenda, Meta meta, Orcamento orcamento) {
+			Double precoVenda, Meta meta, Pedido orcamento) {
 		this.codProduto = codProduto;
 		this.categoria = categoria;
 		this.feedbacks = feedbacks;
@@ -65,11 +62,11 @@ public class Produto {
 		this.codProduto = codProduto;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
@@ -113,11 +110,11 @@ public class Produto {
 		this.feedbacks = feedbacks;
 	}
 
-	public Orcamento getOrcamento() {
+	public Pedido getOrcamento() {
 		return orcamento;
 	}
 
-	public void setOrcamento(Orcamento orcamento) {
+	public void setOrcamento(Pedido orcamento) {
 		this.orcamento = orcamento;
 	}
 

@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import br.com.mendes.model.Categoria;
 import br.com.mendes.model.Produto;
-import br.com.mendes.service.CategoriaService;
 import br.com.mendes.service.ProdutoService;
 
 @Scope(value="request")
@@ -24,11 +22,6 @@ public class ProdutoMB implements Serializable{
 	
 	private Produto produto;
 	
-	private List<Categoria> categorias;
-	
-	@Autowired 
-	private CategoriaService categoriaService;
-			
 	private List<Produto> produtos;
 	
 	@Autowired 
@@ -37,13 +30,13 @@ public class ProdutoMB implements Serializable{
 	@PostConstruct
 	public void iniciar() {
 		produtos = produtoService.obterTodosProduto();
-		categorias = categoriaService.obterTodasCategorias();
+		
 	}
 	
     public ProdutoMB() {  
     	
     	produto = new Produto(); 
-    	produto.setCategoria(new Categoria());
+    	
     }
     
         
@@ -73,15 +66,5 @@ public class ProdutoMB implements Serializable{
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
-
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
-	}
-
   
 }

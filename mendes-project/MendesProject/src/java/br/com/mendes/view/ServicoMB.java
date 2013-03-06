@@ -22,6 +22,8 @@ public class ServicoMB implements Serializable{
 	
 	private Servico servico;
 	
+	private String categoria;
+	
 	private List<Servico> servicos;
 	
 	@Autowired 
@@ -63,6 +65,14 @@ public class ServicoMB implements Serializable{
 
 	public void setServicos(List<Servico> servicos) {
 		this.servicos= servicos;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}  
   
 }

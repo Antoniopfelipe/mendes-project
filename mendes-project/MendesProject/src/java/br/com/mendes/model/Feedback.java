@@ -30,8 +30,7 @@ public class Feedback {
 	@ManyToOne(optional = false)
 	private Servico servico;
 
-	@ManyToOne(optional = false)
-	private TipoAtendimento tipoAtendimento;
+	private String tipoAtendimento;
 
 	private double nota;
 
@@ -44,7 +43,7 @@ public class Feedback {
 	}
 
 	public Feedback(Long codFeedback, Cliente cliente, Produto produto,
-			Servico servico, double nota, TipoAtendimento tipoAtendimento,
+			Servico servico, double nota, String tipoAtendimento,
 			String observacao, Date dataFeedback) {
 		this.codFeedback = codFeedback;
 		this.cliente = cliente;
@@ -96,11 +95,11 @@ public class Feedback {
 		this.nota = nota;
 	}
 
-	public TipoAtendimento getTipoAtendimento() {
+	public String getTipoAtendimento() {
 		return tipoAtendimento;
 	}
 
-	public void setTipoAtendimento(TipoAtendimento tipoAtendimento) {
+	public void setTipoAtendimento(String tipoAtendimento) {
 		this.tipoAtendimento = tipoAtendimento;
 	}
 

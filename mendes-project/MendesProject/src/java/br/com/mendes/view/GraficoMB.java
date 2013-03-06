@@ -49,7 +49,7 @@ public class GraficoMB implements Serializable {
 			return;
 				
 		//Cria obj Gráfico
-				linearModel = new CartesianChartModel();
+		linearModel = new CartesianChartModel();
 						
 		criarLinhaHomens(linearModel, clientesPorPeriodo);
 		

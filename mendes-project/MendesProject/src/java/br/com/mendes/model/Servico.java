@@ -19,6 +19,8 @@ public class Servico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codServico;
+	
+	private String categoria;
 
 	private String descricao;
 
@@ -33,14 +35,15 @@ public class Servico {
 	private Long codMeta;
 
 	@OneToOne(mappedBy = "servico")
-	private Orcamento orcamento;
+	private Pedido orcamento;
 
 	public Servico() {
 	}
 
-	public Servico(Long codServico, String descricao, double precoCusto,
-			double precoVenda, Long codMeta, Orcamento orcamento) {
+	public Servico(Long codServico, String categoria, String descricao, double precoCusto,
+			double precoVenda, Long codMeta, Pedido orcamento) {
 		this.codServico = codServico;
+		this.categoria = categoria;
 		this.descricao = descricao;
 		this.precoCusto = precoCusto;
 		this.precoVenda = precoVenda;
@@ -54,6 +57,14 @@ public class Servico {
 
 	public void setCodServico(Long codServico) {
 		this.codServico = codServico;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getDescricao() {
@@ -96,12 +107,13 @@ public class Servico {
 		this.feedbacks = feedbacks;
 	}
 
-	public Orcamento getOrcamento() {
+	public Pedido getOrcamento() {
 		return orcamento;
 	}
 
-	public void setOrcamento(Orcamento orcamento) {
+	public void setOrcamento(Pedido orcamento) {
 		this.orcamento = orcamento;
 	}
+
 
 }

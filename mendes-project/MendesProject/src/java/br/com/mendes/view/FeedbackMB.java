@@ -15,12 +15,10 @@ import br.com.mendes.model.Cliente;
 import br.com.mendes.model.Feedback;
 import br.com.mendes.model.Produto;
 import br.com.mendes.model.Servico;
-import br.com.mendes.model.TipoAtendimento;
 import br.com.mendes.service.ClienteService;
 import br.com.mendes.service.FeedbackService;
 import br.com.mendes.service.ProdutoService;
 import br.com.mendes.service.ServicoService;
-import br.com.mendes.service.TipoAtendimentoService;
 
 @Scope(value = "request")
 @Controller("feedbackMB")
@@ -29,21 +27,18 @@ public class FeedbackMB implements Serializable {
 	private static final long serialVersionUID = -4165603506554303884L;
 
 	private Feedback feedback;
-	private TipoAtendimento tipoAtendimento;
+	private String tipoAtendimento;
 	private Produto produto;
 	private Servico servico;
 	private Cliente cliente;
 
 	private List<Feedback> feedbacks;
-	private List<TipoAtendimento> tiposAtendimentos;
 	private List<Produto> produtos;
 	private List<Servico> servicos;
 	private List<Cliente> clientes;
 
 	@Autowired
 	private FeedbackService feedbackService;
-	@Autowired
-	private TipoAtendimentoService tipoAtendimentoService;
 	@Autowired
 	private ProdutoService produtoService;
 	@Autowired
@@ -55,7 +50,6 @@ public class FeedbackMB implements Serializable {
 	public void iniciar() {
 
 		feedbacks = feedbackService.obterTodosFeedback();
-		tiposAtendimentos = tipoAtendimentoService.obterTodosTipoAtendimento();
 		produtos = produtoService.obterTodosProduto();
 		servicos = servicoService.obterTodosServicos();
 		clientes = clienteService.obterTodosCliente();
@@ -64,8 +58,6 @@ public class FeedbackMB implements Serializable {
 	public FeedbackMB() {
 
 		feedback = new Feedback();
-
-		feedback.setTipoAtendimento(new TipoAtendimento());
 		feedback.setProduto(new Produto());
 		feedback.setServico(new Servico());
 		feedback.setCliente(new Cliente());
@@ -97,14 +89,6 @@ public class FeedbackMB implements Serializable {
 		this.feedbacks = feedbacks;
 	}
 
-	public List<TipoAtendimento> getTiposAtendimentos() {
-		return tiposAtendimentos;
-	}
-
-	public void setTiposAtendimentos(List<TipoAtendimento> tiposAtendimentos) {
-		this.tiposAtendimentos = tiposAtendimentos;
-	}
-
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
@@ -129,11 +113,11 @@ public class FeedbackMB implements Serializable {
 		this.clientes = clientes;
 	}
 
-	public TipoAtendimento getTipoAtendimento() {
+	public String getTipoAtendimento() {
 		return tipoAtendimento;
 	}
 
-	public void setTipoAtendimento(TipoAtendimento tipoAtendimento) {
+	public void setTipoAtendimento(String tipoAtendimento) {
 		this.tipoAtendimento = tipoAtendimento;
 	}
 
