@@ -21,16 +21,14 @@ import javax.persistence.TemporalType;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TIPO_META", discriminatorType = DiscriminatorType.STRING)
-public class Meta implements Serializable {
+public abstract class Meta implements Serializable {
     
 	private static final long serialVersionUID = -6898740632390285434L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codMeta;
-    
-    private String descricao;
-        
+            
     private Double valor;
     
     @Temporal(TemporalType.TIMESTAMP)
@@ -45,14 +43,6 @@ public class Meta implements Serializable {
 
     public void setCodMeta(Long codMeta) {
         this.codMeta = codMeta;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Double getValor() {

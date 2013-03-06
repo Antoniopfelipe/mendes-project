@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.mendes.model.CategoriaProduto;
 import br.com.mendes.model.Produto;
+import br.com.mendes.service.MetaService;
 import br.com.mendes.service.ProdutoService;
 
 
@@ -29,8 +30,13 @@ public class ProdutoMB implements Serializable{
 	
 	private List<CategoriaProduto> categoriasProduto;
 	
+	private Double valorMeta;
+	
 	@Autowired 
 	private ProdutoService produtoService;
+	
+	@Autowired 
+	private MetaService metaService;
 	
 	@PostConstruct
 	public void iniciar() {
@@ -43,11 +49,13 @@ public class ProdutoMB implements Serializable{
         
     public void salvarProduto() {
 
-    	produtoService.criarProduto(produto);
+    	Produto produtoSalvo = produtoService.criarProduto(produto);
+    	
+    	metaService.criarMetaEspecifica(valorMeta, produtoSalvo);
+    	
     	FacesContext.getCurrentInstance().addMessage(null, 
 	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  
     	
-    	produtos = produtoService.obterTodosProduto();
     }
 
 	public Produto getProduto() {
@@ -74,5 +82,13 @@ public class ProdutoMB implements Serializable{
 
 	public void setCategoriasProduto(List<CategoriaProduto> categoriasProduto) {
 		this.categoriasProduto = categoriasProduto;
+	}
+	
+	public Double getValorMeta() {
+		return valorMeta;
+	}
+	
+	public void setValorMeta(Double valorMeta) {
+		this.valorMeta = valorMeta;
 	}
 }
