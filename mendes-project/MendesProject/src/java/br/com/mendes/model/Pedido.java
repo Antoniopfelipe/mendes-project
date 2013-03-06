@@ -1,11 +1,13 @@
 package br.com.mendes.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,8 +31,8 @@ public class Pedido {
 	@Temporal(TemporalType.DATE)
 	private Date previsaoEntrega;
 
-	@OneToOne
-	private Produto produto;
+	@OneToMany
+	private List<ItemPedido> itensPedido;
 
 	@OneToOne
 	private Servico servico;
@@ -43,13 +45,12 @@ public class Pedido {
 	}
 
 	public Pedido(Long codOrcamento, Cliente cliente, Date dataEmissao,
-			Date previsaoEntrega, Produto produto, Servico servico,
+			Date previsaoEntrega, Servico servico,
 			double valorTotal, boolean status) {
 		this.codOrcamento = codOrcamento;
 		this.cliente = cliente;
 		this.dataEmissao = dataEmissao;
 		this.previsaoEntrega = previsaoEntrega;
-		this.produto = produto;
 		this.servico = servico;
 		this.valorTotal = valorTotal;
 		this.status = status;
@@ -87,14 +88,6 @@ public class Pedido {
 		this.previsaoEntrega = previsaoEntrega;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	public Servico getServico() {
 		return servico;
 	}
@@ -117,6 +110,14 @@ public class Pedido {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public List<ItemPedido> getItensPedido() {
+		return itensPedido;
+	}
+
+	public void setItensPedido(List<ItemPedido> itensPedido) {
+		this.itensPedido = itensPedido;
 	}
 
 }

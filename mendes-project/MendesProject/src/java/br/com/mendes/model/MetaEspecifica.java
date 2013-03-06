@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -15,20 +16,19 @@ public class MetaEspecifica extends Meta implements Serializable {
     
 	private static final long serialVersionUID = 3618918025061048331L;
 	
-	private TipoMetaEspecifica tipoMetaEspecifica;
-    
+	@OneToOne
+	private Item item;
    
     public MetaEspecifica() {
     }
-
-
-	public TipoMetaEspecifica getTipoMetaEspecifica() {
-		return tipoMetaEspecifica;
+    
+	public Item getItem() {
+		return item;
 	}
 
 
-	public void setTipoMetaEspecifica(TipoMetaEspecifica tipoMetaEspecifica) {
-		this.tipoMetaEspecifica = tipoMetaEspecifica;
+	public void setItem(Item item) {
+		this.item = item;
 	}
     
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.mendes.model.Cliente;
 import br.com.mendes.model.Feedback;
+import br.com.mendes.model.Item;
 import br.com.mendes.model.Produto;
 import br.com.mendes.model.Servico;
 import br.com.mendes.service.ClienteService;
@@ -58,8 +59,7 @@ public class FeedbackMB implements Serializable {
 	public FeedbackMB() {
 
 		feedback = new Feedback();
-		feedback.setProduto(new Produto());
-		feedback.setServico(new Servico());
+		feedback.setItem(new Item());
 		feedback.setCliente(new Cliente());
 	}
 

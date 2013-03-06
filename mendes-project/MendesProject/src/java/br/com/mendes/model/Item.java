@@ -10,9 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -23,7 +21,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codProduto;
 
-	@OneToMany(mappedBy = "produto")
+	@OneToMany(mappedBy = "item")
 	private List<Feedback> feedbacks;
 
 	private String nome;
@@ -32,11 +30,11 @@ public class Item {
 
 	private Double precoVenda;
 	
-	@ManyToOne
-	private MetaEspecifica meta;
+	@OneToMany(mappedBy="item")
+	private List<MetaEspecifica> metas;
 
-	@OneToOne(mappedBy = "produto")
-	private Pedido pedido;
+	@OneToMany(mappedBy = "item")
+	private List<ItemPedido> itensPedido;
 
 
 	public Long getCodProduto() {
@@ -71,14 +69,6 @@ public class Item {
 		this.precoVenda = precoVenda;
 	}
 
-	public MetaEspecifica getMeta() {
-		return meta;
-	}
-
-	public void setMeta(MetaEspecifica meta) {
-		this.meta = meta;
-	}
-
 	public List<Feedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -87,11 +77,19 @@ public class Item {
 		this.feedbacks = feedbacks;
 	}
 
-	public Pedido getOrcamento() {
-		return pedido;
+	public List<MetaEspecifica> getMetas() {
+		return metas;
 	}
 
-	public void setOrcamento(Pedido orcamento) {
-		this.pedido = orcamento;
+	public void setMetas(List<MetaEspecifica> metas) {
+		this.metas = metas;
+	}
+
+	public List<ItemPedido> getItensPedido() {
+		return itensPedido;
+	}
+
+	public void setItensPedido(List<ItemPedido> itensPedido) {
+		this.itensPedido = itensPedido;
 	}
 }

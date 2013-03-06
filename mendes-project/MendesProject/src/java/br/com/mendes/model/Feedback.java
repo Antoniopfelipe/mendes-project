@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,18 +21,15 @@ public class Feedback {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codFeedback;
 
-	@ManyToOne(optional = false)
+	@OneToOne(optional = false)
 	private Cliente cliente;
 
-	@ManyToOne(optional = false)
-	private Produto produto;
-
-	@ManyToOne(optional = false)
-	private Servico servico;
+	@OneToOne(optional = false)
+	private Item item;
 
 	private String tipoAtendimento;
 
-	private double nota;
+	private Double nota;
 
 	private String observacao;
 
@@ -42,13 +39,11 @@ public class Feedback {
 	public Feedback() {
 	}
 
-	public Feedback(Long codFeedback, Cliente cliente, Produto produto,
-			Servico servico, double nota, String tipoAtendimento,
+	public Feedback(Long codFeedback, Cliente cliente, Item item, Double nota, String tipoAtendimento,
 			String observacao, Date dataFeedback) {
 		this.codFeedback = codFeedback;
 		this.cliente = cliente;
-		this.produto = produto;
-		this.servico = servico;
+		this.setItem(item);
 		this.nota = nota;
 		this.tipoAtendimento = tipoAtendimento;
 		this.observacao = observacao;
@@ -71,27 +66,11 @@ public class Feedback {
 		this.cliente = cliente;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public Servico getServico() {
-		return servico;
-	}
-
-	public void setServico(Servico servico) {
-		this.servico = servico;
-	}
-
-	public double getNota() {
+	public Double getNota() {
 		return nota;
 	}
 
-	public void setNota(double nota) {
+	public void setNota(Double nota) {
 		this.nota = nota;
 	}
 
@@ -117,5 +96,13 @@ public class Feedback {
 
 	public void setDataFeedback(Date dataFeedback) {
 		this.dataFeedback = dataFeedback;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 }
