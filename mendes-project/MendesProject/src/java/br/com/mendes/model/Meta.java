@@ -32,7 +32,7 @@ public abstract class Meta implements Serializable {
     private Double valor;
     
     @Temporal(TemporalType.TIMESTAMP)
-	private Date data;
+	private Date dataInicio;
     
     public Meta() {
     }
@@ -53,14 +53,12 @@ public abstract class Meta implements Serializable {
         this.valor = valor;
     }
 
-	public Date getData() {
-		return data;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
-    
-    
     
 }

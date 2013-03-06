@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.mendes.model.Item;
-import br.com.mendes.model.Meta;
 import br.com.mendes.model.MetaEspecifica;
 import br.com.mendes.model.MetaGeral;
 import br.com.mendes.model.TipoMetaGeral;
@@ -39,19 +38,18 @@ public class MetaServiceImpl implements MetaService {
 	@Override
 	@Transactional
 	public MetaEspecifica criarMetaEspecifica(Double valor, Item item) {
-		MetaEspecifica meta  = new MetaEspecifica();
-		meta.setData(new Date());
-		
-		meta.setValor(valor);
-		meta.setItem(item);
-		return metaEspeficicaDAO.saveUpdateGetEntity(meta);
+		MetaEspecifica metaEspecifica  = new MetaEspecifica();
+		metaEspecifica.setDataInicio(new Date());
+		metaEspecifica.setValor(valor);
+		metaEspecifica.setItem(item);
+		return metaEspeficicaDAO.saveUpdateGetEntity(metaEspecifica);
 	}
 	
 	@Override
 	@Transactional
-	public Meta criarMetaGeral(Double valor , TipoMetaGeral tipo) {
+	public MetaGeral criarMetaGeral(Double valor , TipoMetaGeral tipo) {
 		MetaGeral meta  = new MetaGeral();
-		meta.setData(new Date());
+		meta.setDataInicio(new Date());
 		meta.setValor(valor);
 		meta.setTipo(tipo);
 		return metaGeralDAO.saveUpdateGetEntity(meta);

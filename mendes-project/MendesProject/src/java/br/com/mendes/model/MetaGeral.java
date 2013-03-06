@@ -17,9 +17,6 @@ public class MetaGeral extends Meta implements Serializable {
 	
 	private TipoMetaGeral tipo;
    
-    public MetaGeral() {
-    }
-
 	public TipoMetaGeral getTipo() {
 		return tipo;
 	}
