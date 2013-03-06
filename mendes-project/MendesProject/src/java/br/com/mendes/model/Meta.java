@@ -1,40 +1,42 @@
 package br.com.mendes.model;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Pedro
  */
 @Entity
-public class Meta {
-    @Id
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TIPO_META", discriminatorType = DiscriminatorType.STRING)
+public class Meta implements Serializable {
+    
+	private static final long serialVersionUID = -6898740632390285434L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codMeta;
     
     private String descricao;
+        
+    private Double valor;
     
-    private int periodo;
-    
-    private double valor;
-    
-    @OneToMany(mappedBy = "meta")
-	private List<Produto> produtos;
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date data;
     
     public Meta() {
-    }
-
-    public Meta(Long codMeta, String descricao, int periodo, double valor) {
-        this.codMeta = codMeta;
-        this.descricao = descricao;
-        this.periodo = periodo;
-        this.valor = valor;
     }
 
     public Long getCodMeta() {
@@ -53,28 +55,20 @@ public class Meta {
         this.descricao = descricao;
     }
 
-    public int getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(int periodo) {
-        this.periodo = periodo;
-    }
-
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public Date getData() {
+		return data;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setData(Date data) {
+		this.data = data;
 	}
     
     
