@@ -3,7 +3,8 @@ package br.com.mendes.model;
 public enum TipoAtendimento {
 
 	TELEFONE("Telefone"),
-	EMAIL("Email");
+	EMAIL("Email"),
+	PESSOAL("Pessoalmente");
 	
 	private String descricao;
 	

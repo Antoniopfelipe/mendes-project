@@ -15,4 +15,6 @@ public interface MetaService {
 	Meta criarMetaGeral(Double valor , TipoMetaGeral tipo);
 
 	MetaEspecifica criarMetaEspecifica(Double valor , Item item);
+
+	MetaGeral obterMetaAtual(TipoMetaGeral metaGeral);
 }

@@ -54,4 +54,10 @@ public class MetaServiceImpl implements MetaService {
 		meta.setTipo(tipo);
 		return metaGeralDAO.saveUpdateGetEntity(meta);
 	}
+
+	@Override
+	public MetaGeral obterMetaAtual(TipoMetaGeral metaGeral) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
