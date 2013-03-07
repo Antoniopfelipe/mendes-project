@@ -15,8 +15,9 @@
 		
 		<p:spacer height="20px" />
 		
-		<h:panelGrid align="left" columns="3" width="450"
-					style="text-align: left; margin-left: 8%;" border="0"   >
+		<p:panel id="panel" style="font-size: 14px; border: 0;  background: none;" >
+			<h:panelGrid align="left" columns="3" width="450"
+						style="text-align: left; margin-left: 8%;" border="0"   >
 					
 			<p:outputLabel for="_metasEspecificas" value="Produto/Servico:" 	required="true" />
 				<p:selectOneMenu  id="_metasEspecificas" effect="clip" value="#" style="width:165px"  >
@@ -26,6 +27,7 @@
       		<p:commandButton value="Buscar" action="#" style="margin: 0" />
            		
            </h:panelGrid>
+           </p:panel>
 
 			<center>
 				
