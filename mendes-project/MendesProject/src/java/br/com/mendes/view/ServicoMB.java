@@ -1,6 +1,7 @@
 package br.com.mendes.view;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.mendes.model.Servico;
+import br.com.mendes.model.TipoServico;
+import br.com.mendes.service.MetaService;
 import br.com.mendes.service.ServicoService;
 
 @Scope(value="request")
@@ -22,31 +25,37 @@ public class ServicoMB implements Serializable{
 	
 	private Servico servico;
 	
-	private String categoria;
-	
 	private List<Servico> servicos;
+	
+	private List<TipoServico> tiposServico;
+	
+	private Double valorMeta;
 	
 	@Autowired 
 	private ServicoService servicoService;
 	
+	@Autowired
+	private MetaService metaService;
+	
 	@PostConstruct
 	public void iniciar() {
+		
 		servicos = servicoService.obterTodosServicos();
+		
+		servico = new Servico();    	
+	    
+		tiposServico =  Arrays.asList(TipoServico.values());
 	}
 	
-    public ServicoMB() {  
-    	
-    	servico = new Servico();    	
-    }
-    
-        
     public void salvarServico() {
     	
-    	servicoService.criarServico(servico);
+    	Servico servicoSalvo = servicoService.criarServico(servico);
+    	
+    	metaService.criarMetaEspecifica(valorMeta, servicoSalvo);
+    	
     	FacesContext.getCurrentInstance().addMessage(null, 
 	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  
     	
-    	servicos = servicoService.obterTodosServicos();
     }
 
 	public Servico getServico() {
@@ -66,13 +75,20 @@ public class ServicoMB implements Serializable{
 	public void setServicos(List<Servico> servicos) {
 		this.servicos= servicos;
 	}
-
-	public String getCategoria() {
-		return categoria;
+	
+	public List<TipoServico> getTiposServico() {
+		return tiposServico;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setTiposServico(List<TipoServico> tiposServico) {
+		this.tiposServico = tiposServico;
 	}  
-  
+
+	public Double getValorMeta() {
+		return valorMeta;
+	}
+
+	public void setValorMeta(Double valorMeta) {
+		this.valorMeta = valorMeta;
+	}
 }

@@ -27,17 +27,13 @@
 					style="text-align: left" border="0" >
 
 					<p:outputLabel for="_descricao" value="Descrição: " />
-					<p:inputText id="_descricao" value="#{servicoMB.servico.descricao}"
+					<p:inputText id="_descricao" value="#{servicoMB.servico.nome}"
 						required="true" size="20"/>
 						
-					<p:outputLabel for="_categoria" value="Categorias: "
-								required="true" />
-							<p:selectOneMenu  id="_categoria" effect="clip" value="#{servicoMB.servico.categoria}" style="width:165px"  >
-								<f:selectItem itemLabel="SetUp" itemValue="SetUp" />  
-		            			<f:selectItem itemLabel="Traste" itemValue="Traste" />
-		            			<f:selectItem itemLabel="Escalopagem" itemValue="Escalopagem" /> 
-		            			<f:selectItem itemLabel="Troca de Cordas" itemValue="TrocaCordas" />  
-		            			<f:selectItem itemLabel="Colagem" itemValue="Colagem" /> 
+					<p:outputLabel for="_tpServico" value="Tipo Serviço: " required="true" />
+							<p:selectOneMenu  id="_tpServico" effect="clip" value="#{servicoMB.servico.tipoServico}" style="width:165px"  >
+								<f:selectItems value="#{servicoMB.tiposServico}" var="tipoServico" 
+								 itemLabel="#{tipoServico.descricao}" itemValue="#{tipoServico}" />  
 		            		</p:selectOneMenu>
 
 					<p:outputLabel for="_precoCusto" value="Preco de Custo: " required="true" />
@@ -49,6 +45,13 @@
 					<p:inputText id="_precoVenda" value="#{servicoMB.servico.precoVenda}" 
 						required="true" requiredMessage="Preço de venda não preenchido" 
 						size="20" />
+						
+						<p:outputLabel for="_meta" value="Meta: "
+									required="true" />
+								<p:inputText id="_meta"
+									value="#{servicoMB.valorMeta}" required="true"
+									requiredMessage="Preco de venda não preenchido." 
+									size="22" styleClass="inputSize" />
 
 				</h:panelGrid>
 			</p:panel>

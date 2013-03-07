@@ -41,19 +41,12 @@
         			</p:selectOneMenu>
         			
         			<p:outputLabel for="_produto" value="Produto: "  />
-					<p:selectOneMenu  id="_produto" effect="clip" value="#{feedbackMB.feedback.produto.codProduto}" style="width:165px"  >
+					<p:selectOneMenu  id="_produto" effect="clip" value="#{feedbackMB.feedback.item.codProduto}" style="width:165px"  >
 						<f:selectItem itemLabel="Produto" itemValue="" />  
             			<f:selectItems value="#{produtoMB.produtos}" var="produto" itemLabel="#{produto.nome}" 
             				itemValue="#{produto.codProduto}"/>  
         			</p:selectOneMenu>
         			
-        			<p:outputLabel for="_servico" value="Servico: "  />
-					<p:selectOneMenu  id="_servico" effect="clip" value="#{feedbackMB.feedback.servico.codServico}" style="width:165px"  >
-						<f:selectItem itemLabel="Servico" itemValue="" />  
-            			<f:selectItems value="#{servicoMB.servicos}" var="servico" itemLabel="#{servico.descricao}" 
-            				itemValue="#{servico.codServico}"/>  
-        			</p:selectOneMenu>
-
 			 		<p:outputLabel for="_nota" value="Nota: " required="true" />
 					<p:inputText id="_nota" value="#{feedbackMB.feedback.nota}"
 						required="true" requiredMessage="Nota não preenchida."
