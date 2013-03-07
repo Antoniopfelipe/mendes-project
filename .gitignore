@@ -1,9 +1,1 @@
-.settings
-.classpath
-.project
-.metadata
-bin
-target
-META-INF/
-.svn*
-build
+*.class

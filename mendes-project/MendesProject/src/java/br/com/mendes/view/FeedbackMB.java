@@ -1,6 +1,7 @@
 package br.com.mendes.view;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,10 +17,11 @@ import br.com.mendes.model.Feedback;
 import br.com.mendes.model.Item;
 import br.com.mendes.model.Produto;
 import br.com.mendes.model.Servico;
+import br.com.mendes.model.TipoAtendimento;
+import br.com.mendes.model.TipoItem;
 import br.com.mendes.service.ClienteService;
 import br.com.mendes.service.FeedbackService;
-import br.com.mendes.service.ProdutoService;
-import br.com.mendes.service.ServicoService;
+import br.com.mendes.service.ItemService;
 
 @Scope(value = "request")
 @Controller("feedbackMB")
@@ -29,21 +31,24 @@ public class FeedbackMB implements Serializable {
 
 	private Feedback feedback;
 	private String tipoAtendimento;
-	private Produto produto;
-	private Servico servico;
 	private Cliente cliente;
+	private TipoItem tipoItem;
+	
 
 	private List<Feedback> feedbacks;
 	private List<Produto> produtos;
 	private List<Servico> servicos;
+	private List<Item> itens;
+	
 	private List<Cliente> clientes;
+	private List<TipoAtendimento> tiposAtendimento;
+	private List<TipoItem> tiposItem;
 
 	@Autowired
 	private FeedbackService feedbackService;
+	
 	@Autowired
-	private ProdutoService produtoService;
-	@Autowired
-	private ServicoService servicoService;
+	private ItemService itemService;
 	@Autowired
 	private ClienteService clienteService;
 
@@ -51,8 +56,6 @@ public class FeedbackMB implements Serializable {
 	public void iniciar() {
 
 		feedbacks = feedbackService.obterTodosFeedback();
-		produtos = produtoService.obterTodosProduto();
-		servicos = servicoService.obterTodosServicos();
 		clientes = clienteService.obterTodosCliente();
 	}
 
@@ -60,17 +63,28 @@ public class FeedbackMB implements Serializable {
 
 		feedback = new Feedback();
 		feedback.setItem(new Item());
-		feedback.setCliente(new Cliente());
+		cliente = new Cliente();
+		
+		tiposItem = Arrays.asList(TipoItem.values());		
+		tiposAtendimento = Arrays.asList(TipoAtendimento.values());
+		
 	}
 
+	public void escolherTipoItem() {
+		
+		itens = itemService.buscarPorTipoECLiente(cliente.getCodCliente(), tipoItem);
+	}
+	
+	
 	public void salvarFeedback() {
+		feedback.setCliente(cliente);
+		
 		feedbackService.criarFeedback(feedback);
 		FacesContext.getCurrentInstance().addMessage(
 				null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",
 						"Cadastrado com sucesso."));
 
-		feedbacks = feedbackService.obterTodosFeedback();
 	}
 
 	public Feedback getFeedback() {
@@ -89,22 +103,6 @@ public class FeedbackMB implements Serializable {
 		this.feedbacks = feedbacks;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public List<Servico> getServicos() {
-		return servicos;
-	}
-
-	public void setServicos(List<Servico> servicos) {
-		this.servicos = servicos;
-	}
-
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
@@ -121,28 +119,60 @@ public class FeedbackMB implements Serializable {
 		this.tipoAtendimento = tipoAtendimento;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public Servico getServico() {
-		return servico;
-	}
-
-	public void setServico(Servico servico) {
-		this.servico = servico;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public List<TipoAtendimento> getTiposAtendimento() {
+		return tiposAtendimento;
+	}
+
+	public void setTiposAtendimento(List<TipoAtendimento> tiposAtendimento) {
+		this.tiposAtendimento = tiposAtendimento;
+	}
+
+	public TipoItem getTipoItem() {
+		return tipoItem;
+	}
+
+	public void setTipoItem(TipoItem tipoItem) {
+		this.tipoItem = tipoItem;
+	}
+
+	public List<TipoItem> getTiposItem() {
+		return tiposItem;
+	}
+
+	public void setTiposItem(List<TipoItem> tiposItem) {
+		this.tiposItem = tiposItem;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public List<Servico> getServicos() {
+		return servicos;
+	}
+
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
+	}
+
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
 	}
 
 }

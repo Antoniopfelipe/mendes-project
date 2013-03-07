@@ -45,7 +45,11 @@
 						<h:outputText value="#{cliente.celular}" />
 					</p:column>
 									
-					
+					<p:column>
+						<p:commandButton icon="ui-icon-pencil" title="Editar" action="#{clienteMB.iniciarEdicao(cliente.codCliente)}" ajax="false"
+								style="width:25px; height:25px;vertical-align: middle;margin-bottom: 3px;"/>
+								
+					</p:column>
 					
 					
 					
