@@ -23,6 +23,9 @@
 
 				<p:focus context="panel" />
 
+				<h:inputHidden value="#{clienteMB.cliente.codCliente}"/>
+				<h:inputHidden value="#{clienteMB.endereco.codEndereco}"/>
+
 				<h:panelGrid align="center" columns="6" width="900"
 					style="text-align: left" border="0">
 
@@ -75,27 +78,27 @@
 					style="text-align: left" border="0" >
 
 					<p:outputLabel for="_logradouro" value="Logradouro: " />
-					<p:inputText id="_logradouro" value="#{enderecoMB.endereco.logradouro}"
+					<p:inputText id="_logradouro" value="#{clienteMB.endereco.logradouro}"
 						required="true" requiredMessage="Número não preenchido." size="20" />
 
 					<p:outputLabel for="_numero" value="Número: " required="true" />
-					<p:inputText id="_numero" value="#{enderecoMB.endereco.numero}"
+					<p:inputText id="_numero" value="#{clienteMB.endereco.numero}"
 						required="true" requiredMessage="Número não preenchido." size="20" />
 
 					<p:outputLabel for="_bairro" value="Bairro: " required="true" />					
-					<p:inputMask id="_bairro" value="#{enderecoMB.endereco.bairro}" 
+					<p:inputMask id="_bairro" value="#{clienteMB.endereco.bairro}" 
 						required="true" requiredMessage="Bairro não preenchido" size="20" />
 
 					<p:outputLabel for="_cidade" value="Cidade: " required="true" />
-					<p:inputMask id="_cidade" value="#{enderecoMB.endereco.cidade}"
+					<p:inputMask id="_cidade" value="#{clienteMB.endereco.cidade}"
 						required="true" requiredMessage="Cidade não preenchido." size="20" />
 
 					<p:outputLabel for="_cep" value="CEP: " required="true" />
-					<p:inputMask id="_cep" value="#{enderecoMB.endereco.cep}"
+					<p:inputMask id="_cep" value="#{clienteMB.endereco.cep}"
 						required="true" requiredMessage="CEP não preenchido." size="20" mask="99.999-999" />
 					
 					<p:outputLabel for="_estado" value="Estado: "  required="true" />
-					<p:selectOneMenu id="_estado" effect="clip" value="#{enderecoMB.endereco.estado}" style="width:180px">  
+					<p:selectOneMenu id="_estado" effect="clip" value="#{clienteMB.endereco.estado}" style="width:180px">  
             			<f:selectItem itemLabel="Acre" itemValue="AC" />  
             			<f:selectItem itemLabel="Alagoas" itemValue="AL" />  
             			<f:selectItem itemLabel="Amapá" itemValue="AP" />
@@ -133,11 +136,10 @@
 
 				<p:spacer width="10px" />
 
-				<p:commandButton value="Salvar" action="#{clienteMB.salvarCliente}"
-					style="margin: 0" />
+				<p:commandButton value="Salvar" action="#{clienteMB.salvarCliente}" update="@all" style="margin: 0" />
 
 				<p:spacer width="10px" />
-				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+				<p:commandButton value="Limpar" action="#{clienteMB.limparDados}" process="@this" update="@all" style="margin: 0" />
 
 				<p:spacer width="10px" />
 
