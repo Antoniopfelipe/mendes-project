@@ -20,9 +20,9 @@
 						</p:outputPanel>
 					</f:facet>
 					
-					<p:column id="codProduto" filterBy="#{produto.codProduto}" 
+					<p:column id="codProduto" filterBy="#{produto.cod}" 
 						filterStyle="max-width: 50px; min-width: 50px;" headerText="Código" width="100">
-						<h:outputText value="#{produto.codProduto}"/>
+						<h:outputText value="#{produto.cod}"/>
 					</p:column>
 					
 					<p:column id="categoria" filterBy="#{produto.categoria.descricao}"

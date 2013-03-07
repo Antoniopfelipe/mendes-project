@@ -43,7 +43,20 @@ public class ClienteMB implements Serializable{
 		
 		clientes = clienteService.obterTodosCliente();
 	}    
-	    
+	
+	public ClienteMB() {
+		
+	}
+	
+	public String iniciarEdicao(Long codCliente) {
+		
+		cliente = clienteService.obterClientePorCod(codCliente);
+		
+		endereco = cliente.getEndereco();
+		
+		return "/paginas/cadastroCliente.xhtml";
+	}
+	
     public void salvarCliente() {
     	
     	endereco = enderecoService.criarEndereco(endereco);

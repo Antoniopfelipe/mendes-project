@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  *
@@ -15,6 +17,7 @@ public class MetaGeral extends Meta implements Serializable {
    	
 	private static final long serialVersionUID = 2019817085394162949L;
 	
+	@Enumerated(EnumType.STRING)
 	private TipoMetaGeral tipo;
    
 	public TipoMetaGeral getTipo() {

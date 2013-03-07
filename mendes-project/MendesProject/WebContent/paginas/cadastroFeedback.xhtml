@@ -23,44 +23,49 @@
 
 				<p:focus context="panel" />
 
-				<h:panelGrid align="center" columns="6" width="950"
+				<h:panelGrid align="center" columns="4" width="950"
 					style="text-align: left" border="0">
 
 					<p:outputLabel for="_tipoAtendimento" value="Tipo de Atendimento: " required="true" />
-					<p:selectOneMenu  id="_tipoAtendimento" effect="clip" value="#{feedbackMB.feedback.tipoAtendimento.codTipoAtendimento}" style="width:165px"  >
-						<f:selectItem itemLabel="Tipo de Atendimento" itemValue="" />  
-            			<f:selectItems value="#{tipoAtendimentoMB.tiposAtendimento}" var="tipoAtendimento" itemLabel="#{tipoAtendimento.descricao}" 
-            				itemValue="#{tipoAtendimento.codTipoAtendimento}"/>  
+					
+					<p:selectOneMenu  id="_tipoAtendimento" effect="clip" value="#{feedbackMB.feedback.tipoAtendimento}" style="width:165px"  >
+						<f:selectItems value="#{feedbackMB.tiposAtendimento}"
+			            			 	var="tipo" itemLabel="#{tipo.descricao}"  itemValue="#{tipo}"/>
         			</p:selectOneMenu>
         			
         			<p:outputLabel for="_cliente" value="Cliente: " required="true" />
-					<p:selectOneMenu  id="_cliente" effect="clip" value="#{feedbackMB.feedback.cliente.codCliente}" style="width:165px"  >
-						<f:selectItem itemLabel="Cliente" itemValue="" />  
-            			<f:selectItems value="#{clienteMB.clientes}" var="cliente" itemLabel="#{cliente.nome}" 
+					<p:selectOneMenu  id="_cliente" effect="clip" value="#{feedbackMB.cliente.codCliente}" style="width:165px"  >
+						<f:selectItems value="#{clienteMB.clientes}" var="cliente" itemLabel="#{cliente.nome}" 
             				itemValue="#{cliente.codCliente}"/>  
         			</p:selectOneMenu>
         			
-        			<p:outputLabel for="_produto" value="Produto: "  />
-					<p:selectOneMenu  id="_produto" effect="clip" value="#{feedbackMB.feedback.produto.codProduto}" style="width:165px"  >
-						<f:selectItem itemLabel="Produto" itemValue="" />  
-            			<f:selectItems value="#{produtoMB.produtos}" var="produto" itemLabel="#{produto.nome}" 
-            				itemValue="#{produto.codProduto}"/>  
+        			<p:outputLabel for="_tipoItem" value="Tipo de Item: "  />
+					<p:selectOneMenu   id="_tipoItem" effect="clip" value="#{feedbackMB.tipoItem}" style="width:165px"  >						
+	            		<f:selectItem itemLabel="Selecione" />
+	            		<f:selectItems value="#{feedbackMB.tiposItem}"
+				            			 	var="tipo" itemLabel="#{tipo.descricao}" itemValue="#{tipo}"/>
+				        <p:ajax event="change" listener="#{feedbackMB.escolherTipoItem}" process="@this, _cliente " update="_item"/>	
         			</p:selectOneMenu>
         			
-        			<p:outputLabel for="_servico" value="Servico: "  />
-					<p:selectOneMenu  id="_servico" effect="clip" value="#{feedbackMB.feedback.servico.codServico}" style="width:165px"  >
-						<f:selectItem itemLabel="Servico" itemValue="" />  
-            			<f:selectItems value="#{servicoMB.servicos}" var="servico" itemLabel="#{servico.descricao}" 
-            				itemValue="#{servico.codServico}"/>  
-        			</p:selectOneMenu>
-
-			 		<p:outputLabel for="_nota" value="Nota: " required="true" />
+        			
+        			
+        			<h:outputLabel for="_item" value="Item: "  />        		
+					<p:selectOneMenu id="_item" effect="clip" value="#{feedbackMB.feedback.item.cod}" style="width:165px" 
+								disabled="#{empty feedbackMB.itens}" >
+							
+            			<f:selectItems value="#{feedbackMB.itens}" var="item" itemLabel="#{item.nome}" 
+            				itemValue="#{item.cod}"/>  
+	        		</p:selectOneMenu>
+	        			
+        			
+        			
+			 		<p:outputLabel for="_nota" value="Nota: " />
 					<p:inputText id="_nota" value="#{feedbackMB.feedback.nota}"
 						required="true" requiredMessage="Nota não preenchida."
 						size="20" />
 
-					<p:outputLabel for="dataFeedback" value="Data do Feedback: " />
-					<p:calendar value="#{FeedbackMB.feedback.dataFeedback}" id="dataFeedback" pattern="dd/MM/yyyy" locale="pt" />
+					<p:outputLabel for="_dataFeedback" value="Data do Feedback: " />
+					<p:calendar value="#{feedbackMB.feedback.dataFeedback}" id="_dataFeedback" required="true" pattern="dd/MM/yyyy" locale="pt" />
 
 					<p:outputLabel for="_observacao" value="Observação: " required="true" />
 					
@@ -72,7 +77,7 @@
 
 				<p:spacer width="10px" />
 
-				<p:commandButton value="Salvar" action="#{feedbackMB.salvarFeedback}"
+				<p:commandButton value="Salvar" action="#{feedbackMB.salvarFeedback}" 
 					style="margin: 0" />
 
 				<p:spacer width="10px" />

@@ -19,7 +19,7 @@ public class Item {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codProduto;
+	private Long cod;
 
 	@OneToMany(mappedBy = "item")
 	private List<Feedback> feedbacks;
@@ -37,13 +37,6 @@ public class Item {
 	private List<ItemPedido> itensPedido;
 
 
-	public Long getCodProduto() {
-		return codProduto;
-	}
-
-	public void setCodProduto(Long codProduto) {
-		this.codProduto = codProduto;
-	}
 
 	public String getNome() {
 		return nome;
@@ -91,5 +84,13 @@ public class Item {
 
 	public void setItensPedido(List<ItemPedido> itensPedido) {
 		this.itensPedido = itensPedido;
+	}
+
+	public Long getCod() {
+		return cod;
+	}
+
+	public void setCod(Long cod) {
+		this.cod = cod;
 	}
 }
