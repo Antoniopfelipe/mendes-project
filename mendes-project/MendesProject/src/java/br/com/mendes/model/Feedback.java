@@ -3,6 +3,8 @@ package br.com.mendes.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +29,8 @@ public class Feedback {
 	@OneToOne(optional = false)
 	private Item item;
 
-	private String tipoAtendimento;
+	@Enumerated(EnumType.STRING)
+	private TipoAtendimento tipoAtendimento;
 
 	private Double nota;
 
@@ -39,7 +42,7 @@ public class Feedback {
 	public Feedback() {
 	}
 
-	public Feedback(Long codFeedback, Cliente cliente, Item item, Double nota, String tipoAtendimento,
+	public Feedback(Long codFeedback, Cliente cliente, Item item, Double nota, TipoAtendimento tipoAtendimento,
 			String observacao, Date dataFeedback) {
 		this.codFeedback = codFeedback;
 		this.cliente = cliente;
@@ -74,11 +77,11 @@ public class Feedback {
 		this.nota = nota;
 	}
 
-	public String getTipoAtendimento() {
+	public TipoAtendimento getTipoAtendimento() {
 		return tipoAtendimento;
 	}
 
-	public void setTipoAtendimento(String tipoAtendimento) {
+	public void setTipoAtendimento(TipoAtendimento tipoAtendimento) {
 		this.tipoAtendimento = tipoAtendimento;
 	}
 
