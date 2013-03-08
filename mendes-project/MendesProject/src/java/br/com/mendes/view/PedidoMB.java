@@ -60,7 +60,6 @@ public class PedidoMB implements Serializable {
 	public PedidoMB() {
 		pedido = new Pedido();
 		pedido.setCliente(new Cliente());
-		pedido.setServico(new Servico());
 	}
 
 	public void salvarPedido() {

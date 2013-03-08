@@ -15,7 +15,7 @@ public class ItemPedido {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codItemProdutoOrcamento;
+    private Long cod;
     
     @OneToOne
     private Item item;
@@ -28,19 +28,11 @@ public class ItemPedido {
     public ItemPedido() {
     }
 
-    public ItemPedido(Long codItemProdutoOrcamento, Item item, Pedido pedido, int quantidade) {
-        this.codItemProdutoOrcamento = codItemProdutoOrcamento;
-        this.setItem(item);
+    public ItemPedido(Long cod, Item item, Pedido pedido, int quantidade) {
+        this.cod=cod;
+        this.item=item;
         this.pedido=pedido;
         this.quantidade = quantidade;
-    }
-
-    public Long getCodItemProdutoOrcamento() {
-        return codItemProdutoOrcamento;
-    }
-
-    public void setCodItemProdutoOrcamento(Long codItemProdutoOrcamento) {
-        this.codItemProdutoOrcamento = codItemProdutoOrcamento;
     }
 
     public int getQuantidade() {
@@ -65,6 +57,14 @@ public class ItemPedido {
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	public Long getCod() {
+		return cod;
+	}
+
+	public void setCod(Long cod) {
+		this.cod = cod;
 	}
     
     

@@ -1,6 +1,7 @@
 package br.com.mendes.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.mendes.dto.ItemComboDTO;
 import br.com.mendes.model.Cliente;
 import br.com.mendes.model.Feedback;
 import br.com.mendes.model.Item;
@@ -33,12 +35,13 @@ public class FeedbackMB implements Serializable {
 	private String tipoAtendimento;
 	private Cliente cliente;
 	private TipoItem tipoItem;
+	private Item item;
 	
 
 	private List<Feedback> feedbacks;
 	private List<Produto> produtos;
 	private List<Servico> servicos;
-	private List<Item> itens;
+	private List<ItemComboDTO> itens;
 	
 	private List<Cliente> clientes;
 	private List<TipoAtendimento> tiposAtendimento;
@@ -57,12 +60,14 @@ public class FeedbackMB implements Serializable {
 
 		feedbacks = feedbackService.obterTodosFeedback();
 		clientes = clienteService.obterTodosCliente();
+		itens = new ArrayList<ItemComboDTO>();
+			
 	}
 
 	public FeedbackMB() {
 
 		feedback = new Feedback();
-		feedback.setItem(new Item());
+		item = new Item();
 		cliente = new Cliente();
 		
 		tiposItem = Arrays.asList(TipoItem.values());		
@@ -72,13 +77,13 @@ public class FeedbackMB implements Serializable {
 
 	public void escolherTipoItem() {
 		
-		itens = itemService.buscarPorTipoECLiente(cliente.getCodCliente(), tipoItem);
+		itens = itemService.buscarPorTipoECLiente(cliente.getCodCliente(), tipoItem);		
+	
 	}
 	
 	
 	public void salvarFeedback() {
 		feedback.setCliente(cliente);
-		
 		feedbackService.criarFeedback(feedback);
 		FacesContext.getCurrentInstance().addMessage(
 				null,
@@ -167,12 +172,20 @@ public class FeedbackMB implements Serializable {
 		this.servicos = servicos;
 	}
 
-	public List<Item> getItens() {
+	public List<ItemComboDTO> getItens() {
 		return itens;
 	}
 
-	public void setItens(List<Item> itens) {
+	public void setItens(List<ItemComboDTO> itens) {
 		this.itens = itens;
 	}
 
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
 }

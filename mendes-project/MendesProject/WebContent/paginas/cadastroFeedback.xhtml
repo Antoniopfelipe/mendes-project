@@ -9,7 +9,7 @@
 
 	<ui:define name="conteudo">
 
-		<h:form id="form1" style="text-align: left ">
+		<h:form id="form1"  style="text-align: left ">
 
 			<p:messages id="mensagem" autoUpdate="true">
 				<p:effect type="drop" event="load" delay="2000" speed="1000" />
@@ -26,15 +26,16 @@
 				<h:panelGrid align="center" columns="4" width="950"
 					style="text-align: left" border="0">
 
-					<p:outputLabel for="_tipoAtendimento" value="Tipo de Atendimento: " required="true" />
+					<p:outputLabel for="_tipoAtendimento" value="Tipo de Atendimento: " />
 					
 					<p:selectOneMenu  id="_tipoAtendimento" effect="clip" value="#{feedbackMB.feedback.tipoAtendimento}" style="width:165px"  >
 						<f:selectItems value="#{feedbackMB.tiposAtendimento}"
 			            			 	var="tipo" itemLabel="#{tipo.descricao}"  itemValue="#{tipo}"/>
         			</p:selectOneMenu>
         			
-        			<p:outputLabel for="_cliente" value="Cliente: " required="true" />
-					<p:selectOneMenu  id="_cliente" effect="clip" value="#{feedbackMB.cliente.codCliente}" style="width:165px"  >
+        			<p:outputLabel for="_cliente" value="Cliente: " />
+					<p:selectOneMenu  widgetVar="cliente" id="_cliente" effect="clip" value="#{feedbackMB.cliente.codCliente}" style="width:165px"  >
+						<f:selectItem itemLabel="Selecione" />
 						<f:selectItems value="#{clienteMB.clientes}" var="cliente" itemLabel="#{cliente.nome}" 
             				itemValue="#{cliente.codCliente}"/>  
         			</p:selectOneMenu>
@@ -44,30 +45,25 @@
 	            		<f:selectItem itemLabel="Selecione" />
 	            		<f:selectItems value="#{feedbackMB.tiposItem}"
 				            			 	var="tipo" itemLabel="#{tipo.descricao}" itemValue="#{tipo}"/>
-				        <p:ajax event="change" listener="#{feedbackMB.escolherTipoItem}" process="@this, _cliente " update="_item"/>	
+				        <p:ajax event="change" listener="#{feedbackMB.escolherTipoItem}" process="@this,_cliente" update="_itemVendido"/>	
         			</p:selectOneMenu>
         			
+        			<p:outputLabel for="_itemVendido" value="Item Vendido: "  />        			
+					<p:selectOneMenu id="_itemVendido" effect="clip"  style="width:165px"  value="#{feedbackMB.item.cod}">
+	            		<f:selectItems value="#{feedbackMB.itens}" var="obj" itemLabel="#{obj.descricao}" itemValue="#{obj.cod}"/>
+				    </p:selectOneMenu>
         			
-        			
-        			<h:outputLabel for="_item" value="Item: "  />        		
-					<p:selectOneMenu id="_item" effect="clip" value="#{feedbackMB.feedback.item.cod}" style="width:165px" 
-								disabled="#{empty feedbackMB.itens}" >
-							
-            			<f:selectItems value="#{feedbackMB.itens}" var="item" itemLabel="#{item.nome}" 
-            				itemValue="#{item.cod}"/>  
-	        		</p:selectOneMenu>
-	        			
         			
         			
 			 		<p:outputLabel for="_nota" value="Nota: " />
 					<p:inputText id="_nota" value="#{feedbackMB.feedback.nota}"
-						required="true" requiredMessage="Nota não preenchida."
+						
 						size="20" />
 
 					<p:outputLabel for="_dataFeedback" value="Data do Feedback: " />
-					<p:calendar value="#{feedbackMB.feedback.dataFeedback}" id="_dataFeedback" required="true" pattern="dd/MM/yyyy" locale="pt" />
+					<p:calendar value="#{feedbackMB.feedback.dataFeedback}" id="_dataFeedback"  pattern="dd/MM/yyyy" locale="pt" />
 
-					<p:outputLabel for="_observacao" value="Observação: " required="true" />
+					<p:outputLabel for="_observacao" value="Observação: " />
 					
 					<p:inputTextarea id="_observacao" value="#{feedbackMB.feedback.observacao}" 
 						rows="2"  cols="35"/>
@@ -76,9 +72,7 @@
 			<p:panel style="float: center; border: 0;">
 
 				<p:spacer width="10px" />
-
-				<p:commandButton value="Salvar" action="#{feedbackMB.salvarFeedback}" 
-					style="margin: 0" />
+				<p:commandButton value="Salvar" action="#{feedbackMB.salvarFeedback}" style="margin: 0" />
 
 				<p:spacer width="10px" />
 				<p:commandButton value="Limpar" action="#" style="margin: 0" />
@@ -88,6 +82,7 @@
 				<p:commandButton value="Listar" action="#" style="margin: 0" />
 
 			</p:panel>
+			
 		</h:form>
 
 

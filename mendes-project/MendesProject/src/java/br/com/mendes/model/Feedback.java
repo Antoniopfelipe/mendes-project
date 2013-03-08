@@ -1,5 +1,6 @@
 package br.com.mendes.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -17,7 +18,9 @@ import javax.persistence.TemporalType;
  * @author Pedro
  */
 @Entity
-public class Feedback {
+public class Feedback implements Serializable {
+
+	private static final long serialVersionUID = -152013219739879171L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -108,4 +111,6 @@ public class Feedback {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+	
+	
 }
