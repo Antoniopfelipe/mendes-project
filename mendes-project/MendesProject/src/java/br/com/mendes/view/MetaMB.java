@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.mendes.model.MetaGeral;
+import br.com.mendes.model.TipoMetaGeral;
 import br.com.mendes.service.MetaService;
 
 @Scope(value="request")
@@ -21,8 +22,10 @@ public class MetaMB implements Serializable{
 	
 	private MetaGeral metaCliente;
 	private MetaGeral metaProduto;
+	private MetaGeral metaServico;
 	private MetaGeral metaFeedBackEmail;
 	private MetaGeral metaFeedBackTelefone;
+	private MetaGeral metaFeedBackPessoal;
 		
 	@Autowired 
 	private MetaService metaService;
@@ -38,22 +41,77 @@ public class MetaMB implements Serializable{
 	}
 	
     public MetaMB() {  
-    	
-    	
-    	
+    	metaCliente = new MetaGeral(TipoMetaGeral.CLIENTE);
+    	metaProduto = new MetaGeral(TipoMetaGeral.PRODUTO);
+    	metaServico = new MetaGeral(TipoMetaGeral.SERVICO);
+    	metaFeedBackEmail = new MetaGeral(TipoMetaGeral.FEEDBACK_EMAIL);
+    	metaFeedBackTelefone = new MetaGeral(TipoMetaGeral.FEEDBACK_TELEFONE);
+    	metaFeedBackPessoal = new MetaGeral(TipoMetaGeral.FEEDBACK_PESSOAL);
     }
+    
+    
     
         
     public void salvarMeta() {
     	
     	metaService.criarMetaGeral(metaCliente);
     	metaService.criarMetaGeral(metaProduto);
-    	metaService.criarMetaGeral(metaFeedBackTelefone);
+    	metaService.criarMetaGeral(metaServico);
     	metaService.criarMetaGeral(metaFeedBackEmail);
+    	metaService.criarMetaGeral(metaFeedBackTelefone);
+    	metaService.criarMetaGeral(metaFeedBackPessoal);
     	
     	FacesContext.getCurrentInstance().addMessage(null, 
 	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  
     }
+
+	public MetaGeral getMetaCliente() {
+		return metaCliente;
+	}
+
+	public void setMetaCliente(MetaGeral metaCliente) {
+		this.metaCliente = metaCliente;
+	}
+
+	public MetaGeral getMetaProduto() {
+		return metaProduto;
+	}
+
+	public void setMetaProduto(MetaGeral metaProduto) {
+		this.metaProduto = metaProduto;
+	}
+
+	public MetaGeral getMetaServico() {
+		return metaServico;
+	}
+
+	public void setMetaServico(MetaGeral metaServico) {
+		this.metaServico = metaServico;
+	}
+
+	public MetaGeral getMetaFeedBackEmail() {
+		return metaFeedBackEmail;
+	}
+
+	public void setMetaFeedBackEmail(MetaGeral metaFeedBackEmail) {
+		this.metaFeedBackEmail = metaFeedBackEmail;
+	}
+
+	public MetaGeral getMetaFeedBackTelefone() {
+		return metaFeedBackTelefone;
+	}
+
+	public void setMetaFeedBackTelefone(MetaGeral metaFeedBackTelefone) {
+		this.metaFeedBackTelefone = metaFeedBackTelefone;
+	}
+
+	public MetaGeral getMetaFeedBackPessoal() {
+		return metaFeedBackPessoal;
+	}
+
+	public void setMetaFeedBackPessoal(MetaGeral metaFeedBackPessoal) {
+		this.metaFeedBackPessoal = metaFeedBackPessoal;
+	}
 
 
   

@@ -3,7 +3,7 @@ package br.com.mendes.model;
 public enum CategoriaProduto {
 
 	INSTRUMENTO("Instrumento"),
-	ELETRONICO("EletrÃ´nico");
+	ELETRONICO("Eletrônico");
 	
 	private String descricao;
 	

@@ -2,8 +2,11 @@ package br.com.mendes.model;
 
 public enum TipoServico {
 
-	TIPO_1("Tipo 1"),
-	TIPO_2("Tipo 2");
+	SETUP("SetUp"),
+	TRASTE("Traste"),
+	ESCALOPAGEM("Escalopagem"),
+	TROCACORA("Troca de Corda"),
+	COLAGEM("Colagem");
 	
 	private String descricao;
 	
