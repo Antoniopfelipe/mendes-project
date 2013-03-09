@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.mendes.dto.ItemComboDTO;
 import br.com.mendes.model.Item;
 import br.com.mendes.model.TipoItem;
 import br.com.mendes.model.dao.ItemDAO;
@@ -29,7 +28,20 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	@Transactional
-	public List<ItemComboDTO> buscarPorTipoECLiente(Long codCliente, TipoItem tipoItem) {
+	public List<Item> buscarPorTipoECLiente(Long codCliente, TipoItem tipoItem) {
 		return itemDAO.buscarPorTipoECLiente(codCliente, tipoItem);
 	}
+
+	@Override
+	@Transactional
+	public List<Item> buscarTodos(TipoItem tipoItem) {
+		return itemDAO.buscarTodos(tipoItem);
+	}
+	
+	@Override
+	@Transactional
+	public Item buscarPorCodigo(Long cod) {
+		return itemDAO.getByCod(cod);
+	}
+	
 }

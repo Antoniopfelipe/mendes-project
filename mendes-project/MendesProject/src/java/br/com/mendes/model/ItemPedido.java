@@ -70,6 +70,12 @@ public class ItemPedido implements Serializable {
 	public void setCod(Long cod) {
 		this.cod = cod;
 	}
+
+	@Override
+	public String toString() {
+		return "ItemPedido [cod=" + cod + ", item=" + item + ", pedido="
+				+ pedido + ", quantidade=" + quantidade + "]";
+	}
     
     
 }

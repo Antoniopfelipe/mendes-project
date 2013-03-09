@@ -16,5 +16,7 @@ public interface MetaService {
 
 	MetaEspecifica criarMetaEspecifica(Double valor , Item item);
 
-	MetaGeral obterMetaAtual(TipoMetaGeral metaGeral);
+	MetaGeral obterMetaGeralAtual(TipoMetaGeral tipo);
+
+	MetaEspecifica obterMetaEspecificaAtual(Long codItem);
 }

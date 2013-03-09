@@ -20,8 +20,8 @@ import br.com.mendes.service.EnderecoService;
 @Controller("clienteMB")
 public class ClienteMB implements Serializable{
 
-	private static final long serialVersionUID = -4165603506554303884L;
-	
+	private static final long serialVersionUID = 7948132687109359178L;
+
 	private Cliente cliente;
 	
 	private Endereco endereco;
@@ -69,6 +69,8 @@ public class ClienteMB implements Serializable{
 	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  
     	
     	clientes = clienteService.obterTodosCliente();
+    	
+    	limparDados();
     }
     
     public void limparDados() {

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import br.com.mendes.dto.ItemComboDTO;
 import br.com.mendes.model.Cliente;
 import br.com.mendes.model.Feedback;
 import br.com.mendes.model.Item;
@@ -28,8 +27,8 @@ import br.com.mendes.utils.MBUtil;
 @Controller("feedbackMB")
 public class FeedbackMB implements Serializable {
 
-	private static final long serialVersionUID = -4165603506554303884L;
-
+	private static final long serialVersionUID = -4486064975269370483L;
+	
 	private Feedback feedback;
 	private String tipoAtendimento;
 	private TipoItem tipoItem;	
@@ -37,7 +36,7 @@ public class FeedbackMB implements Serializable {
 	private List<Feedback> feedbacks;
 	private List<Produto> produtos;
 	private List<Servico> servicos;
-	private List<ItemComboDTO> itens;
+	private List<Item> itens;
 	
 	private List<Cliente> clientes;
 	private List<TipoAtendimento> tiposAtendimento;
@@ -68,13 +67,19 @@ public class FeedbackMB implements Serializable {
 		
 	}
 	
+	public String abrirTela() {
+		resetDados();
+		return "/paginas/cadastroFeedback.xhtml";
+	}
+	
+	
 	public void resetDados() {
 		
 		feedback = new Feedback();
 		feedback.setItem(new Item());
 		feedback.setCliente(new Cliente());
 		
-		itens = new ArrayList<ItemComboDTO>();
+		itens = new ArrayList<Item>();
 		
 	}
 
@@ -178,11 +183,11 @@ public class FeedbackMB implements Serializable {
 		this.servicos = servicos;
 	}
 
-	public List<ItemComboDTO> getItens() {
+	public List<Item> getItens() {
 		return itens;
 	}
 
-	public void setItens(List<ItemComboDTO> itens) {
+	public void setItens(List<Item> itens) {
 		this.itens = itens;
 	}
 

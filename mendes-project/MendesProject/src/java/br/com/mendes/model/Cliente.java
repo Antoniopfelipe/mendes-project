@@ -56,6 +56,10 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 
+	public Cliente(Long codCliente) {
+		this.codCliente = codCliente;
+	}
+	
 	public Cliente(Long codCliente, String nome, String sobrenome,
 			Endereco endereco, String telefone, String celular, String rg,
 			String cpf,  Date dataNascimento, Date dataCadastro) {
