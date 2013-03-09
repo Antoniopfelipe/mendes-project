@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,10 +26,10 @@ public class Feedback implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codFeedback;
 
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Cliente cliente;
 
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Item item;
 
 	@Enumerated(EnumType.STRING)
@@ -64,7 +64,7 @@ public class Feedback implements Serializable {
 		this.codFeedback = codFeedback;
 	}
 
-	public Cliente getcliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 

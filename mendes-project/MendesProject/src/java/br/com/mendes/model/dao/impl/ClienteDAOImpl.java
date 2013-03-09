@@ -12,9 +12,9 @@ import br.com.mendes.model.dao.ClienteDAO;
 
 @Repository
 public class ClienteDAOImpl extends DAOImpl<Cliente,Long> implements ClienteDAO {
+		
+	private static final long serialVersionUID = -7190050683815189287L;
 
-	
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ClientesPeriodoDTO> obterQtdeClientesPorPeriodo() {

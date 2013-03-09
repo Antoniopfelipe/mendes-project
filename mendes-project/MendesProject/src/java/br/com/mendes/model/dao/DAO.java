@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-public interface DAO<T, K extends Serializable> {
+public interface DAO<T, K extends Serializable>  extends Serializable  {
 	
 	Session getSession();
 	

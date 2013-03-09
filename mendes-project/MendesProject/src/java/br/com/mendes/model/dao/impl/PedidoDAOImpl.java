@@ -9,4 +9,6 @@ import br.com.mendes.model.dao.PedidoDAO;
 public class PedidoDAOImpl extends DAOImpl<Pedido, Long> implements
 		PedidoDAO {
 
+	private static final long serialVersionUID = 9051943387825326329L;
+
 }

@@ -13,6 +13,8 @@ import br.com.mendes.model.dao.ItemDAO;
 @Repository
 public class ItemDAOImpl extends DAOImpl<Item,Long> implements ItemDAO {
 
+	private static final long serialVersionUID = 2157614205573395922L;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ItemComboDTO> buscarPorTipoECLiente(Long codCliente, TipoItem tipoItem) {

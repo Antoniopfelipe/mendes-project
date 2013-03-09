@@ -14,6 +14,8 @@ import br.com.mendes.service.ClienteService;
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
+	private static final long serialVersionUID = 6105176294416057468L;
+	
 	@Autowired
 	private ClienteDAO clienteDAO;
 

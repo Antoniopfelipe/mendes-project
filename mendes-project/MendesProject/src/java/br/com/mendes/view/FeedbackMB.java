@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -24,8 +22,9 @@ import br.com.mendes.model.TipoItem;
 import br.com.mendes.service.ClienteService;
 import br.com.mendes.service.FeedbackService;
 import br.com.mendes.service.ItemService;
+import br.com.mendes.utils.MBUtil;
 
-@Scope(value = "request")
+@Scope(value = "session")
 @Controller("feedbackMB")
 public class FeedbackMB implements Serializable {
 
@@ -33,10 +32,7 @@ public class FeedbackMB implements Serializable {
 
 	private Feedback feedback;
 	private String tipoAtendimento;
-	private Cliente cliente;
-	private TipoItem tipoItem;
-	private Item item;
-	
+	private TipoItem tipoItem;	
 
 	private List<Feedback> feedbacks;
 	private List<Produto> produtos;
@@ -60,35 +56,53 @@ public class FeedbackMB implements Serializable {
 
 		feedbacks = feedbackService.obterTodosFeedback();
 		clientes = clienteService.obterTodosCliente();
-		itens = new ArrayList<ItemComboDTO>();
-			
+					
 	}
 
 	public FeedbackMB() {
 
-		feedback = new Feedback();
-		item = new Item();
-		cliente = new Cliente();
+		resetDados();
 		
 		tiposItem = Arrays.asList(TipoItem.values());		
 		tiposAtendimento = Arrays.asList(TipoAtendimento.values());
 		
 	}
+	
+	public void resetDados() {
+		
+		feedback = new Feedback();
+		feedback.setItem(new Item());
+		feedback.setCliente(new Cliente());
+		
+		itens = new ArrayList<ItemComboDTO>();
+		
+	}
 
 	public void escolherTipoItem() {
 		
-		itens = itemService.buscarPorTipoECLiente(cliente.getCodCliente(), tipoItem);		
+		itens = itemService.buscarPorTipoECLiente(feedback.getCliente().getCodCliente(), tipoItem);		
 	
 	}
 	
 	
 	public void salvarFeedback() {
-		feedback.setCliente(cliente);
+		
+		if(feedback.getItem().getCod() == null) {
+			MBUtil.addWarn("Nenhum Item foi selecionado.");
+			return;
+		}
+		
+		Feedback feedbackAtual = feedbackService.obterFeedbackPorClienteItem(
+				feedback.getCliente().getCodCliente(), feedback.getItem().getCod());
+		
+		if(feedbackAtual != null)
+			feedback.setCodFeedback(feedbackAtual.getCodFeedback());
+		
 		feedbackService.criarFeedback(feedback);
-		FacesContext.getCurrentInstance().addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",
-						"Cadastrado com sucesso."));
+		
+		MBUtil.addInfo("Cadastrado com sucesso.");
+				
+		resetDados();
 
 	}
 
@@ -122,14 +136,6 @@ public class FeedbackMB implements Serializable {
 
 	public void setTipoAtendimento(String tipoAtendimento) {
 		this.tipoAtendimento = tipoAtendimento;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public List<TipoAtendimento> getTiposAtendimento() {
@@ -180,12 +186,4 @@ public class FeedbackMB implements Serializable {
 		this.itens = itens;
 	}
 
-
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
 }

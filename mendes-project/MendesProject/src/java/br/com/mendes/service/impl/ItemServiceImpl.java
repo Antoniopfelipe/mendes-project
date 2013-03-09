@@ -15,6 +15,9 @@ import br.com.mendes.service.ItemService;
 @Service
 public class ItemServiceImpl implements ItemService {
 
+	
+	private static final long serialVersionUID = 2705497057114522401L;
+	
 	@Autowired
 	private ItemDAO itemDAO;
 

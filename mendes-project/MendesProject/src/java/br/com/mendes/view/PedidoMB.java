@@ -19,7 +19,6 @@ import br.com.mendes.model.Produto;
 import br.com.mendes.model.Servico;
 import br.com.mendes.model.TipoItem;
 import br.com.mendes.service.ClienteService;
-import br.com.mendes.service.ItemService;
 import br.com.mendes.service.PedidoService;
 import br.com.mendes.service.ProdutoService;
 import br.com.mendes.service.ServicoService;
@@ -56,8 +55,8 @@ public class PedidoMB implements Serializable {
 	@Autowired
 	private ServicoService servicoService;
 	
-	@Autowired
-	private ItemService itemService;
+	//@Autowired
+	//private ItemService itemService;
 
 	@PostConstruct
 	public void iniciar() {
@@ -80,7 +79,7 @@ public class PedidoMB implements Serializable {
 	
 	public void escolherTipoItem() {
 		
-		itens = itemService.buscarPorTipoECLiente(cliente.getCodCliente(), tipoItem);
+		//itens = itemService.buscarPorTipoECLiente(cliente.getCodCliente(), tipoItem);
 	}
 
 	public void salvarPedido() {
