@@ -15,6 +15,7 @@ import br.com.mendes.model.dao.DAO;
 
 public abstract class DAOImpl<T, K extends Serializable> implements DAO<T, K>{
 
+	private static final long serialVersionUID = -7793329376577351690L;
 
 	protected Class<T> entityClass;
 

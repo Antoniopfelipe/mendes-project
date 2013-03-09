@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.mendes.dto.ItemComboDTO;
 import br.com.mendes.model.Item;
 import br.com.mendes.model.TipoItem;
 import br.com.mendes.model.dao.ItemDAO;
@@ -14,6 +15,9 @@ import br.com.mendes.service.ItemService;
 @Service
 public class ItemServiceImpl implements ItemService {
 
+	
+	private static final long serialVersionUID = 2705497057114522401L;
+	
 	@Autowired
 	private ItemDAO itemDAO;
 
@@ -25,7 +29,7 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	@Transactional
-	public List<Item> buscarPorTipoECLiente(Long codCliente, TipoItem tipoItem) {
+	public List<ItemComboDTO> buscarPorTipoECLiente(Long codCliente, TipoItem tipoItem) {
 		return itemDAO.buscarPorTipoECLiente(codCliente, tipoItem);
 	}
 }

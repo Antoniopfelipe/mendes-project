@@ -9,4 +9,6 @@ import br.com.mendes.model.dao.EnderecoDAO;
 @Repository
 public class EnderecoDAOImpl extends DAOImpl<Endereco,Long> implements EnderecoDAO {
 
+	private static final long serialVersionUID = -6322663553984401973L;
+
 }

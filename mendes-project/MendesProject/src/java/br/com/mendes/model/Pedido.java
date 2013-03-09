@@ -1,5 +1,6 @@
 package br.com.mendes.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,12 +18,15 @@ import javax.persistence.TemporalType;
  * @author Pedro
  */
 @Entity
-public class Pedido {
+public class Pedido implements Serializable {
+	
+	private static final long serialVersionUID = 1962890005427364591L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codOrcamento;
+	private Long cod;
 
-	@OneToOne
+	@ManyToOne
 	private Cliente cliente;
 
 	@Temporal(TemporalType.DATE)
@@ -31,38 +35,17 @@ public class Pedido {
 	@Temporal(TemporalType.DATE)
 	private Date previsaoEntrega;
 
-	@OneToMany
+	@OneToMany(mappedBy="pedido")
 	private List<ItemPedido> itensPedido;
-
-	@OneToOne
-	private Servico servico;
 
 	private double valorTotal;
 
-	private boolean status;
+	private StatusPedido status;
 
 	public Pedido() {
 	}
 
-	public Pedido(Long codOrcamento, Cliente cliente, Date dataEmissao,
-			Date previsaoEntrega, Servico servico,
-			double valorTotal, boolean status) {
-		this.codOrcamento = codOrcamento;
-		this.cliente = cliente;
-		this.dataEmissao = dataEmissao;
-		this.previsaoEntrega = previsaoEntrega;
-		this.servico = servico;
-		this.valorTotal = valorTotal;
-		this.status = status;
-	}
 
-	public Long getCodOrcamento() {
-		return codOrcamento;
-	}
-
-	public void setCodOrcamento(Long codOrcamento) {
-		this.codOrcamento = codOrcamento;
-	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -88,14 +71,6 @@ public class Pedido {
 		this.previsaoEntrega = previsaoEntrega;
 	}
 
-	public Servico getServico() {
-		return servico;
-	}
-
-	public void setServico(Servico servico) {
-		this.servico = servico;
-	}
-
 	public double getValorTotal() {
 		return valorTotal;
 	}
@@ -104,13 +79,6 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
 
 	public List<ItemPedido> getItensPedido() {
 		return itensPedido;
@@ -118,6 +86,26 @@ public class Pedido {
 
 	public void setItensPedido(List<ItemPedido> itensPedido) {
 		this.itensPedido = itensPedido;
+	}
+
+	public Long getCod() {
+		return cod;
+	}
+
+	public void setCod(Long cod) {
+		this.cod = cod;
+	}
+
+
+
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
 	}
 
 }

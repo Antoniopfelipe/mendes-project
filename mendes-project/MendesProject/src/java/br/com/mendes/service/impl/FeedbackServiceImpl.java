@@ -13,6 +13,8 @@ import br.com.mendes.service.FeedbackService;
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
 
+	private static final long serialVersionUID = 6064105439809775689L;
+	
 	@Autowired
 	private FeedbackDAO feedbackDAO;
 
@@ -32,5 +34,11 @@ public class FeedbackServiceImpl implements FeedbackService {
 	@Transactional
 	public Feedback criarFeedback(Feedback feedback) {
 		return feedbackDAO.saveUpdateGetEntity(feedback);
+	}
+
+	@Override
+	@Transactional
+	public Feedback obterFeedbackPorClienteItem(Long codCliente, Long codItem) {
+		return feedbackDAO.obterFeedbackPorClienteItem(codCliente, codItem);
 	}
 }

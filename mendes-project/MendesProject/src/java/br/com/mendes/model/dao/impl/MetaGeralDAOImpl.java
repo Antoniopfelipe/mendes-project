@@ -8,4 +8,6 @@ import br.com.mendes.model.dao.MetaGeralDAO;
 @Repository
 public class MetaGeralDAOImpl extends DAOImpl<MetaGeral,Long> implements MetaGeralDAO {
 
+	private static final long serialVersionUID = 2478166995437747144L;
+
 }

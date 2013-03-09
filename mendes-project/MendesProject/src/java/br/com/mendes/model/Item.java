@@ -1,5 +1,6 @@
 package br.com.mendes.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
@@ -15,7 +16,9 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TIPO_ITEM", discriminatorType = DiscriminatorType.STRING)
-public class Item {
+public class Item implements Serializable {
+
+	private static final long serialVersionUID = 6625146880168473723L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +39,13 @@ public class Item {
 	@OneToMany(mappedBy = "item")
 	private List<ItemPedido> itensPedido;
 
-
+	public Item() {
+		
+	}
+	
+	public Item(Long codItem) {
+		this.cod = codItem;
+	}
 
 	public String getNome() {
 		return nome;
@@ -93,4 +102,6 @@ public class Item {
 	public void setCod(Long cod) {
 		this.cod = cod;
 	}
+
+	
 }

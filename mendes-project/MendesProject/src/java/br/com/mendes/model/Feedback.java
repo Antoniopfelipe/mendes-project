@@ -1,5 +1,6 @@
 package br.com.mendes.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,16 +18,18 @@ import javax.persistence.TemporalType;
  * @author Pedro
  */
 @Entity
-public class Feedback {
+public class Feedback implements Serializable {
+
+	private static final long serialVersionUID = -152013219739879171L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codFeedback;
 
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Cliente cliente;
 
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Item item;
 
 	@Enumerated(EnumType.STRING)
@@ -61,7 +64,7 @@ public class Feedback {
 		this.codFeedback = codFeedback;
 	}
 
-	public Cliente getcliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
@@ -108,4 +111,6 @@ public class Feedback {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+	
+	
 }

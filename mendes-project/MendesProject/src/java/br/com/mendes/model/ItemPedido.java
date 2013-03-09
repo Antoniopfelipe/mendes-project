@@ -1,26 +1,30 @@
 package br.com.mendes.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Pedro
  */
 @Entity
-public class ItemPedido {
+public class ItemPedido implements Serializable {
 	
-    @Id
+	private static final long serialVersionUID = -6324851405792712125L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codItemProdutoOrcamento;
+    private Long cod;
     
-    @OneToOne
+    @ManyToOne
     private Item item;
     
-    @OneToOne
+    @ManyToOne
     private Pedido pedido;
     
     private int quantidade;
@@ -28,19 +32,11 @@ public class ItemPedido {
     public ItemPedido() {
     }
 
-    public ItemPedido(Long codItemProdutoOrcamento, Item item, Pedido pedido, int quantidade) {
-        this.codItemProdutoOrcamento = codItemProdutoOrcamento;
-        this.setItem(item);
+    public ItemPedido(Long cod, Item item, Pedido pedido, int quantidade) {
+        this.cod=cod;
+        this.item=item;
         this.pedido=pedido;
         this.quantidade = quantidade;
-    }
-
-    public Long getCodItemProdutoOrcamento() {
-        return codItemProdutoOrcamento;
-    }
-
-    public void setCodItemProdutoOrcamento(Long codItemProdutoOrcamento) {
-        this.codItemProdutoOrcamento = codItemProdutoOrcamento;
     }
 
     public int getQuantidade() {
@@ -65,6 +61,14 @@ public class ItemPedido {
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	public Long getCod() {
+		return cod;
+	}
+
+	public void setCod(Long cod) {
+		this.cod = cod;
 	}
     
     

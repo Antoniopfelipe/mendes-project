@@ -3,7 +3,7 @@ package br.com.mendes.model;
 public enum TipoItem {
 
 	PRODUTO("Produto"),
-	SERVICO("Serviço");
+	SERVICO("ServiÃ§o");
 	
 	private String descricao;
 	
