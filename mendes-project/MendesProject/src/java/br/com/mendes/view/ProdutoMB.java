@@ -5,25 +5,25 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.mendes.model.CategoriaProduto;
+import br.com.mendes.model.Meta;
 import br.com.mendes.model.Produto;
 import br.com.mendes.service.MetaService;
 import br.com.mendes.service.ProdutoService;
+import br.com.mendes.utils.MBUtil;
 
 
 @Scope(value="request")
 @Controller("produtoMB")
 public class ProdutoMB implements Serializable{
-
-	private static final long serialVersionUID = -4165603506554303884L;
 	
+	private static final long serialVersionUID = -8900938210077927756L;
+
 	private Produto produto;
 	
 	private List<Produto> produtos;
@@ -42,20 +42,41 @@ public class ProdutoMB implements Serializable{
 	public void iniciar() {
 		produtos = produtoService.obterTodosProduto();
 		
-		produto = new Produto(); 
     	categoriasProduto = Arrays.asList(CategoriaProduto.values());
+    	
+    	resetDados();
 	}
 	
+	public void resetDados() {
+		produto = new  Produto();
+		valorMeta = null;
+	}
         
+	public String iniciarEdicao(Long codProduto) {
+		
+		produto = produtoService.obterProdutoPorCod(codProduto);
+		
+		Meta meta = metaService.obterMetaEspecificaAtual(codProduto);
+		
+		if(meta!=null)
+			valorMeta = meta.getValor();
+		
+		return "/paginas/cadastroProduto.xhtml";
+	}
+	
+
     public void salvarProduto() {
 
     	Produto produtoSalvo = produtoService.criarProduto(produto);
     	
+    	if(valorMeta==null)
+    		valorMeta=0.0;
+    	
     	metaService.criarMetaEspecifica(valorMeta, produtoSalvo);
     	
-    	FacesContext.getCurrentInstance().addMessage(null, 
-	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  
+    	MBUtil.addInfo("Cadastrado com sucesso.");  
     	
+    	resetDados();
     }
 
 	public Produto getProduto() {

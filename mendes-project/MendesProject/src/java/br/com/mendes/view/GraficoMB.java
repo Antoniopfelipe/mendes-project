@@ -19,8 +19,8 @@ import br.com.mendes.service.ClienteService;
 @Scope(value="request")
 public class GraficoMB implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -2610583250767977035L;
+
 	private CartesianChartModel linearModel;
 		
 	@Autowired

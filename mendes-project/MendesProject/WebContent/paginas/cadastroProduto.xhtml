@@ -24,12 +24,14 @@
 				
 				<p:focus context="panel" />
 				
+				<h:inputHidden value="#{produtoMB.produto.cod}"/>
+				
 				<h:panelGrid align="left" columns="6" width="950"
 					style="text-align: left" border="0" >
 					
 								<p:outputLabel for="_nome" value="Nome: " />
 								<p:inputText id="_nome" value="#{produtoMB.produto.nome}"
-									required="true" widgetVar="gui" 
+									required="true" 
 									requiredMessage="Nome não preenchido."
 									size="22" styleClass="inputSize" />
 									
@@ -68,15 +70,14 @@
 			
 				<p:spacer width="10px" />
 
-				<p:commandButton value="Salvar" action="#{produtoMB.salvarProduto}"
-					style="margin: 0" />
+				<p:commandButton value="Salvar" action="#{produtoMB.salvarProduto}" update="@all" style="margin: 0" />
 
 				<p:spacer width="10px" />
-				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+				<p:commandButton value="Limpar" action="#{produtoMB.resetDados}" process="@this" update="@all" style="margin: 0" />
 
 				<p:spacer width="10px" />
 
-				<p:commandButton value="Listar" action="#" style="margin: 0" />
+				<p:commandButton value="Listar" action="/paginas/consultaProduto.xhtml" process="@this" style="margin: 0" />
 
 			</p:panel>
 		</h:form>

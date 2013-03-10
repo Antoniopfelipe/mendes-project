@@ -32,13 +32,10 @@ public class Pedido implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataEmissao;
 
-	@Temporal(TemporalType.DATE)
-	private Date previsaoEntrega;
-
 	@OneToMany(mappedBy="pedido")
 	private List<ItemPedido> itensPedido;
 
-	private double valorTotal;
+	private Double valorTotal;
 
 	private StatusPedido status;
 
@@ -63,19 +60,11 @@ public class Pedido implements Serializable {
 		this.dataEmissao = dataEmissao;
 	}
 
-	public Date getPrevisaoEntrega() {
-		return previsaoEntrega;
-	}
-
-	public void setPrevisaoEntrega(Date previsaoEntrega) {
-		this.previsaoEntrega = previsaoEntrega;
-	}
-
-	public double getValorTotal() {
+	public Double getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(double valorTotal) {
+	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
@@ -108,4 +97,13 @@ public class Pedido implements Serializable {
 		this.status = status;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Pedido [cod=" + cod + ", cliente=" + cliente + ", dataEmissao="
+				+ dataEmissao + ", valorTotal=" + valorTotal + ", status=" + status + "]";
+	}
+
+	
 }

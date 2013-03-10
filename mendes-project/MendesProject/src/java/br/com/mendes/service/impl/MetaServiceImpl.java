@@ -38,10 +38,18 @@ public class MetaServiceImpl implements MetaService {
 	@Override
 	@Transactional
 	public MetaEspecifica criarMetaEspecifica(Double valor, Item item) {
-		MetaEspecifica metaEspecifica  = new MetaEspecifica();
+		
+		
+		MetaEspecifica metaEspecifica  = metaEspeficicaDAO.obterMetaAtual(item.getCod());
+		
+		if(metaEspecifica != null && valor.equals(metaEspecifica.getValor()))		
+			return metaEspecifica;
+		
+		metaEspecifica = new MetaEspecifica();
 		metaEspecifica.setDataInicio(new Date());
-		metaEspecifica.setValor(valor);
 		metaEspecifica.setItem(item);
+		metaEspecifica.setValor(valor);
+	
 		return metaEspeficicaDAO.saveUpdateGetEntity(metaEspecifica);
 	}
 	
@@ -56,8 +64,14 @@ public class MetaServiceImpl implements MetaService {
 	}
 
 	@Override
-	public MetaGeral obterMetaAtual(TipoMetaGeral metaGeral) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public MetaGeral obterMetaGeralAtual(TipoMetaGeral tipo) {
+		return metaGeralDAO.obterMetaAtual(tipo);
+	}
+	
+	@Override
+	@Transactional
+	public MetaEspecifica obterMetaEspecificaAtual(Long codItem) {
+		return metaEspeficicaDAO.obterMetaAtual(codItem);
 	}
 }

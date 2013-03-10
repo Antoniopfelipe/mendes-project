@@ -48,7 +48,7 @@
         			
         			<p:outputLabel for="_itemVendido" value="Item Vendido: "  />        			
 					<p:selectOneMenu disabled="#{empty feedbackMB.itens}" id="_itemVendido" effect="clip"  style="width:165px"  value="#{feedbackMB.feedback.item.cod}">
-	            		<f:selectItems value="#{feedbackMB.itens}" var="obj" itemLabel="#{obj.descricao}" itemValue="#{obj.cod}"/>
+	            		<f:selectItems value="#{feedbackMB.itens}" var="obj" itemLabel="#{obj.nome}" itemValue="#{obj.cod}"/>
 				    </p:selectOneMenu>        	
         			
 			 		<p:outputLabel for="_nota" value="Nota: " />

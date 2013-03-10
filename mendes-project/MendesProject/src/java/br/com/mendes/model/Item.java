@@ -103,5 +103,13 @@ public class Item implements Serializable {
 		this.cod = cod;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [cod=" + cod + ", nome=" + nome + ", precoCusto="
+				+ precoCusto + ", precoVenda=" + precoVenda + "]";
+	}
+
+	
+	
 	
 }

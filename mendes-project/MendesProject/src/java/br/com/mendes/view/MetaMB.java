@@ -18,8 +18,8 @@ import br.com.mendes.service.MetaService;
 @Controller("metaMB")
 public class MetaMB implements Serializable{
 
-	private static final long serialVersionUID = -4165603506554303884L;
-	
+	private static final long serialVersionUID = 8057294283144563153L;
+
 	private MetaGeral metaCliente;
 	private MetaGeral metaProduto;
 	private MetaGeral metaServico;

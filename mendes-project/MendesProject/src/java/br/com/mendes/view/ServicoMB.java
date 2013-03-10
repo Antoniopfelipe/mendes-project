@@ -20,9 +20,9 @@ import br.com.mendes.service.ServicoService;
 @Scope(value="request")
 @Controller("servicoMB")
 public class ServicoMB implements Serializable{
-
-	private static final long serialVersionUID = -4165603506554303884L;
 	
+	private static final long serialVersionUID = 7157226923907682989L;
+
 	private Servico servico;
 	
 	private List<Servico> servicos;
