@@ -12,7 +12,7 @@
 		<h:form>
 
 				<p:dataTable id="tabelaProduto" var="servico" value="#{servicoMB.servicos}" 
-					emptyMessage="NÃ£o hÃ¡ servicos com essa especificaÃ§Ã£o" scrollable="true" resizableColumns="true" style="width: 900px; ">
+					emptyMessage="Não há servicos com essa especificação" scrollable="true" resizableColumns="true" style="width: 900px; ">
 
 					<f:facet name="header">
 						<p:outputPanel>
@@ -21,7 +21,7 @@
 					</f:facet>
 					
 					<p:column id="codServico" filterBy="#{servico.cod}" 
-						filterStyle="max-width: 50px; min-width: 50px;" headerText="CÃ³digo" width="100">
+						filterStyle="max-width: 50px; min-width: 50px;" headerText="Código" width="100">
 						<h:outputText value="#{servico.cod}"/>
 					</p:column>
 					
@@ -54,7 +54,7 @@
 								style="width:25px; height:25px;vertical-align: middle;margin-bottom: 3px;"/>			
 					</p:column>
 					
-					<!-- META AINDA NÃƒO IMPLEMENTADA <p:column id="rg" filterBy="#{cliente.rg}" filterMatchMode="contains"
+					<!-- META AINDA NÃO IMPLEMENTADA <p:column id="rg" filterBy="#{cliente.rg}" filterMatchMode="contains"
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="RG" width="150">
 						<h:outputText value="#{cliente.rg}" />
 					</p:column> -->
