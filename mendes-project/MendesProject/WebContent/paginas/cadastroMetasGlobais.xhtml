@@ -28,8 +28,10 @@
 					style="text-align: left" border="0">
 
 					<p:outputLabel for="_clientesEsperados" value="Clientes Conquistados " />
-					<p:inputText id="_clientesEsperados" value="#{metaMB.metaCliente.valor}"
-						required="true" requiredMessage="Clientes Conquistados não preenchido"/>
+					<p:inputText id="_clientesEsperados" value="#{metaMB.metaCliente.valor}">
+						<f:convertNumber  maxFractionDigits="0"/>
+					</p:inputText>
+					
 				
 				</h:panelGrid>	
 				
@@ -38,8 +40,9 @@
 					style="text-align: left" border="0">
 					
 					<p:outputLabel for="_servicosPrestados" value="Quantidade total de Serviços Prestados: " />
-					<p:inputText id="_servicosPrestados" value="#{metaMB.metaServico.valor}"
-						required="true" requiredMessage="Quantidade total de Serviços Prestados não preenchido"/>
+					<p:inputText id="_servicosPrestados" value="#{metaMB.metaServico.valor}">
+						<f:convertNumber  maxFractionDigits="0"/>
+					</p:inputText>
 					
 				</h:panelGrid>	
 				
@@ -48,8 +51,9 @@
 					style="text-align: left" border="0">
 						
 					<p:outputLabel for="_produtosVendidos" value="Quantidade total de Produtos Vendidos: " />
-					<p:inputText id="_produtosVendidos" value="#{metaMB.metaProduto.valor}"
-						required="true" requiredMessage="Quantidade total de Produtos Vendidos não preenchido"/>
+					<p:inputText id="_produtosVendidos" value="#{metaMB.metaProduto.valor}">
+						<f:convertNumber  maxFractionDigits="0"/>
+					</p:inputText>
 					
 				</h:panelGrid>	
 				
@@ -59,16 +63,19 @@
 					style="text-align: left" border="0">	
 						
 					<p:outputLabel for="_atendimentosEmail" value="Quantidade total de Atendimento por Email: " />
-					<p:inputText id="_atendimentosEmail" value="#{metaMB.metaFeedBackEmail.valor}"
-						required="true" requiredMessage="Quantidade total de Atendimento por Email não preenchido"/>
+					<p:inputText id="_atendimentosEmail" value="#{metaMB.metaFeedBackEmail.valor}">
+						<f:convertNumber  maxFractionDigits="0"/>
+					</p:inputText>
 
 					<p:outputLabel for="_atendimentosTelefone" value="Quantidade total de Atendimento por Telefone: " />
-					<p:inputText id="_atendimentosTelefone" value="#{metaMB.metaFeedBackTelefone.valor}"
-						required="true" requiredMessage="Quantidade total de Atendimento por Telefone não preenchido"/>
+					<p:inputText id="_atendimentosTelefone" value="#{metaMB.metaFeedBackTelefone.valor}">
+						<f:convertNumber  maxFractionDigits="0"/>
+					</p:inputText>
 						
 					<p:outputLabel for="_atendimentosPessoal" value="Quantidade total de Atendimento Pessoalmente: " />
-					<p:inputText id="_atendimentosPessoal" value="#{metaMB.metaFeedBackPessoal.valor}"
-						required="true" requiredMessage="Quantidade total de Atendimento Pessoalmente não preenchido"/>	
+					<p:inputText id="_atendimentosPessoal" value="#{metaMB.metaFeedBackPessoal.valor}">
+						<f:convertNumber  maxFractionDigits="0"/>
+					</p:inputText>
 						
 				</h:panelGrid>
 			</p:panel>
@@ -77,16 +84,13 @@
 
 				<p:spacer width="10px" />
 
-				<p:commandButton value="Salvar" action="#{metaMB.salvarMeta}"
-					style="margin: 0" />
-
+				<p:commandButton value="Salvar" action="#{metaMB.salvarMeta}" style="margin: 0" />
+				
 				<p:spacer width="10px" />
-				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+				
+				<p:commandButton value="Limpar" action="#{metaMB.limparDados}" process="@this" update="@all" style="margin: 0" />
 
-				<p:spacer width="10px" />
-
-				<p:commandButton value="Listar" action="#" style="margin: 0" />
-
+				
 			</p:panel>
 		</h:form>
 

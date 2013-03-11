@@ -33,26 +33,37 @@ public class MetaMB implements Serializable{
 	@PostConstruct
 	public void iniciar() {
 		
-		//TODO
-		//metaCliente = metaService.obterMetaAtual(TipoMetaGeral.CLIENTE);
-    	//metaProduto = metaService.obterMetaAtual(TipoMetaGeral.PRODUTO);
-    	//metaFeedBackTelefone = metaService.obterMetaAtual(TipoMetaGeral.FEEDBACK_TELEFONE);
-    	//metaFeedBackEmail = metaService.obterMetaAtual(TipoMetaGeral.FEEDBACK_EMAIL);
+		metaCliente = metaService.obterMetaGeralAtual(TipoMetaGeral.CLIENTE);
+    	metaProduto = metaService.obterMetaGeralAtual(TipoMetaGeral.PRODUTO);
+    	metaServico = metaService.obterMetaGeralAtual(TipoMetaGeral.SERVICO);
+    	metaFeedBackTelefone = metaService.obterMetaGeralAtual(TipoMetaGeral.FEEDBACK_TELEFONE);
+    	metaFeedBackEmail = metaService.obterMetaGeralAtual(TipoMetaGeral.FEEDBACK_EMAIL);
+    	metaFeedBackPessoal = metaService.obterMetaGeralAtual(TipoMetaGeral.FEEDBACK_PESSOAL);
+    	
+    	if(metaCliente==null)
+    		metaCliente = new MetaGeral(TipoMetaGeral.CLIENTE);
+    	if(metaProduto==null)
+    		metaProduto = new MetaGeral(TipoMetaGeral.PRODUTO);
+    	if(metaServico==null)
+    		metaServico = new MetaGeral(TipoMetaGeral.SERVICO);
+    	if(metaFeedBackEmail==null)
+    		metaFeedBackEmail = new MetaGeral(TipoMetaGeral.FEEDBACK_EMAIL);
+    	if(metaFeedBackTelefone==null)
+    		metaFeedBackTelefone = new MetaGeral(TipoMetaGeral.FEEDBACK_TELEFONE);
+    	if(metaFeedBackPessoal==null)
+    		metaFeedBackPessoal = new MetaGeral(TipoMetaGeral.FEEDBACK_PESSOAL);
+	}
+
+	public void limparDados() {
+		metaCliente = new MetaGeral(TipoMetaGeral.CLIENTE);
+		metaProduto = new MetaGeral(TipoMetaGeral.PRODUTO);
+		metaServico = new MetaGeral(TipoMetaGeral.SERVICO);
+		metaFeedBackEmail = new MetaGeral(TipoMetaGeral.FEEDBACK_EMAIL);
+		metaFeedBackTelefone = new MetaGeral(TipoMetaGeral.FEEDBACK_TELEFONE);
+		metaFeedBackPessoal = new MetaGeral(TipoMetaGeral.FEEDBACK_PESSOAL);
 	}
 	
-    public MetaMB() {  
-    	metaCliente = new MetaGeral(TipoMetaGeral.CLIENTE);
-    	metaProduto = new MetaGeral(TipoMetaGeral.PRODUTO);
-    	metaServico = new MetaGeral(TipoMetaGeral.SERVICO);
-    	metaFeedBackEmail = new MetaGeral(TipoMetaGeral.FEEDBACK_EMAIL);
-    	metaFeedBackTelefone = new MetaGeral(TipoMetaGeral.FEEDBACK_TELEFONE);
-    	metaFeedBackPessoal = new MetaGeral(TipoMetaGeral.FEEDBACK_PESSOAL);
-    }
-    
-    
-    
-        
-    public void salvarMeta() {
+	public void salvarMeta() {
     	
     	metaService.criarMetaGeral(metaCliente);
     	metaService.criarMetaGeral(metaProduto);

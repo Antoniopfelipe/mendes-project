@@ -1,12 +1,8 @@
 package br.com.mendes.model.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.Query;
-import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
-import br.com.mendes.dto.ClientesPeriodoDTO;
 import br.com.mendes.model.Cliente;
 import br.com.mendes.model.dao.ClienteDAO;
 
@@ -14,26 +10,27 @@ import br.com.mendes.model.dao.ClienteDAO;
 public class ClienteDAOImpl extends DAOImpl<Cliente,Long> implements ClienteDAO {
 		
 	private static final long serialVersionUID = -7190050683815189287L;
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
-	public List<ClientesPeriodoDTO> obterQtdeClientesPorPeriodo() {
+	public Long obterQtdeClientesNoAnoMes(Integer ano, Integer mes) {
 	
 		StringBuilder hql = new StringBuilder();
 		
-		hql.append(" select year(c.dataCadastro) as ano, " +
-				   "        month(c.dataCadastro) as mes, " +
-				   "        count(c.codCliente) as qtde  " +
+		hql.append(" select count(c.id) " +
 				   " from  Cliente c 					 " +
-				   " group by year(c.dataCadastro), month(c.dataCadastro)  " +
-				   " order by year(c.dataCadastro), month(c.dataCadastro) ");
+				   " where year(c.dataCadastro)=:ano " +
+				   " and month(c.dataCadastro)=:mes ");
 		
 		Query query = getSession().createQuery(hql.toString());
 		
-		query.setResultTransformer(Transformers.aliasToBean(ClientesPeriodoDTO.class));
+		query.setParameter("ano", ano);
 		
-		return query.list();
+		query.setParameter("mes", mes);
+				
+		return (Long) query.uniqueResult();
 		
 	}
+	
+	
 	
 }

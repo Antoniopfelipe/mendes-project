@@ -49,7 +49,11 @@
 					<li class="list-item">
 					<a href="#">Estatisticas</a>
 						<ul class="sub-nav">
-							<li class="sub-list-item"><a href="/MendesProject/paginas/graficoClientesConquistados.xhtml">Clientes Conquistados</a></li>
+							
+							<li class="sub-list-item">
+								<p:commandLink action="#{graficoMB.carregarGraficoCliente}" process="@this">Clientes Conquistados</p:commandLink>
+							</li>
+							
 							<li class="sub-list-item"><a href="/MendesProject/paginas/graficoAtendimentosRealizados.xhtml">Atendimentos Realizados</a></li>
 							<li class="sub-list-item"><a href="/MendesProject/paginas/graficoMetasEspecificas.xhtml">Produtos/Serviços Específicos</a></li>
 							<li class="sub-list-item"><a href="#">Metas Gerais Relacionadas</a></li>
