@@ -13,12 +13,14 @@
 		
 		<p:spacer height="20px" />
 		
-			<center>
-				
-			<h:panelGrid  align="left" columns="4" width="700">
+			
+			
+			<p:panel style="font-size: 14px; border: 0;  background: none;text-align:left">	
+						
+			<h:panelGrid  align="left" columns="4" width="400" style="margin-left: 10%;">
 				
 				<p:outputLabel   for="_tipoItem" value="Tipo de Item: "  />
-					<p:selectOneMenu  id="_tipoItem" effect="clip" value="#{graficoMB.tipoItem}" style="width:165px"  >						
+					<p:selectOneMenu  id="_tipoItem" effect="clip" value="#{graficoMB.tipoItem}" style="width:200px"  >						
 					<f:selectItem itemLabel="Produto X Serviço" />
 					
 					<f:selectItem itemLabel="Produto" itemValue="PRODUTO"/>
@@ -31,7 +33,6 @@
 				
 			<p:spacer height="10px" />
 			
-			<p:panel id="painelGrafico" style="font-size: 14px; border: 0;  background: none;">	
 			
 				<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear"  value="#{graficoMB.linearModel}" 
 				legendPosition="w" title="Meta por Produto Escífico"  minY="0" maxY="#{graficoMB.maxY}"
@@ -44,8 +45,6 @@
 
 			
 			</p:panel>
-
-			</center>
 
 			
 		</h:form>
