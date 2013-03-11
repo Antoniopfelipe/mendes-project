@@ -23,6 +23,8 @@
 				
 				<p:focus context="panel" />
 				
+				<h:inputHidden value="#{servicoMB.servico.cod}"/>
+				
 				<h:panelGrid align="left" columns="6" width="950"
 					style="text-align: left" border="0" >
 
@@ -63,7 +65,7 @@
 					style="margin: 0" />
 
 				<p:spacer width="10px" />
-				<p:commandButton value="Limpar" action="#" style="margin: 0" />
+				<p:commandButton value="Limpar" action="#{servicoMB.resetDados}" process="@this" update="@all" style="margin: 0" />
 
 				<p:spacer width="10px" />
 
