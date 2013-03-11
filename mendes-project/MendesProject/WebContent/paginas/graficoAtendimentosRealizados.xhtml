@@ -9,46 +9,53 @@
 	<ui:decorate template="template.xhtml">
 		<ui:define name="conteudo">
 		
-		<h:outputText rendered="#{empty graficoMB.linearModel}" value="Não há clientes Cadastrados"></h:outputText>
-				
+		
 		<h:form>
-		
-		<p:spacer height="20px" />
-		
-		<p:panel id="panel" style="font-size: 14px; border: 0;  background: none;" >
-			<h:panelGrid align="left" columns="3" width="450"
-						style="text-align: left; margin-left: 8%;" border="0"   >
+			
+			<p:panel style="font-size: 14px; border: 0;  background: none;width:500px; height:50px">
+				
+			<h:panelGrid columns="4" width="700">
+				
+					<p:outputLabel for="_tipoAtendimento" value="Tipo de Atendimento:" />				
+					<p:selectOneMenu  id="_tipoAtendimento" effect="clip" value="#{graficoMB.tipoAtendimento}" style="width:165px"  >
 						
-				<p:outputLabel for="_tipoAtendimento" value="Tipo de Atendimento:" 	required="true" />
-					<p:selectOneMenu  id="_tipoAtendimento" effect="clip" value="#" style="width:165px"  >
-						<f:selectItems  itemLabel="Telefone" itemValue="telefone"/>
-						<f:selectItems  itemLabel="Online" itemValue="online"/>
-						<f:selectItems  itemLabel="Pessoalmente" itemValue="pessoalmente"/>
+						<f:selectItem itemValue="EMAIL" itemLabel="Email"/>
+						<f:selectItem itemValue="PESSOAL" itemLabel="Pessoal"/>
+						<f:selectItem itemValue="TELEFONE" itemLabel="Telefone"/>
+						
+	       				<p:ajax event="change" listener="#{graficoMB.carregarGraficoFeedback}"  process="@this" update="@all" />
+	       				
+	       			</p:selectOneMenu>
+       		
+					<p:outputLabel for="_meses" value="Analise dos ultimos:"/>				
+					<p:selectOneMenu id="_meses" effect="clip" value="#{graficoMB.qtdePeriodos}" style="width:165px"  >
+						<f:selectItem itemValue="3" itemLabel="3 meses"/>
+						<f:selectItem itemValue="6" itemLabel="6 meses"/>
+						<f:selectItem itemValue="12" itemLabel="12 meses"/>
+	           			
+	           			<p:ajax event="change" listener="#{graficoMB.carregarGraficoFeedback}" process="@this" update="@all" />
+	           		
 	           		</p:selectOneMenu>
-	           		
-	      		<p:commandButton value="Buscar" action="#" style="margin: 0" />
-	           		
-	           </h:panelGrid>
-           </p:panel>
-
-			<center>
 				
-					<p:spacer height="50px" />
+				</h:panelGrid>	
+			
+	           </p:panel>
+          
+			
+				<p:spacer height="20px" width="800" />
+			
+				<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear" value="#{graficoMB.linearModel}" 
+				legendPosition="w" title="Quantidade de Atendimento Realizados"  minY="0" maxY="#{graficoMB.maxY}"
 				
-					<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear" value="#{graficoMB.linearModel}" 
-					legendPosition="e" title="Quantidade de Atendimento Realizados"  minY="0" maxY="#{graficoMB.maxY}"
-					
-					xaxisLabel="Periodo"
-            		yaxisLabel="Qtde Pessoas"
-					animate="true"
-					
-					style="height:400px"  />
-
-				<p:spacer height="50" />
-
-			</center>
+				xaxisLabel="Periodo"
+           		yaxisLabel="Qtde Atendimentos"
+				animate="true"
+				
+				style="height:400px"  />
 
 		</h:form>
+		
+		
 	</ui:define>
 </ui:decorate>
 </html>

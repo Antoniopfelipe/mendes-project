@@ -2,6 +2,7 @@ package br.com.mendes.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -16,8 +17,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.mendes.dto.QtdePeriodoDTO;
+import br.com.mendes.model.Item;
+import br.com.mendes.model.TipoAtendimento;
+import br.com.mendes.model.TipoItem;
 import br.com.mendes.model.TipoMetaGeral;
 import br.com.mendes.service.ClienteService;
+import br.com.mendes.service.FeedbackService;
+import br.com.mendes.service.ItemService;
 import br.com.mendes.service.MetaService;
 
 
@@ -35,9 +41,33 @@ public class GraficoMB implements Serializable {
 	@Autowired
 	private MetaService metaService;
 	
+	@Autowired
+	private FeedbackService feedbackService;
+	
+	@Autowired
+	private ItemService itemService;
+	
+	private List<TipoItem> tiposItem;
+	
+	private List<Item> itens;
+	
+	private TipoItem tipoItem;
+	
+	private Long codItem;
+	
+	private List<TipoAtendimento> tiposAtendimento;
+	
+	private TipoAtendimento tipoAtendimento;
+	
 	private Integer qtdePeriodos = 6;
 	
 	private Integer maxY;
+	
+	public GraficoMB() {
+
+		painelGrafico = new CartesianChartModel();		
+		maxY = 0;	
+	}
 	
 	@PostConstruct
 	public void iniciar() {
@@ -45,21 +75,112 @@ public class GraficoMB implements Serializable {
 
 	public String carregarGraficoCliente() {
 		
-		inicializarPainelGrafico();		
-		
-		Date dataInicial = getDataInicial();
-
-		List<QtdePeriodoDTO> periodos = gerarPeriodos();
-		
-		criarLinhaQtdeClientes(dataInicial, periodos);
-		criarLinhaMetaClientes(dataInicial, periodos);
-		
-		tratarAlturaDoGrafico();
-		
+		criarLinhaQtdeClientes();
+		criarLinhaMetaGeral(TipoMetaGeral.CLIENTE);
+				
 		return "/paginas/graficoClientesConquistados.xhtml";
 	}
-
 	
+	public String carregarGraficoProdutoServicoGeral() {
+		
+		if(tipoItem==null) {
+			criarLinhaItemGeral(TipoItem.SERVICO, "Serviço Prestados");
+			criarLinhaItemGeral(TipoItem.PRODUTO, "Produtos Vendidos");
+			
+		} else if(TipoItem.PRODUTO.equals(tipoItem)) {
+			criarLinhaItemGeral(TipoItem.PRODUTO, "Produtos Vendidos");
+			criarLinhaMetaGeral(TipoMetaGeral.PRODUTO);
+		} else {
+			criarLinhaItemGeral(TipoItem.SERVICO, "Serviço Prestados");
+			criarLinhaMetaGeral(TipoMetaGeral.SERVICO);
+		}
+				
+		return "/paginas/graficoProdutoServicoGeral.xhtml";
+	}
+		
+	private void criarLinhaItemGeral(TipoItem tipoItem, String descricao) {
+		
+		List<QtdePeriodoDTO> periodos = gerarPeriodos();
+		
+		periodos = itemService.obterQtdesItensEspecificosNosPeriodos(tipoItem, periodos);
+	
+		gerarLinha(descricao, periodos);
+		
+	}
+
+	public String carregarGraficoFeedback() {
+		
+		tiposAtendimento = Arrays.asList(TipoAtendimento.values());
+		
+		if(tipoAtendimento==null)
+			tipoAtendimento = TipoAtendimento.EMAIL;
+		
+		criarLinhaQtdeFeedback(tipoAtendimento);
+		
+		switch (tipoAtendimento) {
+			
+			case EMAIL:
+				criarLinhaMetaGeral(TipoMetaGeral.FEEDBACK_EMAIL);
+				break;
+			case PESSOAL:
+				criarLinhaMetaGeral(TipoMetaGeral.FEEDBACK_PESSOAL);
+				break;
+			case TELEFONE:
+				criarLinhaMetaGeral(TipoMetaGeral.FEEDBACK_TELEFONE);
+				break;
+		}
+		
+		
+		return "/paginas/graficoAtendimentosRealizados.xhtml";
+	}
+
+	public String carregarGraficoMetaEspecifica() {
+		
+		tiposItem = Arrays.asList(TipoItem.values());	
+		
+		if(tipoItem!=null)
+			itens = itemService.buscarTodos(tipoItem);	
+		
+		if(codItem!=null) {
+			criarLinhaQtdeItemEspecifico(codItem);
+			criarLinhaMetaEspecifica(codItem);
+		} else {
+			painelGrafico = null;
+		}
+		
+		return "/paginas/graficoMetasEspecificas.xhtml";
+	}	
+		
+	private void criarLinhaMetaEspecifica(Long codItem) {
+		
+		List<QtdePeriodoDTO> periodos = gerarPeriodos();
+		
+		periodos = metaService.obterMetasEspecificasNoPeriodo(codItem, periodos);		
+		
+		gerarLinha("Metas", periodos);
+		
+	}
+
+	private void criarLinhaQtdeItemEspecifico(Long codItem) {
+		
+		List<QtdePeriodoDTO> periodos = gerarPeriodos();
+		
+		periodos = itemService.obterQtdesItensEspecificosNosPeriodos(codItem, periodos);
+	
+		gerarLinha("Produto", periodos);
+		
+	}
+
+	private void criarLinhaQtdeFeedback(TipoAtendimento tipoAtendimento) {
+		
+		List<QtdePeriodoDTO> periodos = gerarPeriodos();
+		
+		periodos = feedbackService.obterQtdesFeedbackNosPeriodos(tipoAtendimento, periodos);
+	
+		gerarLinha("Clientes", periodos);
+		
+	}
+
 	private List<QtdePeriodoDTO> gerarPeriodos() {
 		
 		List<QtdePeriodoDTO> periodos = new ArrayList<QtdePeriodoDTO>();
@@ -99,41 +220,22 @@ public class GraficoMB implements Serializable {
 		
 	}
 	
-	private void tratarAlturaDoGrafico() {
-		maxY = (maxY+6) - ( maxY % 6);		
-	}
-
-
-	private void inicializarPainelGrafico() {
-
-		painelGrafico = new CartesianChartModel();		
-		maxY = 0;
+	private void criarLinhaQtdeClientes() {
 		
-	}
-
-
-	private void criarLinhaQtdeClientes(Date dataInicial, List<QtdePeriodoDTO> periodos) {
+		List<QtdePeriodoDTO> periodos = gerarPeriodos();
 		
-		for(QtdePeriodoDTO periodo : periodos) {
-			Long qtde = clienteService.obterQtdeClientesNoAnoMes(periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
-		}
-				
+		periodos = clienteService.obterQtdesClientesNosPeriodos(periodos);
+	
 		gerarLinha("Clientes", periodos);
 	}
 
-	private void criarLinhaMetaClientes(Date dataInicial, List<QtdePeriodoDTO> periodos) {
+	private void criarLinhaMetaGeral(TipoMetaGeral tipoMetaGeral) {
 		
-		for(QtdePeriodoDTO periodo : periodos) {
-			Long qtde = metaService.obterMetaGeralNoAnoMes(TipoMetaGeral.CLIENTE, periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
-		}
+		List<QtdePeriodoDTO> periodos = gerarPeriodos();
+				
+		periodos = metaService.obterMetasGeraisNoPeriodo(tipoMetaGeral, periodos);		
 		
 		gerarLinha("Metas", periodos);		
-	}
-
-	public GraficoMB(){
-		
 	}
 	
 	public CartesianChartModel getLinearModel() {
@@ -143,7 +245,7 @@ public class GraficoMB implements Serializable {
 	private void gerarLinha(String nomeLinha, List<QtdePeriodoDTO> qtdePeriodo) {
 		
 		ChartSeries novaLinha = new ChartSeries();
-				
+		
 		novaLinha.setLabel(nomeLinha);
 				
 		for(QtdePeriodoDTO dto : qtdePeriodo) {			
@@ -171,7 +273,7 @@ public class GraficoMB implements Serializable {
 
 
 	public Integer getMaxY() {
-		return maxY;
+		return (maxY+6) - ( maxY % 6);
 	}
 
 	public void setMaxY(Integer maxY) {
@@ -186,6 +288,54 @@ public class GraficoMB implements Serializable {
 
 	public void setQtdePeriodos(Integer qtdePeriodos) {
 		this.qtdePeriodos = qtdePeriodos;
+	}
+
+	public List<TipoAtendimento> getTiposAtendimento() {
+		return tiposAtendimento;
+	}
+
+	public void setTiposAtendimento(List<TipoAtendimento> tiposAtendimento) {
+		this.tiposAtendimento = tiposAtendimento;
+	}
+
+	public TipoAtendimento getTipoAtendimento() {
+		return tipoAtendimento;
+	}
+
+	public void setTipoAtendimento(TipoAtendimento tipoAtendimento) {
+		this.tipoAtendimento = tipoAtendimento;
+	}
+
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
+	}
+
+	public List<TipoItem> getTiposItem() {
+		return tiposItem;
+	}
+
+	public void setTiposItem(List<TipoItem> tiposItem) {
+		this.tiposItem = tiposItem;
+	}
+
+	public TipoItem getTipoItem() {
+		return tipoItem;
+	}
+
+	public void setTipoItem(TipoItem tipoItem) {
+		this.tipoItem = tipoItem;
+	}
+
+	public Long getCodItem() {
+		return codItem;
+	}
+
+	public void setCodItem(Long codItem) {
+		this.codItem = codItem;
 	}
 	
 

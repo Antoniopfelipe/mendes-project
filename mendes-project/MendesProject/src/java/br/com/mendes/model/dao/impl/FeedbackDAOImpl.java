@@ -4,6 +4,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.mendes.model.Feedback;
+import br.com.mendes.model.TipoAtendimento;
 import br.com.mendes.model.dao.FeedbackDAO;
 
 @Repository
@@ -28,6 +29,29 @@ public class FeedbackDAOImpl extends DAOImpl<Feedback, Long> implements
 		query.setParameter("codItem", codItem);
 		
 		return (Feedback) query.uniqueResult();
+	}
+
+	@Override
+	public Long obterQtdeFeedbackNoMesAno(TipoAtendimento tipoAtendimento,
+			Integer ano, Integer mes) {
+		
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" select count(f.codFeedback) " +
+				   " from  Feedback f 					 " +
+				   " where f.tipoAtendimento=:tipoAtendimento " +
+				   " and year(f.dataFeedback)=:ano " +
+				   " and month(f.dataFeedback)=:mes ");
+		
+		Query query = getSession().createQuery(hql.toString());
+		
+		query.setParameter("tipoAtendimento", tipoAtendimento);
+		
+		query.setParameter("ano", ano);
+		
+		query.setParameter("mes", mes);
+				
+		return (Long) query.uniqueResult();
 	}
 
 }

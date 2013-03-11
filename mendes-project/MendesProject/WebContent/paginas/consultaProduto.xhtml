@@ -37,12 +37,16 @@
 					
 					<p:column id="precocusto" filterBy="#{produto.precoCusto}"
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="Preco de Custo" width="135">
-						<h:outputText value="#{produto.precoCusto}" />
+						<h:outputText value="#{produto.precoCusto}">
+							<f:convertNumber  type="currency" currencySymbol=""/>
+						</h:outputText>
 					</p:column>
 					
 					<p:column id="precoVenda" filterBy="#{produto.precoVenda}"
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="Preco de Venda" width="135">
-						<h:outputText value="#{produto.precoVenda}" />
+						<h:outputText value="#{produto.precoVenda}">
+							<f:convertNumber  type="currency" currencySymbol=""/>
+						</h:outputText>
 					</p:column>
 					
 					<p:column width="30">
@@ -50,10 +54,6 @@
 								style="width:25px; height:25px;vertical-align: middle;margin-bottom: 3px;"/>			
 					</p:column>
 					
-					<!-- META AINDA NÃO IMPLEMENTADA <p:column id="rg" filterBy="#{cliente.rg}" filterMatchMode="contains"
-						filterStyle="max-width: 130px; min-width: 130px;"  headerText="RG" width="150">
-						<h:outputText value="#{cliente.rg}" />
-					</p:column> -->
 					
 				</p:dataTable>
 

@@ -2,9 +2,9 @@ package br.com.mendes.model;
 
 public enum TipoAtendimento {
 
-	TELEFONE("Telefone"),
 	EMAIL("Email"),
-	PESSOAL("Pessoalmente");
+	PESSOAL("Pessoalmente"),
+	TELEFONE("Telefone");
 	
 	private String descricao;
 	
@@ -16,4 +16,11 @@ public enum TipoAtendimento {
 		return descricao;
 	}
 	
+	public String getLabel() {
+		return descricao;
+	}
+	
+	public String getName() {
+		return this.name();
+	}
 }

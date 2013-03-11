@@ -54,7 +54,6 @@ public class MetaGeralDAOImpl extends DAOImpl<MetaGeral,Long> implements MetaGer
 				   " and m.dataInicio=(select max(mi.dataInicio) from MetaGeral mi " +
 				   					    "where mi.tipo=:tipo and mi.dataInicio>=:dataInicial" +
 				   					    "and year(mi.dataInicio)=year(m.dataInicio) and month(mi.dataInicio)=month(m.dataInicio) )" +
-				//   " group by year(m.dataInicio), month(m.dataInicio)  " + 
 				   " order by year(m.dataInicio), month(m.dataInicio) ");
 		
 		Query query = getSession().createQuery(hql.toString());

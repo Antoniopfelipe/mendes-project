@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.mendes.model.Meta;
 import br.com.mendes.model.Servico;
 import br.com.mendes.model.TipoServico;
 import br.com.mendes.service.MetaService;
@@ -42,16 +43,36 @@ public class ServicoMB implements Serializable{
 		
 		servicos = servicoService.obterTodosServicos();
 		
-		servico = new Servico();    	
-	    
 		tiposServico =  Arrays.asList(TipoServico.values());
+		
+		resetDados();
+	}
+	
+
+	public void resetDados() {
+		servico = new  Servico();
+		valorMeta = null;
+	}
+	
+    
+	public String iniciarEdicao(Long cod) {
+		
+		servico = servicoService.obterServicoPorCod(cod);
+		
+		Meta meta = metaService.obterMetaEspecificaAtual(cod);
+		
+		if(meta!=null)
+			valorMeta = meta.getValor();
+		
+		return "/paginas/cadastroServico.xhtml";
 	}
 	
     public void salvarServico() {
     	
     	Servico servicoSalvo = servicoService.criarServico(servico);
     	
-    	metaService.criarMetaEspecifica(valorMeta, servicoSalvo);
+    	if(valorMeta!=null)
+    		metaService.criarMetaEspecifica(valorMeta, servicoSalvo);
     	
     	FacesContext.getCurrentInstance().addMessage(null, 
 	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  

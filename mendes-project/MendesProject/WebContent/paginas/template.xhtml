@@ -42,7 +42,7 @@
 						<ul class="sub-nav">
 							<li class="sub-list-item"><a href="/MendesProject/paginas/consultaCliente.xhtml">Clientes</a></li>
 							<li class="sub-list-item"><a href="/MendesProject/paginas/consultaProduto.xhtml">Produtos</a></li>
-							<li class="sub-list-item"><a href="#">Serviços</a></li>
+							<li class="sub-list-item"><a href="/MendesProject/paginas/consultaServico.xhtml">Serviços</a></li>
 							<li class="sub-list-item"><a href="/MendesProject/paginas/consultaPedido.xhtml">Pedidos</a></li>
 						</ul>
 					</li>
@@ -54,9 +54,18 @@
 								<p:commandLink action="#{graficoMB.carregarGraficoCliente}" process="@this">Clientes Conquistados</p:commandLink>
 							</li>
 							
-							<li class="sub-list-item"><a href="/MendesProject/paginas/graficoAtendimentosRealizados.xhtml">Atendimentos Realizados</a></li>
-							<li class="sub-list-item"><a href="/MendesProject/paginas/graficoMetasEspecificas.xhtml">Produtos/Serviços Específicos</a></li>
-							<li class="sub-list-item"><a href="#">Metas Gerais Relacionadas</a></li>
+							<li class="sub-list-item">
+								<p:commandLink action="#{graficoMB.carregarGraficoFeedback}"  process="@this" >Atendimentos Realizados</p:commandLink>
+							</li>
+							
+							<li class="sub-list-item">
+								<p:commandLink action="#{graficoMB.carregarGraficoMetaEspecifica}"  process="@this" >Produtos/Serviços Específicos</p:commandLink>
+							</li>
+							
+							<li class="sub-list-item">
+								<p:commandLink action="#{graficoMB.carregarGraficoProdutoServicoGeral}"  process="@this" >Produtos/Serviços Metas Globais</p:commandLink>
+							</li>
+							
 						</ul>
 					</li>
 				</ul>

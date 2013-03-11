@@ -8,44 +8,62 @@
 
 	<ui:decorate template="template.xhtml">
 		<ui:define name="conteudo">
-		
-		<h:outputText rendered="#{empty graficoMB.linearModel}" value="Não há clientes Cadastrados"></h:outputText>
-				
-		<h:form>
+						
+		<h:form >
 		
 		<p:spacer height="20px" />
 		
-		<p:panel id="panel" style="font-size: 14px; border: 0;  background: none;" >
-			<h:panelGrid align="left" columns="3" width="450"
-						style="text-align: left; margin-left: 8%;" border="0"   >
-					
-			<p:outputLabel for="_metasEspecificas" value="Produto/Servico:" 	required="true" />
-				<p:selectOneMenu  id="_metasEspecificas" effect="clip" value="#" style="width:165px"  >
-					
-           		</p:selectOneMenu>
+		<p:panel  id="panel" style="font-size: 14px; border: 0;  background: none;" >
+			
+			<h:panelGrid  align="left" columns="4" width="700">
+			
+			<p:outputLabel   for="_tipoItem" value="Tipo de Item: "  />
+				<p:selectOneMenu  id="_tipoItem" effect="clip" value="#{graficoMB.tipoItem}" style="width:165px"  >						
+				<f:selectItem itemLabel="Selecione" />
+				
+				<f:selectItem itemLabel="Produto" itemValue="PRODUTO"/>
+				<f:selectItem  itemLabel="Serviço" itemValue="SERVICO"/>
+			
+				<p:ajax event="change" listener="#{graficoMB.carregarGraficoMetaEspecifica}"  process="@this" update="_itemVendido __itens" />	 
+     	    </p:selectOneMenu>
+   						
+    		<p:outputLabel for="_itemVendido" value="Item Vendido: "  />  
+			
+			<p:selectOneMenu widgetVar="origem" onchange="$('.alvo').val(origem.input.val());atualizarDados()" disabled="#{empty graficoMB.itens}" id="_itemVendido" effect="clip"  style="width:165px"  >
+           		<f:selectItem itemLabel="Selecione" />
+           		<f:selectItems id="__itens"  value="#{graficoMB.itens}" var="obj" itemLabel="#{obj.nome}" itemValue="#{obj.cod}"/>
            		
-      		<p:commandButton value="Buscar" action="#" style="margin: 0" />
-           		
+		    </p:selectOneMenu >
+           	
+           	
+           	<h:inputText id="alvo" styleClass="alvo" value="#{graficoMB.codItem}" style="display:none" />
+           	
+           	<p:remoteCommand name="atualizarDados"  actionListener="#{graficoMB.carregarGraficoMetaEspecifica}" process="@all"  update="painelGrafico" />
+           	
            </h:panelGrid>
            </p:panel>
 
 			<center>
 				
-					<p:spacer height="50px" />
+			<p:spacer height="10px" />
+			
+			<p:panel id="painelGrafico" style="font-size: 14px; border: 0;  background: none;">	
+			
+				<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear" value="#{graficoMB.linearModel}" 
+				legendPosition="w" title="Meta por Produto Escífico"  minY="0" maxY="#{graficoMB.maxY}"
 				
-					<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear" value="#{graficoMB.linearModel}" 
-					legendPosition="e" title="Quantidade de Atendimento Realizados"  minY="0" maxY="#{graficoMB.maxY}"
-					
-					xaxisLabel="Periodo"
-            		yaxisLabel="Qtde Pessoas"
-					animate="true"
-					
-					style="height:400px"  />
+				xaxisLabel="Periodo"
+	          		yaxisLabel="Qtde Pessoas"
+				animate="true"
+				
+				style="height:400px"  />
 
-				<p:spacer height="50" />
+			
+			</p:panel>
 
 			</center>
 
+			
 		</h:form>
 	</ui:define>
 </ui:decorate>

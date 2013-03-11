@@ -69,10 +69,8 @@ public class ProdutoMB implements Serializable{
 
     	Produto produtoSalvo = produtoService.criarProduto(produto);
     	
-    	if(valorMeta==null)
-    		valorMeta=0.0;
-    	
-    	metaService.criarMetaEspecifica(valorMeta, produtoSalvo);
+    	if(valorMeta!=null)
+    		metaService.criarMetaEspecifica(valorMeta, produtoSalvo);
     	
     	MBUtil.addInfo("Cadastrado com sucesso.");  
     	

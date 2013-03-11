@@ -112,4 +112,45 @@ public class MetaServiceImpl implements MetaService {
 		
 		return metaGeralDAO.obterMetaGeralNoAnoMes(tipoMetaGeral, data.getTime());
 	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<QtdePeriodoDTO> obterMetasGeraisNoPeriodo(
+			TipoMetaGeral tipoMetaGeral, List<QtdePeriodoDTO> periodos) {
+		
+		for(QtdePeriodoDTO periodo : periodos) {
+			Long qtde = this.obterMetaGeralNoAnoMes(tipoMetaGeral, periodo.getAno(), periodo.getMes());
+			periodo.setQtde(qtde);
+		}
+		
+		return periodos;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<QtdePeriodoDTO> obterMetasEspecificasNoPeriodo(Long codItem,
+			List<QtdePeriodoDTO> periodos) {
+		
+
+		for(QtdePeriodoDTO periodo : periodos) {
+			Long qtde = this.obterMetaEspecificaNoAnoMes(codItem, periodo.getAno(), periodo.getMes());
+			periodo.setQtde(qtde);
+		}
+		
+		return periodos;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Long obterMetaEspecificaNoAnoMes(Long codItem, Integer ano,
+			Integer mes) {
+		
+		Calendar data = new GregorianCalendar();
+		data.set(Calendar.YEAR, ano);
+		data.set(Calendar.MONTH, (mes-1));
+		data.set(Calendar.DAY_OF_MONTH, data.getMaximum(Calendar.DAY_OF_MONTH));
+		data.set(Calendar.HOUR_OF_DAY, data.getMaximum(Calendar.HOUR_OF_DAY));
+		
+		return metaEspeficicaDAO.obterMetaEspecificaNoAnoMes(codItem, data.getTime());
+	}
 }

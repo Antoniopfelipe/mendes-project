@@ -16,7 +16,7 @@ public class ClienteDAOImpl extends DAOImpl<Cliente,Long> implements ClienteDAO 
 	
 		StringBuilder hql = new StringBuilder();
 		
-		hql.append(" select count(c.id) " +
+		hql.append(" select count(c.codCliente) " +
 				   " from  Cliente c 					 " +
 				   " where year(c.dataCadastro)=:ano " +
 				   " and month(c.dataCadastro)=:mes ");
@@ -27,8 +27,7 @@ public class ClienteDAOImpl extends DAOImpl<Cliente,Long> implements ClienteDAO 
 		
 		query.setParameter("mes", mes);
 				
-		return (Long) query.uniqueResult();
-		
+		return (Long) query.uniqueResult();		
 	}
 	
 	
