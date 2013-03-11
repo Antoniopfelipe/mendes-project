@@ -2,7 +2,7 @@ package br.com.mendes.dto;
 
 import java.io.Serializable;
 
-public class ClientesPeriodoDTO implements Serializable{
+public class QtdePeriodoDTO implements Serializable{
 
 	private static final long serialVersionUID = 7054586594614000311L;
 	
@@ -10,6 +10,16 @@ public class ClientesPeriodoDTO implements Serializable{
 	private Integer mes;
 	private Integer ano;
 	
+	public QtdePeriodoDTO() {
+		
+	}
+	
+	public QtdePeriodoDTO(Long qtde, Integer mes, Integer ano) {
+		super();
+		this.qtde = qtde;
+		this.mes = mes;
+		this.ano = ano;
+	}
 	public Long getQtde() {
 		return qtde;
 	}

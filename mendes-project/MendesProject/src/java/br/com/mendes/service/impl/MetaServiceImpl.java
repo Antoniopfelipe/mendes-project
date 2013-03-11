@@ -1,11 +1,15 @@
 package br.com.mendes.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.mendes.dto.QtdePeriodoDTO;
 import br.com.mendes.model.Item;
 import br.com.mendes.model.MetaEspecifica;
 import br.com.mendes.model.MetaGeral;
@@ -26,6 +30,21 @@ public class MetaServiceImpl implements MetaService {
 	@Override
 	@Transactional
 	public MetaGeral criarMetaGeral(MetaGeral meta) {
+		
+		if(meta==null)
+			return null;
+		if(meta.getValor()==null)
+			return null;
+		
+		MetaGeral metaAtual = metaGeralDAO.obterMetaAtual(meta.getTipo());
+		
+		if(metaAtual!=null && metaAtual.getValor().equals(meta.getValor()))
+			return null;
+		
+		meta.setCodMeta(null);
+		
+		meta.setDataInicio(new Date());
+		
 		return metaGeralDAO.saveUpdateGetEntity(meta);
 	}
 	
@@ -73,5 +92,24 @@ public class MetaServiceImpl implements MetaService {
 	@Transactional
 	public MetaEspecifica obterMetaEspecificaAtual(Long codItem) {
 		return metaEspeficicaDAO.obterMetaAtual(codItem);
+	}
+
+	@Override
+	public List<QtdePeriodoDTO> obterMetaGeralAtual(TipoMetaGeral tipo,
+			Date dataInicial) {
+		return metaGeralDAO.obterMetaGeralAtual(tipo, dataInicial);
+	}
+
+	@Override
+	@Transactional
+	public Long obterMetaGeralNoAnoMes(TipoMetaGeral tipoMetaGeral, Integer ano,Integer mes) {
+		
+		Calendar data = new GregorianCalendar();
+		data.set(Calendar.YEAR, ano);
+		data.set(Calendar.MONTH, (mes-1));
+		data.set(Calendar.DAY_OF_MONTH, data.getMaximum(Calendar.DAY_OF_MONTH));
+		data.set(Calendar.HOUR_OF_DAY, data.getMaximum(Calendar.HOUR_OF_DAY));
+		
+		return metaGeralDAO.obterMetaGeralNoAnoMes(tipoMetaGeral, data.getTime());
 	}
 }

@@ -1,5 +1,9 @@
 package br.com.mendes.service;
 
+import java.util.Date;
+import java.util.List;
+
+import br.com.mendes.dto.QtdePeriodoDTO;
 import br.com.mendes.model.Item;
 import br.com.mendes.model.Meta;
 import br.com.mendes.model.MetaEspecifica;
@@ -19,4 +23,9 @@ public interface MetaService {
 	MetaGeral obterMetaGeralAtual(TipoMetaGeral tipo);
 
 	MetaEspecifica obterMetaEspecificaAtual(Long codItem);
+
+	List<QtdePeriodoDTO> obterMetaGeralAtual(TipoMetaGeral cliente,
+			Date dataInicial);
+
+	Long obterMetaGeralNoAnoMes(TipoMetaGeral cliente, Integer ano, Integer mes);
 }
