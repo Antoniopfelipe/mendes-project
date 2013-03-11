@@ -11,12 +11,12 @@
 		
 		<h:form>
 
-				<p:dataTable id="tabelaServico" var="servico" value="#{servicoMB.servicos}" widgetVar="tabelaServico" 
-					emptyMessage="Não há servicos com essa especificação" scrollable="true" resizableColumns="true" style="width: 900px; ">
+				<p:dataTable id="tabelaProduto" var="servico" value="#{servicoMB.servicos}" 
+					emptyMessage="Não serviços pra os filtros especificados." scrollable="true" resizableColumns="true" style="width: 900px; ">
 
 					<f:facet name="header">
 						<p:outputPanel>
-							<h:outputText value="Consulta de servicos" />
+							<h:outputText value="Consulta de serviços" />
 						</p:outputPanel>
 					</f:facet>
 					
@@ -25,7 +25,7 @@
 						<h:outputText value="#{servico.cod}"/>
 					</p:column>
 					
-					<p:column id="tipo" filterBy="#{servico.tipoServico.descricao}"
+					<p:column id="categoria" filterBy="#{servico.tipoServico.descricao}"
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="Tipo" width="150"> 
 						<h:outputText value="#{servico.tipoServico.descricao}" /> 
 					</p:column>
@@ -37,12 +37,16 @@
 					
 					<p:column id="precocusto" filterBy="#{servico.precoCusto}"
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="Preco de Custo" width="135">
-						<h:outputText value="#{servico.precoCusto}" />
+						<h:outputText value="#{servico.precoCusto}">
+							<f:convertNumber  type="currency" currencySymbol=""/>
+						</h:outputText>
 					</p:column>
 					
 					<p:column id="precoVenda" filterBy="#{servico.precoVenda}"
 						filterStyle="max-width: 130px; min-width: 130px;"  headerText="Preco de Venda" width="135">
-						<h:outputText value="#{servico.precoVenda}" />
+						<h:outputText value="#{servico.precoVenda}">
+							<f:convertNumber  type="currency" currencySymbol=""/>
+						</h:outputText>
 					</p:column>
 					
 					<p:column width="30">
@@ -50,10 +54,6 @@
 								style="width:25px; height:25px;vertical-align: middle;margin-bottom: 3px;"/>			
 					</p:column>
 					
-					<!-- META AINDA NÃO IMPLEMENTADA <p:column id="rg" filterBy="#{cliente.rg}" filterMatchMode="contains"
-						filterStyle="max-width: 130px; min-width: 130px;"  headerText="RG" width="150">
-						<h:outputText value="#{cliente.rg}" />
-					</p:column> -->
 					
 				</p:dataTable>
 

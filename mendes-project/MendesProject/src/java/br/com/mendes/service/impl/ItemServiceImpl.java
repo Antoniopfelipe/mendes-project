@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.mendes.dto.QtdePeriodoDTO;
 import br.com.mendes.model.Item;
 import br.com.mendes.model.TipoItem;
 import br.com.mendes.model.dao.ItemDAO;
@@ -42,6 +43,49 @@ public class ItemServiceImpl implements ItemService {
 	@Transactional
 	public Item buscarPorCodigo(Long cod) {
 		return itemDAO.getByCod(cod);
+	}
+
+	@Override
+	@Transactional
+	public List<QtdePeriodoDTO> obterQtdesItensEspecificosNosPeriodos(
+			Long codItem, List<QtdePeriodoDTO> periodos) {
+		
+
+		for(QtdePeriodoDTO periodo : periodos) {
+			Long qtde = this.obterQtdeItensEspecificosNoMesAno(codItem, periodo.getAno(), periodo.getMes());
+			periodo.setQtde(qtde);
+		}
+		
+		return periodos;
+	}
+
+	@Override
+	@Transactional
+	public Long obterQtdeItensEspecificosNoMesAno(Long codItem, Integer ano,
+			Integer mes) {
+		
+		return itemDAO.obterMetaEspecificaNoAnoMes(codItem, ano, mes);
+	}
+
+	@Override
+	@Transactional
+	public List<QtdePeriodoDTO> obterQtdesItensEspecificosNosPeriodos(
+			TipoItem tipoItem, List<QtdePeriodoDTO> periodos) {
+		
+		for(QtdePeriodoDTO periodo : periodos) {
+			Long qtde = this.obterQtdeItensGeralNoMesAno(tipoItem, periodo.getAno(), periodo.getMes());
+			periodo.setQtde(qtde);
+		}
+		
+		return periodos;
+		
+	}
+
+	@Override
+	@Transactional
+	public Long obterQtdeItensGeralNoMesAno(TipoItem tipoItem,
+			Integer ano, Integer mes) {
+		return itemDAO.obterQtdeGeralNoAnoMes(tipoItem, ano, mes);
 	}
 	
 }

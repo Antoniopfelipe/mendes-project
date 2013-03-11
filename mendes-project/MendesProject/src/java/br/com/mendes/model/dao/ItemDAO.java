@@ -12,4 +12,8 @@ public interface ItemDAO extends DAO<Item, Long>{
 
 	List<Item> buscarTodos(TipoItem tipoItem);
 
+	Long obterMetaEspecificaNoAnoMes(Long codItem, Integer ano, Integer mes);
+
+	Long obterQtdeGeralNoAnoMes(TipoItem tipoItem, Integer ano, Integer mes);
+
 }

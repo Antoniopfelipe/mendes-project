@@ -28,4 +28,12 @@ public interface MetaService {
 			Date dataInicial);
 
 	Long obterMetaGeralNoAnoMes(TipoMetaGeral cliente, Integer ano, Integer mes);
+
+	List<QtdePeriodoDTO> obterMetasGeraisNoPeriodo(TipoMetaGeral cliente,
+			List<QtdePeriodoDTO> periodos);
+
+	List<QtdePeriodoDTO> obterMetasEspecificasNoPeriodo(Long codItem,
+			List<QtdePeriodoDTO> periodos);
+
+	Long obterMetaEspecificaNoAnoMes(Long codItem, Integer ano, Integer mes);
 }

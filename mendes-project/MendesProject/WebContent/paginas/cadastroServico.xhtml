@@ -46,14 +46,16 @@
 					<p:outputLabel for="_precoVenda" value="Preço de Venda: " required="true" />					
 					<p:inputText id="_precoVenda" value="#{servicoMB.servico.precoVenda}" 
 						required="true" requiredMessage="Preço de venda não preenchido" 
-						size="20" />
+						size="20"/>
 						
 						<p:outputLabel for="_meta" value="Meta: "
 									required="true" />
 								<p:inputText id="_meta"
 									value="#{servicoMB.valorMeta}" required="true"
 									requiredMessage="Preco de venda não preenchido." 
-									size="22" styleClass="inputSize" />
+									size="22" styleClass="inputSize">
+									<f:convertNumber  maxFractionDigits="0"/>
+								</p:inputText>
 
 				</h:panelGrid>
 			</p:panel>
@@ -65,11 +67,11 @@
 					style="margin: 0" />
 
 				<p:spacer width="10px" />
-				<p:commandButton value="Limpar" action="#{servicoMB.resetDados}" process="@this" update="@all" style="margin: 0" />
+				<p:commandButton value="Limpar" action="#{sevicoMB.resetDados}" process="@this" update="@all" style="margin: 0" />
 
 				<p:spacer width="10px" />
 
-				<p:commandButton value="Listar" action="#" style="margin: 0" />
+				<p:commandButton value="Listar" action="/paginas/consultaServico.xhtml" process="@this" style="margin: 0" />
 
 			</p:panel>
 		</h:form>

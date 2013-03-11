@@ -27,7 +27,7 @@
        			<p:spacer height="15" width="800"/>
 
 				<p:dataTable id="tabelaProduto" var="pedido" value="#{consultaPedidoMB.pedidos}" widgetVar="tabelaProduto" 
-					emptyMessage="Não há produtos com essa especificação" scrollable="true" resizableColumns="true" style="width: 900px;text-align:center;">
+					emptyMessage="Não há produtos com essa especificação" scrollable="true" resizableColumns="true" style="width: 900px;">
 
 					<f:facet name="header">
 						<p:outputPanel>
@@ -36,23 +36,23 @@
 					</f:facet>
 					
 					<p:column id="cod" filterBy="#{pedido.cod}" sortBy="#{pedido.cod}" 
-						filterStyle="max-width: 80px; min-width: 80px;" headerText="Código" width="100">
+						filterStyle="max-width: 80px; min-width: 80px;" headerText="Código" width="90">
 						<h:outputText value="#{pedido.cod}"/>
 					</p:column>
 					
 					<p:column id="cliente" filterBy="#{pedido.cliente.nome.concat(' ').concat(pedido.cliente.sobrenome)}"
 						sortBy="#{pedido.cliente.nome.concat(' ').concat(pedido.cliente.sobrenome)}"
-						filterStyle="max-width: 200px; min-width: 130px;"  headerText="Cliente" width="200"> 
+						filterStyle="max-width: 300px; min-width: 300px;"  headerText="Cliente" width="350"> 
 						<h:outputText value="#{pedido.cliente.nome.concat(' ').concat(pedido.cliente.sobrenome)}" /> 
 					</p:column>
 					
-					<p:column id="data" headerText="Data" width="150" sortBy="#{pedido.dataEmissao}" > 
+					<p:column id="data" headerText="Data" width="100" sortBy="#{pedido.dataEmissao}" > 
 						<h:outputText value="#{pedido.dataEmissao}" >
 							<f:convertDateTime pattern="MM/dd/yyyy" />
 						</h:outputText>
 					</p:column>
 					
-					<p:column sortBy="#{pedido.valorTotal}" id="total" headerText="Total" width="135">
+					<p:column sortBy="#{pedido.valorTotal}" id="total" headerText="Total" width="100">
 						<h:outputText value="#{pedido.valorTotal}">
 							<f:convertNumber  type="currency" currencySymbol=""/>
 						</h:outputText>

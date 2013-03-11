@@ -46,21 +46,23 @@
 								<p:inputText id="_precocusto"
 									value="#{produtoMB.produto.precoCusto}" required="true"
 									requiredMessage="Preco de custo não preenchido." 
-									size="22" styleClass="inputSize" />
+									size="22" styleClass="inputSize"/>
 									
 								<p:outputLabel for="_precovenda" value="Preco de Venda: "
 									required="true" />
 								<p:inputText id="_precovenda"
 									value="#{produtoMB.produto.precoVenda}" required="true"
 									requiredMessage="Preco de Venda não preenchido." 
-									size="22" styleClass="inputSize" />
+									size="22" styleClass="inputSize"/>
 									
 								<p:outputLabel for="_meta" value="Meta: "
 									required="true" />
 								<p:inputText id="_meta"
 									value="#{produtoMB.valorMeta}" required="true"
 									requiredMessage="Preco de venda não preenchido." 
-									size="22" styleClass="inputSize" />
+									size="22" styleClass="inputSize">
+									<f:convertNumber  maxFractionDigits="0"/>
+								</p:inputText>
 									
 									
         						

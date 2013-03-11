@@ -8,7 +8,7 @@
 
 	<ui:decorate template="template.xhtml">
 		<ui:define name="conteudo">
-		
+				
 		<p:panel  style="font-size: 14px; border: 0;  background: none;">
 		
 		<h:form>
@@ -18,11 +18,11 @@
 					
 			<p:outputLabel for="_meses" value="Analise dos ultimos:"/>
 				<p:selectOneMenu id="_meses" effect="clip" value="#{graficoMB.qtdePeriodos}" style="width:165px"  >
-					<f:selectItem itemValue="3" itemLabel="3 meses"/>
-					<f:selectItem itemValue="6" itemLabel="6 meses"/>
-					<f:selectItem itemValue="12" itemLabel="12 meses"/>
+					<f:selectItem itemLabel="Produto X Servico"/>
+					<f:selectItem itemValue="PRODUTO" itemLabel="Produto"/>
+					<f:selectItem itemValue="SERVICO" itemLabel="Serviço"/>
            			
-           			<p:ajax event="change" listener="#{graficoMB.carregarGraficoCliente}" process="@this" update="@all" />
+           			<p:ajax event="change" listener="#{graficoMB.carregarGraficoProdutoSericoGeral}" process="@this" update="@all" />
            		
            		</p:selectOneMenu>
            		
@@ -37,7 +37,7 @@
 			<center>
 					
 				<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear" value="#{graficoMB.linearModel}" 
-					legendPosition="e" title="Quantidade de Clientes Conquistados"  minY="0" maxY="#{graficoMB.maxY}"
+					legendPosition="w" title="Quantidade de Clientes Conquistados"  minY="0" maxY="#{graficoMB.maxY}"
 					
 					xaxisLabel="Periodo"
             		yaxisLabel="Qtde Pessoas"

@@ -1,6 +1,7 @@
 package br.com.mendes.model.dao.impl;
 
 import java.security.InvalidParameterException;
+import java.util.Date;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,28 @@ public class MetaEspecificaDAOImpl extends DAOImpl<MetaEspecifica,Long> implemen
 		query.setParameter("codItem", codItem);
 						
 		return (MetaEspecifica) query.uniqueResult();
+	}
+
+	@Override
+	public Long obterMetaEspecificaNoAnoMes(Long codItem, Date time) {
+		
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" select m.valor " +
+				   " from  MetaEspecifica m " +
+				   " join m.item item " +
+				   " where item.cod=:cod " +
+				   " and m.dataInicio<=:ultimoDiaHoraMes " +
+				   " order by m.dataInicio desc");
+		
+		Query query = getSession().createQuery(hql.toString());
+		
+		query.setParameter("ultimoDiaHoraMes", time);
+		query.setParameter("cod", codItem);
+		
+		query.setMaxResults(1);
+							
+		return query.uniqueResult()==null?0L: ((Double) query.uniqueResult()).longValue();
 	}
 
 }

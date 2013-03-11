@@ -41,6 +41,8 @@ public class FeedbackMB implements Serializable {
 	private List<Cliente> clientes;
 	private List<TipoAtendimento> tiposAtendimento;
 	private List<TipoItem> tiposItem;
+	
+	
 
 	@Autowired
 	private FeedbackService feedbackService;

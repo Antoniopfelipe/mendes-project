@@ -59,4 +59,54 @@ public class ItemDAOImpl extends DAOImpl<Item,Long> implements ItemDAO {
 		return query.list();
 	}
 
+	@Override
+	public Long obterMetaEspecificaNoAnoMes(Long codItem, Integer ano,
+			Integer mes) {
+		
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" select count(item.cod) " +
+				   " from  ItemPedido ip " +
+				   " join ip.item item " +
+				   " join ip.pedido pedido " +
+				   " where item.cod=:codItem " +
+				   " and year(pedido.dataEmissao)=:ano " +
+				   " and month(pedido.dataEmissao)=:mes ");
+		
+		Query query = getSession().createQuery(hql.toString());
+		
+		query.setParameter("codItem", codItem);
+		
+		query.setParameter("ano", ano);
+		
+		query.setParameter("mes", mes);
+							
+		return query.uniqueResult()==null?0L: (Long) query.uniqueResult();
+	}
+
+	@Override
+	public Long obterQtdeGeralNoAnoMes(TipoItem tipoItem, Integer ano,
+			Integer mes) {
+		
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" select count(item.cod) " +
+				   " from  ItemPedido ip " +
+				   " join ip.item item " +
+				   " join ip.pedido pedido " +
+				   " where item.class=:tipoItem " +
+				   " and year(pedido.dataEmissao)=:ano " +
+				   " and month(pedido.dataEmissao)=:mes ");
+		
+		Query query = getSession().createQuery(hql.toString());
+		
+		query.setParameter("tipoItem", tipoItem.name());
+		
+		query.setParameter("ano", ano);
+		
+		query.setParameter("mes", mes);
+							
+		return query.uniqueResult()==null?0L: (Long) query.uniqueResult();
+	}
+
 }
