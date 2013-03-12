@@ -17,7 +17,7 @@
 			
 			<p:panel style="font-size: 14px; border: 0;  background: none;text-align:left">	
 						
-			<h:panelGrid  align="left" columns="4" width="600" style="margin-left: 10%;">
+			<h:panelGrid  align="left" columns="4" width="600" style="position: fixed;margin-top: -20px;margin-left: 10%;">
 				
 				<p:outputLabel   for="_tipoItem" value="Tipo de Item: "  />
 					<p:selectOneMenu  id="_tipoItem" effect="clip" value="#{graficoMB.tipoItem}" style="width:200px"  >						
@@ -41,7 +41,7 @@
 	     	    
 			</h:panelGrid>
 				
-			<p:spacer width="500"  height="20" />
+			<p:spacer width="500"  height="30" />
 			
 			
 				<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear"  value="#{graficoMB.linearModel}" 
