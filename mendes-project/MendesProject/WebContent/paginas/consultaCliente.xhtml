@@ -9,10 +9,12 @@
 
 	<ui:define name="conteudo">
 		
+		<p:panel>
 		<h:form >
 
+				<h3>Consulta de Clientes</h3>
 				<p:dataTable id="tabelaCliente" var="cliente" value="#{clienteMB.clientes}" widgetVar="tabelaCliente" 
-					emptyMessage="Não há clientes com essa especificação"  resizableColumns="true" style="width: 950px; margin-left:10%;">
+					emptyMessage="Não há clientes com essa especificação"  resizableColumns="true" style="width: 900px; margin-left: 6%;">
 
 					<f:facet name="header">
 						<p:outputPanel>
@@ -58,5 +60,6 @@
 		
 
 		</h:form>
+		</p:panel>
 	</ui:define>
 </ui:composition>

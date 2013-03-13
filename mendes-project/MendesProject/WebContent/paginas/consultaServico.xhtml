@@ -8,9 +8,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:define name="conteudo">
-		
+		<p:panel>
 		<h:form>
-
+				<h3>Consulta de Serviços</h3>
 				<p:dataTable id="tabelaProduto" var="servico" value="#{servicoMB.servicos}" 
 					emptyMessage="Não serviços pra os filtros especificados." scrollable="true" resizableColumns="true" style="width: 900px; ">
 
@@ -60,5 +60,6 @@
 		
 
 		</h:form>
+		</p:panel>
 	</ui:define>
 </ui:composition>

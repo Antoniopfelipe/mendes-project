@@ -9,8 +9,9 @@
 
 	<ui:define name="conteudo">
 		
+		<p:panel>
 		<h:form>
-
+				<h3>Consulta de Produtos</h3>
 				<p:dataTable id="tabelaProduto" var="produto" value="#{produtoMB.produtos}" widgetVar="tabelaProduto" 
 					emptyMessage="Não há produtos com essa especificação" scrollable="true" resizableColumns="true" style="width: 900px; ">
 
@@ -60,5 +61,6 @@
 		
 
 		</h:form>
+		</p:panel>
 	</ui:define>
 </ui:composition>
