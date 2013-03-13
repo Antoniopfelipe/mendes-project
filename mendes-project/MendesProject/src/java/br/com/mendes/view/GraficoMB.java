@@ -55,6 +55,8 @@ public class GraficoMB implements Serializable {
 	
 	private Long codItem;
 	
+	private Integer tipoGrafico=1;
+	
 	private List<TipoAtendimento> tiposAtendimento;
 	
 	private TipoAtendimento tipoAtendimento;
@@ -68,7 +70,7 @@ public class GraficoMB implements Serializable {
 		painelGrafico = new CartesianChartModel();		
 		maxY = 0;	
 	}
-	
+		
 	@PostConstruct
 	public void iniciar() {
 	}
@@ -83,16 +85,23 @@ public class GraficoMB implements Serializable {
 	
 	public String carregarGraficoProdutoServicoGeral() {
 		
-		if(tipoItem==null) {
-			criarLinhaItemGeral(TipoItem.SERVICO, "Serviço Prestados");
-			criarLinhaItemGeral(TipoItem.PRODUTO, "Produtos Vendidos");
-			
-		} else if(TipoItem.PRODUTO.equals(tipoItem)) {
+		switch (tipoGrafico) {
+		case 1:			
+			criarLinhaItemGeral(TipoItem.SERVICO, "Qtde Serviço Prestados");
+			criarLinhaItemGeral(TipoItem.PRODUTO, "Qtde Produtos Vendidos");
+			break;
+		case 2:
+			criarLinhaItemGeralValor(TipoItem.SERVICO, "Serviços Prestados");
+			criarLinhaItemGeralValor(TipoItem.PRODUTO, "Produtos Vendidos");
+			break;
+		case 3:
 			criarLinhaItemGeral(TipoItem.PRODUTO, "Produtos Vendidos");
 			criarLinhaMetaGeral(TipoMetaGeral.PRODUTO);
-		} else {
+			break;
+		case 4:
 			criarLinhaItemGeral(TipoItem.SERVICO, "Serviço Prestados");
 			criarLinhaMetaGeral(TipoMetaGeral.SERVICO);
+			break;
 		}
 				
 		return "/paginas/graficoProdutoServicoGeral.xhtml";
@@ -102,7 +111,17 @@ public class GraficoMB implements Serializable {
 		
 		List<QtdePeriodoDTO> periodos = gerarPeriodos();
 		
-		periodos = itemService.obterQtdesItensEspecificosNosPeriodos(tipoItem, periodos);
+		periodos = itemService.obterQtdesItensGeralNosPeriodos(tipoItem, periodos);
+	
+		gerarLinha(descricao, periodos);
+		
+	}
+	
+	private void criarLinhaItemGeralValor(TipoItem tipoItem, String descricao) {
+		
+		List<QtdePeriodoDTO> periodos = gerarPeriodos();
+		
+		periodos = itemService.obterQtdesItensGeralValorNosPeriodos(tipoItem, periodos);
 	
 		gerarLinha(descricao, periodos);
 		
@@ -193,7 +212,7 @@ public class GraficoMB implements Serializable {
 		
 		for(int i=0; i<qtdePeriodos; i++) {
 			
-			periodos.add(0,new QtdePeriodoDTO(0L,mes,ano));
+			periodos.add(0,new QtdePeriodoDTO(0.0,mes,ano));
 			
 			if(mes.equals(1)) {
 				mes=12;
@@ -266,7 +285,7 @@ public class GraficoMB implements Serializable {
 	private void zerarPeriodos(List<QtdePeriodoDTO> periodos) {
 
 		for(QtdePeriodoDTO periodo : periodos) {
-			periodo.setQtde(0L);
+			periodo.setQtde(0.0);
 		}
 		
 	}
@@ -336,6 +355,14 @@ public class GraficoMB implements Serializable {
 
 	public void setCodItem(Long codItem) {
 		this.codItem = codItem;
+	}
+
+	public Integer getTipoGrafico() {
+		return tipoGrafico;
+	}
+
+	public void setTipoGrafico(Integer tipoGrafico) {
+		this.tipoGrafico = tipoGrafico;
 	}
 	
 

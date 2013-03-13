@@ -90,7 +90,7 @@ public class ItemDAOImpl extends DAOImpl<Item,Long> implements ItemDAO {
 		
 		StringBuilder hql = new StringBuilder();
 		
-		hql.append(" select count(item.cod) " +
+		hql.append(" select sum(ip.quantidade) " +
 				   " from  ItemPedido ip " +
 				   " join ip.item item " +
 				   " join ip.pedido pedido " +
@@ -107,6 +107,31 @@ public class ItemDAOImpl extends DAOImpl<Item,Long> implements ItemDAO {
 		query.setParameter("mes", mes);
 							
 		return query.uniqueResult()==null?0L: (Long) query.uniqueResult();
+	}
+
+	@Override
+	public Double obterQtdeGeralValorNoAnoMes(TipoItem tipoItem, Integer ano,
+			Integer mes) {
+		
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" select sum(ip.quantidade*item.precoVenda) " +
+				   " from  ItemPedido ip " +
+				   " join ip.item item " +
+				   " join ip.pedido pedido " +
+				   " where item.class=:tipoItem " +
+				   " and year(pedido.dataEmissao)=:ano " +
+				   " and month(pedido.dataEmissao)=:mes ");
+		
+		Query query = getSession().createQuery(hql.toString());
+		
+		query.setParameter("tipoItem", tipoItem.name());
+		
+		query.setParameter("ano", ano);
+		
+		query.setParameter("mes", mes);
+							
+		return query.uniqueResult()==null?0.0: (Double) query.uniqueResult();
 	}
 
 }

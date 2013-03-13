@@ -53,7 +53,7 @@ public class ItemServiceImpl implements ItemService {
 
 		for(QtdePeriodoDTO periodo : periodos) {
 			Long qtde = this.obterQtdeItensEspecificosNoMesAno(codItem, periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
+			periodo.setQtde(qtde.doubleValue());
 		}
 		
 		return periodos;
@@ -69,12 +69,12 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	@Transactional
-	public List<QtdePeriodoDTO> obterQtdesItensEspecificosNosPeriodos(
+	public List<QtdePeriodoDTO> obterQtdesItensGeralNosPeriodos(
 			TipoItem tipoItem, List<QtdePeriodoDTO> periodos) {
 		
 		for(QtdePeriodoDTO periodo : periodos) {
 			Long qtde = this.obterQtdeItensGeralNoMesAno(tipoItem, periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
+			periodo.setQtde(qtde.doubleValue());
 		}
 		
 		return periodos;
@@ -86,6 +86,25 @@ public class ItemServiceImpl implements ItemService {
 	public Long obterQtdeItensGeralNoMesAno(TipoItem tipoItem,
 			Integer ano, Integer mes) {
 		return itemDAO.obterQtdeGeralNoAnoMes(tipoItem, ano, mes);
+	}
+
+	@Override
+	@Transactional
+	public List<QtdePeriodoDTO> obterQtdesItensGeralValorNosPeriodos(
+			TipoItem tipoItem, List<QtdePeriodoDTO> periodos) {
+		
+		for(QtdePeriodoDTO periodo : periodos) {
+			Double qtde = this.obterQtdeItensGeralValorNoMesAno(tipoItem, periodo.getAno(), periodo.getMes());
+			periodo.setQtde(qtde);
+		}
+		
+		return periodos;
+	}
+
+	@Transactional
+	private Double obterQtdeItensGeralValorNoMesAno(TipoItem tipoItem,
+			Integer ano, Integer mes) {
+		return itemDAO.obterQtdeGeralValorNoAnoMes(tipoItem, ano, mes);
 	}
 	
 }
