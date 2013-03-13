@@ -51,7 +51,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 		
 		for(QtdePeriodoDTO periodo : periodos) {
 			Long qtde = this.obterQtdeFeedbackNoMesAno(tipoAtendimento,periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
+			periodo.setQtde(qtde.doubleValue());
 		}
 				
 		return periodos;

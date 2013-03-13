@@ -120,7 +120,7 @@ public class MetaServiceImpl implements MetaService {
 		
 		for(QtdePeriodoDTO periodo : periodos) {
 			Long qtde = this.obterMetaGeralNoAnoMes(tipoMetaGeral, periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
+			periodo.setQtde(qtde.doubleValue());
 		}
 		
 		return periodos;
@@ -134,7 +134,7 @@ public class MetaServiceImpl implements MetaService {
 
 		for(QtdePeriodoDTO periodo : periodos) {
 			Long qtde = this.obterMetaEspecificaNoAnoMes(codItem, periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
+			periodo.setQtde(qtde.doubleValue());
 		}
 		
 		return periodos;

@@ -16,4 +16,6 @@ public interface ItemDAO extends DAO<Item, Long>{
 
 	Long obterQtdeGeralNoAnoMes(TipoItem tipoItem, Integer ano, Integer mes);
 
+	Double obterQtdeGeralValorNoAnoMes(TipoItem tipoItem, Integer ano, Integer mes);
+
 }

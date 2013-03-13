@@ -23,9 +23,12 @@ public interface ItemService extends Serializable {
 	Long obterQtdeItensEspecificosNoMesAno(Long codItem, Integer ano,
 			Integer mes) ;
 
-	List<QtdePeriodoDTO> obterQtdesItensEspecificosNosPeriodos(
+	List<QtdePeriodoDTO> obterQtdesItensGeralNosPeriodos(
 			TipoItem tipoItem, List<QtdePeriodoDTO> periodos);
 
 	Long obterQtdeItensGeralNoMesAno(TipoItem tipoItem, Integer ano, Integer mes);
+
+	List<QtdePeriodoDTO> obterQtdesItensGeralValorNosPeriodos(
+			TipoItem tipoItem, List<QtdePeriodoDTO> periodos);
     
 }

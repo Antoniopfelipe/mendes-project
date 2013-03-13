@@ -6,7 +6,7 @@ public class QtdePeriodoDTO implements Serializable{
 
 	private static final long serialVersionUID = 7054586594614000311L;
 	
-	private Long qtde;
+	private Double qtde;
 	private Integer mes;
 	private Integer ano;
 	
@@ -14,16 +14,16 @@ public class QtdePeriodoDTO implements Serializable{
 		
 	}
 	
-	public QtdePeriodoDTO(Long qtde, Integer mes, Integer ano) {
+	public QtdePeriodoDTO(Double qtde, Integer mes, Integer ano) {
 		super();
 		this.qtde = qtde;
 		this.mes = mes;
 		this.ano = ano;
 	}
-	public Long getQtde() {
+	public Double getQtde() {
 		return qtde;
 	}
-	public void setQtde(Long qtde) {
+	public void setQtde(Double qtde) {
 		this.qtde = qtde;
 	}
 	public Integer getMes() {

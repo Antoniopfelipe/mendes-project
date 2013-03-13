@@ -20,11 +20,13 @@
 			<h:panelGrid  align="left" columns="4" width="600" style="position: fixed;margin-top: -20px;margin-left: 10%;">
 				
 				<p:outputLabel   for="_tipoItem" value="Tipo de Item: "  />
-					<p:selectOneMenu  id="_tipoItem" effect="clip" value="#{graficoMB.tipoItem}" style="width:200px"  >						
-					<f:selectItem itemLabel="Produto X Serviço" />
+					<p:selectOneMenu  id="_tipoItem" effect="clip" value="#{graficoMB.tipoGrafico}" style="width:200px"  >						
 					
-					<f:selectItem itemLabel="Produto" itemValue="PRODUTO"/>
-					<f:selectItem  itemLabel="Serviço" itemValue="SERVICO"/>
+					<f:selectItem itemLabel="Produto X Serviço - Qtde"  itemValue="1" />
+					<f:selectItem itemLabel="Produto X Serviço - Valor" itemValue="2" />
+					
+					<f:selectItem itemLabel="Produto" 					itemValue="3"/>
+					<f:selectItem  itemLabel="Serviço" 					itemValue="4"/>
 				
 					<p:ajax event="change" listener="#{graficoMB.carregarGraficoProdutoServicoGeral}"  process="@this, _meses" update="@all" />	 
 	     	    </p:selectOneMenu>
@@ -45,10 +47,10 @@
 			
 			
 				<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear"  value="#{graficoMB.linearModel}" 
-				legendPosition="w" title="Meta por Produto Escífico"  minY="0" maxY="#{graficoMB.maxY}"
+				legendPosition="w" title="Meta Gerais"  minY="0" maxY="#{graficoMB.maxY}"
 				
 				xaxisLabel="Periodo"
-	          		yaxisLabel="Qtde Pessoas"
+	          		yaxisLabel="Qtde/Valor"
 				animate="true"
 				
 				style="height:400px"  />

@@ -50,7 +50,7 @@ public class ClienteServiceImpl implements ClienteService {
 		
 		for(QtdePeriodoDTO periodo : periodos) {
 			Long qtde = this.obterQtdeClientesNoAnoMes(periodo.getAno(), periodo.getMes());
-			periodo.setQtde(qtde);
+			periodo.setQtde(qtde.doubleValue());
 		}
 				
 		return periodos;
