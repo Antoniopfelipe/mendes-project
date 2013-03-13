@@ -23,7 +23,7 @@
 						<f:selectItem itemValue="PESSOAL" itemLabel="Pessoal"/>
 						<f:selectItem itemValue="TELEFONE" itemLabel="Telefone"/>
 						
-	       				<p:ajax event="change" listener="#{graficoMB.carregarGraficoFeedback}"  process="@this" update="@all" />
+	       				<p:ajax event="change" listener="#{graficoMB.carregarGraficoFeedback}"  process="@this, _meses" update="painelGrafico" />
 	       				
 	       			</p:selectOneMenu>
        		
@@ -33,7 +33,7 @@
 						<f:selectItem itemValue="6" itemLabel="6 meses"/>
 						<f:selectItem itemValue="12" itemLabel="12 meses"/>
 	           			
-	           			<p:ajax event="change" listener="#{graficoMB.carregarGraficoFeedback}" process="@this" update="@all" />
+	           			<p:ajax event="change" listener="#{graficoMB.carregarGraficoFeedback}" process="@this, _tipoAtendimento" update="painelGrafico" />
 	           		
 	           		</p:selectOneMenu>
 				
@@ -43,15 +43,19 @@
           
 			
 				<p:spacer height="20px" width="800" />
-			
-				<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear" value="#{graficoMB.linearModel}" 
-				legendPosition="w" title="Quantidade de Atendimento Realizados"  minY="0" maxY="#{graficoMB.maxY}"
 				
-				xaxisLabel="Periodo"
-           		yaxisLabel="Qtde Atendimentos"
-				animate="true"
-				
-				style="height:400px"  />
+				<p:panel id="painelGrafico" style="font-size: 14px; border: 0;  background: none;">	
+					
+					<p:lineChart rendered="#{not empty graficoMB.linearModel}" id="linear" value="#{graficoMB.linearModel}" 
+					legendPosition="w" title="Quantidade de Atendimento Realizados"  minY="0" maxY="#{graficoMB.maxY}"
+					
+					xaxisLabel="Periodo"
+	           		yaxisLabel="Qtde Atendimentos"
+					animate="true"
+					
+					style="height:400px"  />
+
+				</p:panel>
 
 		</h:form>
 		

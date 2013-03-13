@@ -26,7 +26,7 @@
 					<f:selectItem itemLabel="Produto" itemValue="PRODUTO"/>
 					<f:selectItem  itemLabel="Serviço" itemValue="SERVICO"/>
 				
-					<p:ajax event="change" listener="#{graficoMB.carregarGraficoProdutoServicoGeral}"  process="@this" update="@all" />	 
+					<p:ajax event="change" listener="#{graficoMB.carregarGraficoProdutoServicoGeral}"  process="@this, _meses" update="@all" />	 
 	     	    </p:selectOneMenu>
 	     	    
 	     	    <p:outputLabel for="_meses" value="Analise dos ultimos:"/>
@@ -35,7 +35,7 @@
 					<f:selectItem itemValue="6" itemLabel="6 meses"/>
 					<f:selectItem itemValue="12" itemLabel="12 meses"/>
 	          			
-	          			<p:ajax event="change" listener="#{graficoMB.carregarGraficoCliente}" process="@this" update="@all" />
+	          			<p:ajax event="change" listener="#{graficoMB.carregarGraficoProdutoServicoGeral}" process="@this, _tipoItem" update="@all" />
 	          		
 	        	</p:selectOneMenu>
 	     	    
