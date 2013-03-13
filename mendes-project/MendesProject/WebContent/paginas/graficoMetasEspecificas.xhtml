@@ -15,6 +15,9 @@
 		
 		<p:panel  id="panel" style="font-size: 14px; border: 0;  background: none;" >
 			
+			 	
+           	<p:remoteCommand name="atualizarDados"  actionListener="#{graficoMB.carregarGraficoMetaEspecifica}" process="@all"  update="painelGrafico" />
+          			
 			<h:panelGrid  align="left" columns="7" width="900" style="position: fixed;margin-top: -20px;">
 			
 			<p:outputLabel   for="_tipoItem" value="Tipo de Item: "  />
@@ -34,8 +37,8 @@
            		<f:selectItems id="__itens"  value="#{graficoMB.itens}" var="obj" itemLabel="#{obj.nome}" itemValue="#{obj.cod}"/>
            		
 		    </p:selectOneMenu >
-           	
-           	<h:inputText id="alvo" styleClass="alvo" value="#{graficoMB.codItem}" style="display:none" />
+           	           	
+           	<h:inputText id="_alvo" styleClass="alvo" value="#{graficoMB.codItem}" style="display:none" />
            	
            	<p:outputLabel for="_meses" value="Analise dos ultimos:"/>
 			<p:selectOneMenu id="_meses" effect="clip" value="#{graficoMB.qtdePeriodos}" style="width:165px"  >
@@ -43,12 +46,10 @@
 				<f:selectItem itemValue="6" itemLabel="6 meses"/>
 				<f:selectItem itemValue="12" itemLabel="12 meses"/>
           			
-          			<p:ajax event="change" listener="#{graficoMB.carregarGraficoCliente}" process="@this" update="@all" />
+          			<p:ajax event="change" listener="#{graficoMB.carregarGraficoMetaEspecifica}" process="@this, _tipoItem, _alvo" update="painelGrafico"/>
           		
         	</p:selectOneMenu>
-           	
-           	<p:remoteCommand name="atualizarDados"  actionListener="#{graficoMB.carregarGraficoMetaEspecifica}" process="@all"  update="painelGrafico" />
-           	
+           	           	
            </h:panelGrid>
            </p:panel>
 

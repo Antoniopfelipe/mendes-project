@@ -177,7 +177,7 @@ public class GraficoMB implements Serializable {
 		
 		periodos = feedbackService.obterQtdesFeedbackNosPeriodos(tipoAtendimento, periodos);
 	
-		gerarLinha("Clientes", periodos);
+		gerarLinha("Atendimentos", periodos);
 		
 	}
 
