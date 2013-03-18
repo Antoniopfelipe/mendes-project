@@ -87,11 +87,11 @@ public class GraficoMB implements Serializable {
 		
 		switch (tipoGrafico) {
 		case 1:			
-			criarLinhaItemGeral(TipoItem.SERVICO, "Qtde ServiÃ§o Prestados");
+			criarLinhaItemGeral(TipoItem.SERVICO, "Qtde Serviços Prestados");
 			criarLinhaItemGeral(TipoItem.PRODUTO, "Qtde Produtos Vendidos");
 			break;
 		case 2:
-			criarLinhaItemGeralValor(TipoItem.SERVICO, "ServiÃ§os Prestados");
+			criarLinhaItemGeralValor(TipoItem.SERVICO, "Serviços Prestados");
 			criarLinhaItemGeralValor(TipoItem.PRODUTO, "Produtos Vendidos");
 			break;
 		case 3:
@@ -99,7 +99,7 @@ public class GraficoMB implements Serializable {
 			criarLinhaMetaGeral(TipoMetaGeral.PRODUTO);
 			break;
 		case 4:
-			criarLinhaItemGeral(TipoItem.SERVICO, "ServiÃ§o Prestados");
+			criarLinhaItemGeral(TipoItem.SERVICO, "Serviços Prestados");
 			criarLinhaMetaGeral(TipoMetaGeral.SERVICO);
 			break;
 		}
