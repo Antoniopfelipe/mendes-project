@@ -16,7 +16,7 @@
 	<div id="wrap">
 		<div id="topo">
 			<h1 class="logo"><img src="/MendesProject/img/logo-site.png" width="200" /></h1>
-			
+			<h:form>
 			<div class="main-menu">
 				<ul class="nav">
 					<li class="list-item">
@@ -51,25 +51,26 @@
 						<ul class="sub-nav">
 							
 							<li class="sub-list-item">
-								<p:commandLink action="#{graficoMB.carregarGraficoCliente}" process="@this">Clientes Conquistados</p:commandLink>
+								<p:commandLink action="#{graficoMB.carregarGraficoCliente}" ajax="false">Clientes Conquistados</p:commandLink>
 							</li>
 							
 							<li class="sub-list-item">
-								<p:commandLink action="#{graficoMB.carregarGraficoFeedback}"  process="@this" >Atendimentos Realizados</p:commandLink>
+								<p:commandLink action="#{graficoMB.carregarGraficoFeedback}" ajax="false">Atendimentos Realizados</p:commandLink>
 							</li>
 							
 							<li class="sub-list-item">
-								<p:commandLink action="#{graficoMB.carregarGraficoMetaEspecifica}"  process="@this" >Produtos/Serviços Específicos</p:commandLink>
+								<p:commandLink action="#{graficoMB.carregarGraficoMetaEspecifica}" ajax="false">Produtos/Serviços Específicos</p:commandLink>
 							</li>
 							
 							<li class="sub-list-item">
-								<p:commandLink action="#{graficoMB.carregarGraficoProdutoServicoGeral}"  process="@this" >Produtos/Serviços Metas Globais</p:commandLink>
+								<p:commandLink action="#{graficoMB.carregarGraficoProdutoServicoGeral}"  ajax="false">Produtos/Serviços Metas Globais</p:commandLink>
 							</li>
 							
 						</ul>
 					</li>
 				</ul>
 			</div>
+			</h:form>
 
 		</div>
 
