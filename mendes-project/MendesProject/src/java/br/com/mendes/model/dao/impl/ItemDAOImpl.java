@@ -65,7 +65,7 @@ public class ItemDAOImpl extends DAOImpl<Item,Long> implements ItemDAO {
 		
 		StringBuilder hql = new StringBuilder();
 		
-		hql.append(" select count(item.cod) " +
+		hql.append(" select sum(ip.quantidade) " +
 				   " from  ItemPedido ip " +
 				   " join ip.item item " +
 				   " join ip.pedido pedido " +
