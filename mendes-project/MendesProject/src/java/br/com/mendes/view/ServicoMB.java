@@ -77,6 +77,8 @@ public class ServicoMB implements Serializable{
     	FacesContext.getCurrentInstance().addMessage(null, 
 	      		new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso" , "Cadastrado com sucesso."));  
     	
+    	resetDados();
+    	
     }
 
 	public Servico getServico() {

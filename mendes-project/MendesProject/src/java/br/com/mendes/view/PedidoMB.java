@@ -104,7 +104,7 @@ public class PedidoMB implements Serializable {
 			itensPedido = new ArrayList<ItemPedido>();
 		
 		if(codItem == null) {
-			MBUtil.addWarn("Item n√£o foi selecionado.");
+			MBUtil.addWarn("Item n„o foi selecionado.");
 			return;
 		}
 		
@@ -115,7 +115,7 @@ public class PedidoMB implements Serializable {
 			if(ip.getItem().getCod().equals(codItem)) {
 				ip.setQuantidade(quantidade);
 				encontrado = true;
-				MBUtil.addWarn("Produto j√° estava na lista, sua quantidade foi alterada.");
+				MBUtil.addWarn("Produto j· estava na lista, sua quantidade foi alterada.");
 			}
 			
 			
